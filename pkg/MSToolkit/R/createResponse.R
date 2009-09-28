@@ -60,9 +60,30 @@ createResponse <- function(
   ## add error
   # i need to use get because the user might use the `name` in the 
   # `range` code and s?he can give the `name` s?he wants
-  if( !missing(covariance) ) 
+  
+  errStruc <- if(is.function(errStruc)) errStruc else {
+    errStruc <- initialChar( errStruc, "nap", 
+      "`errStruc` should be `none`,`additive`, `proportionnal` or a function")
+  }
+  
+  ## NEED TO ADD IN NAMES FOR RESID VALUES IF ERRSTRUC="NONE"
+  ## AND NAME RESID ERROR COLUMNS FOR length(diag(covariance))>1
+  ## i.e. multivariate normal residual error structure
+  
+  univar <- length(diag(covariance))==1
+  npar <- length(diag(covariance))
+  
+  if( !missing(covariance) ) {
+  if( univar )
     name %<-% addResidualError( get(name), covariance, errStruc, seed )
-                                              
+  else{
+	name %<-% get(name);
+	resid <- data.frame(addResidualError( get(name), covariance,errStruc="none", seed))
+	names(resid) <- paste(rep("RESID",npar),c(1:npar),sep="")
+##	names(resid) <- rep("RESID",npar) %.% c(1:npar)  # I THINK this is how to paste names and identifiers
+	}
+  }
+  
   ## apply the inverselink function 
   if( !is.null(invLink) ){
     sumNa <- sum(is.na(get(name)))
@@ -99,9 +120,12 @@ createResponse <- function(
   }      
   
   ## round the response
-  name %<-% round( get(name), digits = digits )
+ if( univar) name %<-% round( get(name), digits = digits )
+ if( npar > 1)  resid <- round( resid, digits ) ## - NOT WORKING... WHY NOT?
     
   ## make the output data frame
-  .eval( "data.frame( $name = get(name), $flagName = omit )" )  
+  if( univar )
+  .eval( "data.frame( $name = get(name), $flagName = omit )" )
+  else if( npar > 1 ) .eval( "data.frame( $name = get(name) , $flagName = omit, resid )")  
 }
                                      
