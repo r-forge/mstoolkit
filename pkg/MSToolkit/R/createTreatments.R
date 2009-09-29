@@ -64,7 +64,7 @@ createTreatments <- function(
     # does it have the right number of rows
     if( nTimes != nrow(sequence)  ) {
       diffSeq <- nTimes - nrow(sequence)
-      if (diffSeq > 0 && all(times[1:diffSeq] < 0)) sequence <- rbind( matrix(0, nrow=diffSeq , ncol = ncol(sequence)), sequence)
+      if (diffSeq > 0 && all(times[1:diffSeq] <= 0)) sequence <- rbind( matrix(0, nrow=diffSeq , ncol = ncol(sequence)), sequence)
       else {
         ectdStop( 
           "difference between the number of rows in the sequence matrix" %.n%
