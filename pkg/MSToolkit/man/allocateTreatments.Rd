@@ -31,12 +31,11 @@ allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE,
 }
 \value{
   A data frame with subjects and treatment allocations.  This data frame will contain 2 variables:
-  \item{SUBJ } {The Subjects identifier }
-  \item{TRT}   {The Treatment numeric that the subject is allocated to }
+\item{SUBJ}{The Subjects identifier}
+\item{TRT}{The Treatment numeric that the subject is allocated to}
   ...
 }
-\references{ }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createTreatments}} to create the set of possible treatments given a 
   sequence matrix for a crossover design or a set of doses for a parallel design.

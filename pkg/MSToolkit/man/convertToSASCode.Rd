@@ -27,8 +27,7 @@ convertToSASCode(code)
   A single character string representing the "SAS" version of the input code
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
-\seealso{  }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 \dontrun{
 

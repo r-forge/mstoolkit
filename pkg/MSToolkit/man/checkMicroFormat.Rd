@@ -35,7 +35,7 @@ If all of these checks pass, then \code{checkMicroFormat} will construct a new d
 
 \value{A data frame as described above}
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{createEmptyMicro}}}
 \examples{
   

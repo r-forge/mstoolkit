@@ -56,7 +56,7 @@ If the "waitAndCombine" flag is set to TRUE, the function will wait until all gr
   This function will produce no direct output.  As a consequence, however, many analysis, summary and log files will be produced.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \note{  
   There are some restrictions on the code inputs to the \code{\link{analyzeData}} function.  These restrictions are discussed here:
   

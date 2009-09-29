@@ -19,9 +19,3 @@ Date: \tab 2007-08-29\cr
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} } 
 
 \keyword{ package }
-\seealso{
-  Neal Thomas' "DoseResponse" library
-}
-\examples{
-
-}

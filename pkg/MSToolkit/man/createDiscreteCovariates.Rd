@@ -2,6 +2,7 @@
 \alias{createDiscreteCovariates}
 \title{ Create covariates from a discrete distribution }
 \description{
+  Creates discrete covariates based on a matrix specifying the probability of each outcome or combinations of outcomes.
 }
 \usage{
 createDiscreteCovariates(subjects, names, values, probs, probArray, 
@@ -43,7 +44,7 @@ createDiscreteCovariates(subjects, names, values, probs, probArray,
 \value{
   A data frame.
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createContinuousCovariates}}, 
   \code{\link{createExternalCovariates}}, and 

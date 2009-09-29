@@ -18,7 +18,7 @@ checkMacroFormat(data)
 \value{
   Nothing. Only used for error generation side effects.
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{analyzeData}}
 }

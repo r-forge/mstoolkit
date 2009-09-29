@@ -27,7 +27,7 @@ ectdWarning(..., call. = TRUE, immediate. = FALSE, domain = NULL)
   Nothing. 
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ See \code{\link{warning}} and \code{\link{stop}}.  }
 \examples{
   

@@ -23,7 +23,7 @@ createEmptyMicro(doses, doseCol = "DOSE", microColumnNames = c("doseName" = dose
 \value{
 	createEmptyMicro returns a data frame that is as described above.
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{checkMicroFormat}}  }
 \examples{
   createEmptyMicro(doses = c(10, 20 ,30, 40))

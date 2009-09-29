@@ -27,7 +27,7 @@ interimAnalysis(data, interimCode)
   Any list elements other than "DROP" or "STOP" will be ignored.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 
 \examples{
   myData <- data.frame(DOSE=c(0, 15, 30), TEST = 1:3)

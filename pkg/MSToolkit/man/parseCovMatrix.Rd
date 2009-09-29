@@ -28,7 +28,7 @@ parseCovMatrix attempts to create a symmetric positive definite matrix of dimens
  error will be printed.  
 }
 \value{A positive definite symmetric matrix}
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 
 \seealso{\code{\link{checkSymmetricPDMatrix}}  }
 \examples{

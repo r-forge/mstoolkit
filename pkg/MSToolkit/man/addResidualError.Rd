@@ -30,7 +30,7 @@ addResidualError(response, covariance, errStruc = "additive", seed = .deriveFrom
 \value{
   A numeric vector
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   This function is typically not directly called by the user, but rather called 
   by the function \code{\link{createResponse}} that is the high-level function 

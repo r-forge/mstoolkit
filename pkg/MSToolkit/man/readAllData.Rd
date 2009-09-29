@@ -24,7 +24,7 @@ readAllData(dataType = c("ReplicateData", "MicroEvaluation", "MacroEvaluation"),
   If consolidate is TRUE, the function will combine this list into a single data frame for return 
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{writeData}}, \code{\link{readData}}}
 \examples{
 	\dontrun{

@@ -51,7 +51,7 @@
   A "Micro Evaluation" structure with additional variables (interim column, drop flag and stop flag)
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{performAnalysis}} is called by \code{analyzeRep} to perform
   each analysis on the subset of data. \code{\link{interimAnalysis}} executes the 
