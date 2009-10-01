@@ -101,6 +101,6 @@ interimCode <- function( data ){
   outList
 }
    
-analyzeData(analysisCode = emaxCode, macroCode = macrocode, 
+analyzeData(analysisCode = emaxCode, macroCode = macroCode, 
   interimCode = interimCode )
 
