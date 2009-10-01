@@ -1,60 +1,106 @@
 
-# set up the working path
-wp <- file.path( tempdir(), "emaxExample")
-dir.create(wp)
+# MSToolkit will create ReplicateData, MicroData and MacroData directories 
+# under the current working directory
+getwd()
 
-generateData( replicateN = 5, subjects = 400, treatDoses = c(0, 5, 25, 50, 100), 
-conCovNames = c("wt", "age"), conCovMean = c(83, 55) , conCovVCov = c(14,10)^2 , 
-  conCovDigits = 1, conCovCrit = "18 <= age <= 65", 
-  genParNames = "E0,ED50,EMAX", genParMean = c(2,50,10), genParVCov = diag( c(.5,30,10) ), 
-  genParBtwNames = "E0,ED50,EMAX", genParBtwMean = c(0,0,0), genParBtwVCov = diag(3), 
+generateData( replicateN = 5, subjects = 100, treatDoses = c(0, 5, 10, 50, 100), 
+  genParNames = "E0,ED50,EMAX", genParMean = c(2,50,10), genParVCov = c(.5,30,10), 
   respEqn = "E0 + ((DOSE * EMAX)/(DOSE + ED50))",  respVCov = 5, 
-  interimSubj = ".3,.7", workingPath = wp  
+  interimSubj = ".3,.7" 
   )
-   
+
+emax.fit<- function (y, dose, iparm = c("ed50", "e0", "emax"), ed50cutoff = 2.5 * max(doselev)) 
+{
+    dm <- tapply(y, dose, mean)
+    dsd <- sqrt(tapply(y, dose, var))
+    intercept <- rep(1, length(dose))
+    doselev <- sort(unique(dose))
+    est3 <- rep(NA, 3)
+    estA <- rep(NA, 2)
+
+        e0 <- min(dm)
+        emax <- max(dm) - e0
+		ed50 <- max(doselev)/2
+        Sparm <- c(ed50 = ed50, e0 = e0, emax = emax)
+
+        fit <- try(nls(y ~ e0 + (emax * dose)/(dose + ed50), 
+            start = Sparm, control = nls.control(maxiter = 100), 
+            trace = F), silent = T)
+
+    AcceptConv <- F
+    if (class(fit) == "nls") {
+        est3 <- coef(fit)
+        if (coef(fit)[1] > 0) {
+            if (coef(fit)[1] <= ed50cutoff) {
+                vc <- as.vector(vcov(fit))
+                seout <- SeEmax3(fit, doselev)
+                fitpred <- seout$fitpred
+                sdpred <- seout$sdpred
+				sddif <- seout$sddif
+                AcceptConv <- T
+            }
+        }
+    }
+    if (!AcceptConv) {
+        fitL <- lm(y ~ dose)
+        sigL <- summary(fitL)$sigma
+        predobj <- predict(fitL, data.frame(dose = doselev), se.fit = T)
+        fitpred <- predobj$fit
+        sdpred <- predobj$se.fit
+		sddif <- doselev * sqrt(vcov(fit)[2, 2])
+    }
+    return(list(fitpred = fitpred, 
+        sdpred = sdpred, sddif = sddif))
+}
+
+SeEmax3<-function (fit, doselev) 
+{
+    fitpred <- femax(doselev, coef(fit))
+    fitdif <- fitpred - coef(fit)[2]
+    vfcov <- vcov(fit)
+    sddif <- sqrt((fitdif^2) * (vfcov[3, 3]/coef(fit)[3]^2 + 
+        vfcov[1, 1]/(coef(fit)[1] + doselev)^2 - (2 * vfcov[1, 
+        3])/(coef(fit)[3] * (coef(fit)[1] + doselev))))
+    covint <- -((doselev * coef(fit)[3])/(coef(fit)[1] + doselev)^2) * 
+        vfcov[2, 1] + (doselev/(coef(fit)[1] + doselev)) * vfcov[2, 
+        3]
+    sdpred <- sqrt(vfcov[2, 2] + sddif^2 + 2 * covint)
+    return(list(fitpred = fitpred, sdpred = sdpred, fitdif = fitdif, 
+        sddif = sddif))
+}
+
 emaxCode <- function(data){
-  library(DoseResponse)
-  with( data, {
-    uniDoses <- sort( unique(DOSE))                                                                    
-    eFit <- emaxalt( RESP, DOSE )
+    uniDoses <- sort( unique(data$DOSE)) 
+	obsMean <- tapply(data$RESP, list(data$DOSE), mean)
+	obsSD <- tapply(data$RESP, list(data$DOSE), sd)                                                                   
+    eFit <- emax.fit( data$RESP, data$DOSE )
     outDf <- data.frame( DOSE = uniDoses, 
-      MEAN = eFit$dm[as.character(uniDoses)], 
-      SE = eFit$dsd[as.character(uniDoses)] )
-    outDf$LOWER <- outDf$MEAN - 2 * outDf$SE
-    outDf$UPPER <- outDf$MEAN + 2 * outDf$SE
-    outDf$N     <- table(DOSE)[ as.character(uniDoses) ]
+      MEAN = eFit$fitpred, 
+      SE = eFit$sdpred,
+	  SDDIF = eFit$sddif)
+    outDf$LOWER <- outDf$MEAN - 2 * outDf$SDDIF
+    outDf$UPPER <- outDf$MEAN + 2 * outDf$SDDIF
+    outDf$N     <- table(data$DOSE)
+	outDf$OBSMEAN <- obsMean
+	outDf$OBSSD <- obsSD
     outDf 
-  }) 
 }                                                                                                                   
              
-macrocode <- function(data) {
-  # making up a t-test
-  mu0   <- data$MEAN[ data$DOSE == 0 & data$INTERIM == 0]
-  mu100 <- data$MEAN[ data$DOSE == 100 & data$INTERIM == 0]
-  n0    <- data$N[ data$DOSE == 0 & data$INTERIM == 0]
-  n100  <- data$N[ data$DOSE == 100 & data$INTERIM == 0]
-  sd0   <- data$SE[ data$DOSE == 0 & data$INTERIM == 0]
-  sd100 <- data$SE[ data$DOSE == 100 & data$INTERIM == 0]
-  
-  sddiff <- if( n0 == n100 ){
-    sqrt( (sd0^2 + sd100^2)  / (n0 + n100) )
-  } else {
-    sqrt( (1/n0 + 1/n100) * ( (n0-1)*sd0^2 + (n100-1)*sd100^2  ) / (n0+n100-2)  )
-  }
-  tstat  <- ( mu100 - mu0 ) / sddiff 
-  success <- abs(tstat) > qt( .975, n0+n100-2)
-  
-  data.frame( SUCCESS = success, TSTAT = tstat )
+macroCode <- function(data) {
+  # Is effect at highest dose significant?
+  success <- data$LOWER[data$DOSE==max(data$DOSE)] > 0
+  data.frame( SUCCESS = success )
 }
   
 interimCode <- function( data ){
-  dropdose  <- with( data , DOSE [ sign(UPPER) != sign(LOWER) & DOSE != 0] )
+  # DROP any doses where the lower bound of the difference from placebo is negative
+  dropdose  <- with( data , DOSE [ LOWER < 0 & DOSE != 0] )
   outList <- list()
   if( length(dropdose) > 0 ) outList$DROP <- dropdose
   outList$STOP <- length(dropdose) == nrow(data)-1
   outList
 }
    
-analyzeData( 1:5, analysisCode = emaxCode, macroCode = macrocode, 
-  interimCode = interimCode, workingPath = wp )
+analyzeData(analysisCode = emaxCode, macroCode = macrocode, 
+  interimCode = interimCode )
 
