@@ -5,7 +5,7 @@ getwd()
 
 generateData( replicateN = 5, subjects = 100, treatDoses = c(0, 5, 10, 50, 100), 
   genParNames = "E0,ED50,EMAX", genParMean = c(2,50,10), genParVCov = c(.5,30,10), 
-  respEqn = "E0 + ((DOSE * EMAX)/(DOSE + ED50))",  respVCov = 5, 
+  respEqn = "E0 + ((DOSE * EMAX)/(DOSE + ED50))",  respVCov = 2, 
   interimSubj = ".3,.7" 
   )
 
@@ -55,8 +55,11 @@ emax.fit<- function (y, dose, iparm = c("ed50", "e0", "emax"), ed50cutoff = 2.5 
 
 SeEmax3<-function (fit, doselev) 
 {
-    fitpred <- femax(doselev, coef(fit))
-    fitdif <- fitpred - coef(fit)[2]
+    E0<-coef(fit)[2]
+    ED50<-coef(fit)[1]
+    EMAX<-coef(fit)[3]
+    fitpred <- E0+(EMAX*doselev)/(ED50+doselev)
+    fitdif <- fitpred - E0
     vfcov <- vcov(fit)
     sddif <- sqrt((fitdif^2) * (vfcov[3, 3]/coef(fit)[3]^2 + 
         vfcov[1, 1]/(coef(fit)[1] + doselev)^2 - (2 * vfcov[1, 
@@ -78,8 +81,8 @@ emaxCode <- function(data){
       MEAN = eFit$fitpred, 
       SE = eFit$sdpred,
 	  SDDIF = eFit$sddif)
-    outDf$LOWER <- outDf$MEAN - 2 * outDf$SDDIF
-    outDf$UPPER <- outDf$MEAN + 2 * outDf$SDDIF
+    outDf$LOWER <- outDf$MEAN - 1.96*outDf$SE
+    outDf$UPPER <- outDf$MEAN + 1.96*outDf$SE
     outDf$N     <- table(data$DOSE)
 	outDf$OBSMEAN <- obsMean
 	outDf$OBSSD <- obsSD
@@ -88,7 +91,7 @@ emaxCode <- function(data){
              
 macroCode <- function(data) {
   # Is effect at highest dose significant?
-  success <- data$LOWER[data$DOSE==max(data$DOSE)] > 0
+  success <- data$LOWER[data$INTERIM==max(data$INTERIM) & data$DOSE==max(data$DOSE)] > 7
   data.frame( SUCCESS = success )
 }
   
