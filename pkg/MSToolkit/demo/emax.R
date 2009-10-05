@@ -47,7 +47,7 @@ emax.fit<- function (y, dose, iparm = c("ed50", "e0", "emax"), ed50cutoff = 2.5 
         predobj <- predict(fitL, data.frame(dose = doselev), se.fit = T)
         fitpred <- predobj$fit
         sdpred <- predobj$se.fit
-		sddif <- doselev * sqrt(vcov(fit)[2, 2])
+		sddif <- doselev * sqrt(vcov(fitL)[2, 2])
     }
     return(list(fitpred = fitpred, 
         sdpred = sdpred, sddif = sddif))
