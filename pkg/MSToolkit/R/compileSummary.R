@@ -1,7 +1,7 @@
 "compileSummary" <- function (
   dataType =  c("MicroEvaluation", "MacroEvaluation"),   #@ The type of data to compile.  Should be "MicroEvaluation" or "MacroEvaluation".
   replicates = NULL, 
-  tryPerl = TRUE,
+  tryPerl = FALSE,
   workingPath = getwd()
   ){
   ###############################################################################
@@ -29,7 +29,11 @@
   
   nRep <- if(is.null(replicates)) length(repfiles) else length(replicates)
   .log( "Compiling $nRep $dataType files" )  
-    
+
+  ### Add a try(...) around the system call to check that Perl is set up correctly to do this
+  ###  If problems with Perl call then throw a sensible error using ectdStop
+  ###  AND / OR switch to the backup else{ ... } option
+
   if( tryPerl && .canUsePerl()){
     dataType <- substring(dataType, 1, 5)
     perlCall <- sprintf("%s/exec/compile --path=%s --type=%s > %s/%sSummary.csv", .path.package("MSToolkit"), 
