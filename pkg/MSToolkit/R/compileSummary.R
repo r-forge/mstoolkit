@@ -23,7 +23,7 @@
   if( !file.exists( file.path(workingPath, dataType) ) )
     ectdStop("directory $dataType unavailable under $workingPath") 
   if( !length( repfiles <- dir( file.path(workingPath, dataType), pattern =  "m[ia]cro[[:digit:]]{4}\\.csv" ))) 
-    ectdStop("no data files under $workingPath/$dataType") 
+    ectdStop("no data files in $workingPath/$dataType") 
   if( !is.null(replicates) && !all( out <- file.exists( targetfiles <- file.path(workingPath, dataType, sprintf("%s%04d.csv", prefix, replicates)) )  ))
     ectdStop( paste( "Impossible to compile the data, the following files are missing: ", paste(targetfiles[!out] , collapse = "\n\t"), sep = "\n\t" ) )
   
