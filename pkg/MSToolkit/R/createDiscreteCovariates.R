@@ -20,7 +20,7 @@ createDiscreteCovariates <- function(
                            
   set.seed(seed)
   names  <- if( missing(names) && !missing(probArray) ){
-    if (is.array(probArray)) ectdStop("If probArray is supplied as an array, the names input must be provided")
+    if (is.array(probArray)) ectdStop("If probArray is supplied as an array, the names argument must be provided")
     colnames( probArray )[-ncol(probArray)]
   } else { 
     parseCharInput( names  , convertToNumeric = FALSE, checkdup = TRUE)
@@ -36,7 +36,7 @@ createDiscreteCovariates <- function(
     if( missing(values)){ 
       if( is.array( probArray) ){
         values <- dimnames(probArray)
-        if (!length(values)) ectdStop("If probArray input is supplied as an array, either the array must have dimension names or the 'values' input must be provided")
+        if (!length(values)) ectdStop("If probArray input is supplied as an array, either the array must have dimension names or the 'values' argument must be provided")
         values <- lapply(values, function(x) {
           numTry <- suppressWarnings(as.numeric(x))
           if (any(is.na(numTry))) return(x) else return(numTry)
@@ -46,15 +46,15 @@ createDiscreteCovariates <- function(
       # ectdWarning("Discrete covariate values have been deduced from the probArray input" )
     }
     else values <- parseHashString( values )
-    if( !.allSameLength(values, names) ) ectdStop( "`names` and `values` inputs must have the same length")    
+    if( !.allSameLength(values, names) ) ectdStop( "`names` and `values` arguments must have the same length")    
   } 
   else {     
     values <- parseHashString( values, convertToNumeric = FALSE)
     probs  <- parseHashString( probs, checkProb = TRUE  )
     if( !.allSameLength(values, probs, names) )  
-      ectdStop( "`names`, `probs` and `values` must have the same length")
+      ectdStop( "Function arguments `names`, `probs` and `values` must have the same length")
     if( any(sapply(probs,length) != sapply(values, length)) )
-      ectdStop("items in `values` and `probs` must have the same length")
+      ectdStop("Items in the `values` and `probs` arguments must have the same length")
     names(probs)  <- names
    }
   

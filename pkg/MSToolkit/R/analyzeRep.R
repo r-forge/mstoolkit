@@ -102,11 +102,11 @@ analyzeRep <- function(
     # check if there is code
     
     uniqueInterim <- unique( idata [[interimCol]] )
-    missing(interimCode) && ectdStop("No interim Code found")    
+    missing(interimCode) && ectdStop("No interim code function found")    
                                                    
     # check if the function exists
     interimCode <- try( match.fun(interimCode), silent =TRUE )
-    interimCode %of% "try-error" && ectdStop("Cannot find the interimCode function")
+    interimCode %of% "try-error" && ectdStop("The interimCode function is not a valid function")
     
     # number of interim
     nInterim <- max( idata[[ interimCol ]])

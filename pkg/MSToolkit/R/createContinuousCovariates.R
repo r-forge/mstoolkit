@@ -26,7 +26,7 @@ createContinuousCovariates <- function(
   
   ## sanity checks on the inputs
   if( missing(mean) ) 
-    ectdStop("`mean` is needed in `createContinuousCovariates`")
+    ectdStop("Argument `mean` is needed in `createContinuousCovariates`")
   subjects <- .expandSubjects( subjects )
   
   mean  <- parseCharInput( mean  )

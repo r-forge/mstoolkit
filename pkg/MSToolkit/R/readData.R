@@ -1,6 +1,6 @@
 readData <- function(
   dataNumber,               #@ The number of the data entry, should be between 1 and 9999
-  dataType = c("ReplicateData", "MicroEvaluation", "MacroEvaluation"),        #@ String containing the type of data to be read ("Replicate", "Micro" or "Macro)
+  dataType = c("ReplicateData", "MicroEvaluation", "MacroEvaluation"),        #@ String containing the type of data to be read ("Replicate", "Micro" or "Macro")
   variables = NULL,         #@ The variables we are expecting in the data
   workingPath = getwd()     #@ Working directory
   )

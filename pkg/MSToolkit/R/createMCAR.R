@@ -19,7 +19,7 @@ createMCAR <- function(
   validNames( flagName )
   
   ## handle correct values of `prop`
-  if( prop < 0 || prop > 1 ) ectdStop( "`prop` must be within range [0,100]" )  
+  if( prop < 0 || prop > 1 ) ectdStop( "Argument `prop` must be within range [0,100]" )  
   if( prop == 0 ){
     if( flagName %!in% colnames(data) ) data[[flagName]] <- rep(0, nrow(data))
     return( data ) # don't have to care about the rule in that case

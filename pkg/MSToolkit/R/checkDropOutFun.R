@@ -17,18 +17,18 @@ checkDropOutFun <- function(
 
   ## make sure it is a function
   fun <- try( match.fun(fun), silent = TRUE )
-  fun %of% "try-error" && ectdStop("function not found")
-  fun %of% "function"  || ectdStop("not a function")
+  fun %of% "try-error" && ectdStop("Dropout function not found")
+  fun %of% "function"  || ectdStop("Dropout function specified is not a valid function")
   
   nf <- names( formals( fun ) )  
-  if (!any(nf == "data")) ectdStop("The drop out function must have a `data` argument")
+  if (!any(nf == "data")) ectdStop("The dropout function must have a `data` argument")
   
   # Run function on section of data
   hd <- if( useSubset ) head( data, n = sizeSubset  ) else data
   out <- try( fun( hd, ... ) , silent = TRUE) 
   out %of% "try-error" && ectdStop("Error when calling the dropout function on a subset of data")
   
-  length(out) == nrow(hd ) || ectdStop("The Dropout function outputs a vector of wrong length")
+  length(out) == nrow(hd ) || ectdStop("The dropout function outputs a vector of wrong length")
   unique( as.integer( out )) %allin% c(0,1) || ectdStop("The dropout function outputs a vector with values different from 0 and 1")
   
   invisible( TRUE )

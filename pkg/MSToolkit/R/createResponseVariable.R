@@ -16,7 +16,7 @@ createResponseVariable <- function(
           
   .requiredArgs(data)
   if(data %!of% "data.frame") {
-    ectdStop("`data` must be a data frame")
+    ectdStop("Argument `data` must be a data frame")
   }
   nr <- nrow( data )
   
@@ -40,7 +40,7 @@ createResponseVariable <- function(
     if( length(out) != subsetSize ){  #: testLength 
       ectdStop(
         "The equation given for the response does not generate" %.nt%
-        "a vector of length equal to the dimension of the data" 
+        "a vector of length equal to the dimension of the input data" 
       )
     }
   }

@@ -31,7 +31,7 @@ createExternalCovariates <- function(
   if(!is.null(refCol)) validNames( refCol )
   percent <- parseCharInput( percent, expected = 1, convertToNumeric = TRUE )
   if( percent < 0 || percent > 100) 
-    ectdStop("`percent` should be between 0 and 100")
+    ectdStop("Argument `percent` should be between 0 and 100")
   
   iData <- .readAndCheckInputFile( file.path(workingPath, file), c(dataId, names) )
   if(!is.null(refCol) && refCol %!in% names(iData) )

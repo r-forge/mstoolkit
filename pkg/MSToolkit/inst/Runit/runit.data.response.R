@@ -89,11 +89,11 @@ test.data.response.sf10 <- function( ){
   
   out <- createResponse(data = myData, equation   = "X+Y+Z", 
     invLink = function(x)  rep(1, length(x)) , distribution = "b" )$RESP  
-  checkTrue( all(out$RESP == 1), 
+  checkTrue( all(out == 1), 
     msg = "stats test for the binomial response where invLink is given (1)")
   out <- createResponse(data = myData, equation   = "X+Y+Z", 
     invLink = function(x)  rep(0, length(x)) , distribution = "b" )$RESP  
-  checkTrue( all(out$RESP == 0), 
+  checkTrue( all(out == 0), 
     msg = "stats test for the binomial response where invLink is given (0)")
     
 }

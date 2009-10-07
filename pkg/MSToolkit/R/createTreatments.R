@@ -24,7 +24,7 @@ createTreatments <- function(
   } else if( !missing(doses) ) {
     type <- "p"
   } else {
-    ectdStop("Need `sequence` or `doses`")   #: doseOrSequence
+    ectdStop("Need arguments `sequence` or `doses`")   #: doseOrSequence
   }
   
   # tidy up the `times` argument for crossover
@@ -39,7 +39,7 @@ createTreatments <- function(
   
   # tests for Parallel type
   if(type == "p" && missing(doses)) 
-    ectdStop("`doses` must be supplied for parallel treatment")
+    ectdStop("The argument `doses` must be supplied for parallel treatment")
 
   doseCol <- parseCharInput( doseCol, convertToNumeric = FALSE, valid = TRUE, expected = 1 )
   timeCol <- parseCharInput( timeCol, convertToNumeric = FALSE, valid = TRUE, expected = 1 )

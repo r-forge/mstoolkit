@@ -15,7 +15,7 @@ addResidualError <- function(
   ################################################################################
 
   .requiredArgs(response, "The `response` variable is required")
-  .requiredArgs(covariance, "The `covariance` is required")
+  .requiredArgs(covariance, "The `covariance` argument is required")
   set.seed(seed)
 
   # <TODO>
@@ -25,7 +25,7 @@ addResidualError <- function(
 
   errFun <- if(is.function(errStruc)) errStruc else {
     errStruc <- initialChar( errStruc, "ap", 
-      "`errStruc` should be `additive`, `proportionnal` or a function")
+      "`errStruc` should be `additive`, `proportional` or a function")
     switch( errStruc, 
        "a" = function(x,y) x+y,      # additive
        "p" = function(x,y) exp(x+y)  # proportional

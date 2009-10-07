@@ -15,7 +15,7 @@ test.createDirectories <- function() {
   checkTrue(!any(x))
   checkException(createDirectories(dirName = c(), workingPath = tempDir))
 
-  checkException( createDirectories(dirNames = LETTERS, workingPath = tempDir) )
+  checkException( createDirectories(dirNames = c("1","2","3"), workingPath = tempDir) )
   try(unlink(tempDir, recursive = TRUE))
 }
 

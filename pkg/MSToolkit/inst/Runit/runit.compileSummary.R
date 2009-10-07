@@ -25,36 +25,9 @@ test.compileSummary.failure <- function(){
   
 }
 
-
-# Wed Jul 25 09:59:52 BST 2007 @416 /Internet Time/
-test.compileSummary.perl <- function(){
-  
-  ## copy files accross
-  dir.create( cpdir <- file.path(tempdir(), "compileSummary.perl" ) )
-  dir.create( file.path(cpdir, "MacroEvaluation" ) )
-  dir.create( file.path(cpdir, "MicroEvaluation" ) )
-  for( i in 1:5){
-    file.copy( file.path(compileSummary.datapath, "MicroEvaluation",  sprintf("micro%04d.csv", i)) , 
-      file.path(cpdir, "MicroEvaluation"    ) )
-    file.copy( file.path(compileSummary.datapath, "MacroEvaluation",  sprintf("macro%04d.csv", i)) , 
-      file.path(cpdir, "MacroEvaluation"    ) )
-  }
-  
-  compileSummary( "Micro", workingPath = cpdir, tryPerl = TRUE )
-  compileSummary( "Macro", workingPath = cpdir, tryPerl = TRUE )
-  expectedMicroData <- read.csv( file.path(compileSummary.datapath, "microSummary.csv") )
-  newMicroData <- read.csv( file.path(compileSummary.datapath, "microSummary.csv") )
-  checkEquals(expectedMicroData, newMicroData, 
-    msg = "compile micro perl")
-  expectedMacroData <- read.csv( file.path(compileSummary.datapath, "macroSummary.csv") )
-  newMacroData <- read.csv( file.path(compileSummary.datapath, "macroSummary.csv") )
-  checkEquals(expectedMicroData, newMicroData, 
-    msg = "compile macro perl")
-
-   unlink(cpdir, recursive = TRUE)
- 
-    
-}
+### RUNit test for test.compileSummary.perl omitted
+### This functionality not required in current version
+### MKS - 08 Sept 09
 
 test.compileSummary.R <- function(){  
   

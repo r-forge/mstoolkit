@@ -21,7 +21,7 @@ createInterims <- function(
   ## validate the names
   validNames( idCol, interimCol)
   if( idCol == interimCol ){
-    ectdStop("`idCol` and `interimCol` should be different")
+    ectdStop("Arguments `idCol` and `interimCol` should be different")
   }
   
   ## tidy up the method argument

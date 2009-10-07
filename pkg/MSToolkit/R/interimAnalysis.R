@@ -15,7 +15,7 @@ interimAnalysis <- function(
   data %of% "data.frame" || ectdStop("data must be a data frame") 
   if( missing(interimCode) || is.null(interimCode) ) return(list()) 
   interimCode <- try( match.fun (interimCode), silent = TRUE)
-  interimCode %of% "try-error" && ectdStop("Cannot use the interimCode function")
+  interimCode %of% "try-error" && ectdStop("The interimCode function generated errors")
   
   # remove some na's
   data <- na.omit(data)

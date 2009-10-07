@@ -156,7 +156,7 @@ generateData <- function(
     coreData <- merge(coreData, do.call(createParameters, parList), by=idCol)
     respList$data <- coreData
     respData <- do.call(createResponse, respList)
-    if (is.data.frame(respData) && nrow(respData) == nrow(coreData)) coreData <- cbind(coreData, respData) else ectdStop("Cound not create response variable")
+    if (is.data.frame(respData) && nrow(respData) == nrow(coreData)) coreData <- cbind(coreData, respData) else ectdStop("Could not create response variable")
 
     ## Replicate Looping: Flags and Interims
     if (mcarProp > 0) {

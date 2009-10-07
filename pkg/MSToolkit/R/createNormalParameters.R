@@ -80,7 +80,7 @@ createNormalParameters <- function(
     betNames <- parseCharInput( betNames, convertToNumeric = FALSE, checkdup = TRUE, valid = TRUE )
     if( betNames %!allin% names ){
       ectdStop( 
-        "Some between subject effect don't have a fixed parameter as well: " %.nt%
+        "Some between subject effects do not have a fixed parameter: " %.nt%
         paste( betNames %wo% names, collapse = ", " ))
     }
     
@@ -92,7 +92,7 @@ createNormalParameters <- function(
       rep(0, nBetween)
     } else { 
       parseCharInput( betMean, expected = nBetween, 
-        msg = "Wrong length for the between subjects effect vector")
+        msg = "Wrong length for the between subject effect vector")
     }
     
     if( missing(betRange) ){

@@ -26,7 +26,7 @@ createResponse <- function(
   ## initial tests
   validNames( flagName, name)
   if( flagName == name ){
-    ectdStop("`flagName` and `name` should be different")
+    ectdStop("Arguments `flagName` and `name` should be different")
   }
   
   digits <- parseCharInput( digits, expected = 1, msg = "digits should be only one number" )
@@ -43,7 +43,7 @@ createResponse <- function(
   # is the function available ? 
     if( is.character( invLink ) ) {
       invLink <- try( match.fun(invLink), silent = TRUE )
-      if( invLink %of% "try-error") ectdStop( "The `invLink` function is not available to the system" )
+      if( invLink %of% "try-error") ectdStop( "The `invLink` function specified is not a valid function" )
     }  
     # does it work correctly ?
     testInvLink <- try( invLink( rep(1, 5) ), silent = TRUE )

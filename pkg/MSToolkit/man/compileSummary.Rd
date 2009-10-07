@@ -7,7 +7,7 @@ This function reads all of the micro evaluation or macro evaluation data and ama
 has an additional column indicating which replicate each row belongs to.  This data frame is then written to "m[ia]croSummary.csv".  
 }
 \usage{
-compileSummary(dataType = c("MicroEvaluation", "MacroEvaluation"), replicates = NULL, tryPerl = TRUE, workingPath = getwd())
+compileSummary(dataType = c("MicroEvaluation", "MacroEvaluation"), replicates = NULL, tryPerl = FALSE, workingPath = getwd())
 }
 
 \arguments{

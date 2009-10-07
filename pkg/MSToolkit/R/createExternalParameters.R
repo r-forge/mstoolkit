@@ -35,10 +35,10 @@ createExternalParameters <- function(
   flagName <- parseCharInput( flagName, convertToNumeric = FALSE, expected = 1, valid = TRUE)
   allnames <- c( dataId, names )
   if( length(suffix) != 1 )
-    ectdStop("The suffix should be of length 1")
+    ectdStop("The `suffix` argument should be of length 1")
        
   errStruc <- initialChar( errStruc, "nap", 
-    "The error structure must be one of: `None`, `Additive` or `proportional`" )
+    "The error structure must be one of: `none`, `additive` or `proportional`" )
                                           
   ## handle the between names
   if(!missing(betNames)){

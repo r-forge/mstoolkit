@@ -81,6 +81,7 @@
   }                  
   if (waitAndCombine) {   
     if (grid) {
+      suppressWarnings(require(Rlsf, quietly=TRUE))
       gridStatus <- sapply(gridJobs, lsf.job.status)
       checkJobs <- gridStatus %in% c("EXIT", "DONE")
       iter <- 1
