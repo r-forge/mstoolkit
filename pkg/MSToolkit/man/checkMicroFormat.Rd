@@ -36,6 +36,9 @@ If all of these checks pass, then \code{checkMicroFormat} will construct a new d
 \value{A data frame as described above}
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+
+\note{ Future versions of MSToolkit will relax the format of the MicroEvaluation dataset allowing a more free structure for this dataset. }
+
 \seealso{\code{\link{createEmptyMicro}}}
 \examples{
   

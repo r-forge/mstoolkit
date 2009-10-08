@@ -18,7 +18,7 @@
   \item{removeMissing}{ (Optional) Should rows marked as 'Missing' during the data generation step be removed from the data before analysis is performed?  TRUE by default }
   \item{removeParOmit}{ (Optional) Should any rows marked as 'Omitted' during the parameter data generation step (ie. parameters out of range) be removed from the data before analysis is performed?  TRUE by default }
   \item{removeRespOmit}{ (Optional) Should any rows marked as 'Omitted' during the response generation step (ie. responses out of range) be removed from the data before analysis is performed?  TRUE by default }
-  \item{interimCode}{ (Optional) An R function to be applied to interim datasets in order to creation interim decisions.  See the help file for the \code{\link{interimAnalysis}} function for more information.  By default, no functions is provided, resulting in no interim analyses being performed }
+  \item{interimCode}{ (Optional) An R function to be applied to interim datasets in order to make interim decisions.  See the help file for the \code{\link{interimAnalysis}} function for more information. }
   \item{software}{ (Optional) The software to be used for analysis: either "R" or "SAS".  "R" is the default software used }
   \item{seed}{ (Optional) Random number seed to use for the analysis.  Based on the current random seed by default }
   \item{parOmitFlag}{ (Optional) Parameter omit flag name.  "PAROMIT" by default }
@@ -41,9 +41,7 @@
   The first step in \code{\link{analyzeRep}} is to perform a full analysis on the data (which has possibly been subset be the remove* inputs).  Following the analysis, the \code{\link{checkMicroFormat}} function is used to ensure the return data is a valid "Micro Evaluation" data structure.
   The return structure is appended with drop and stop flags (set to 0) and with interim variables (where interim is "FULL").
   
-  If the interimCode has been specified, and the "interimCol" variable is found in the data, interim analyses will be performed iteratively on sections of the data.  The interimCode input must be an R function that returns a suitable list structure as described in the \code{\link{interimAnalysis}} help file.
-  For each value of "interimCol", the analysis will be performed on a section of data (using a call to \code{\link{performAnalysis}}), and the return from the analysis will be checked (using a call to \code{\link{checkMicroFormat}}).  The "Micro Evaluation" output is then passed to the \code{\link{interimAnalysis}} function and the return list checked for instruction.
-  If any return interim list includes doses to "DROP", the doses will be removed from future analyses.  If the "STOP" flag in the list is set to "TRUE", the analysis is stopped at this interim.
+  If interim analysis is to be performed using \code{interimCode} then values for \code{interimSubj} must be specified in \code{\link{generateData}}. If interim proportions have been specified in \code{interimSubj} then analysis is performed across the dataset as a whole, then across each interim dataset in turn. At each interim \code{interimCode} is called to apply decision-making e.g. dropping doses, stopping the study. If any doses are dropped then existing data from these doses are carried forward into subsequent interim analysis, however no new subjects on these doses are carried forward into future datasets.
   
   Finally, all micro evaluation outputs (with appended interim variables and drop/stop flags) are combined and returned.  
 }
@@ -52,6 +50,22 @@
 }
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+
+\note{  
+  There are some restrictions on the code inputs to the \code{\link{analyzeData}} function.  These restrictions are discussed here:
+  
+  Analysis Code: The "analysisCode" input must be either an R function or a reference to an external file.  If it is a reference to external file, it must contain either SAS code (if software is "SAS") or R code (if software is "R").
+    If the code is an R function, or an external R script, it must accept a data frame as its only argument and return an acceptable "Micro Evaluation" data frame as set out in \code{\link{checkMicroFormat}}.
+    If the code is an external SAS script, it must accept use a SAS dataset called "work.infile" and create a SAS dataset called "work.outfile" that conforms to the "Micro Evalutation" format as set out in \code{\link{checkMicroFormat}}.
+    More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{checkMicroFormat}}.
+  
+  Interim Code: The "interimCode" input must be an R function that accepts a single "Micro Evaluation" data input, and returns an R "list" structure that is either empty or contains one or more of the following elements:
+    An element called "STOP" which is a logical vector of length 1.  This tells the \code{\link{analyzeData}} function whether the analysis should be halted at this interim
+    An element called "DROP" which is a vector of numeric values relating to doses in the data to drop before the next interim is analyzed.
+    More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{interimAnalysis}}.
+
+}
+
 \seealso{ 
   \code{\link{performAnalysis}} is called by \code{analyzeRep} to perform
   each analysis on the subset of data. \code{\link{interimAnalysis}} executes the 

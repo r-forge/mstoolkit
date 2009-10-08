@@ -15,7 +15,7 @@ createEmptyMicro(doses, doseCol = "DOSE", microColumnNames = c("doseName" = dose
   \item{microColumnNames}{ (Optional) A character vector containing the names of the columns of the micro evaluation data frame.  By default, variables "MEAN", "SE", "LOWER", "UPPER" and "N" are created in addition to the dose variable }
 }
 \details{
-	createEmptyMicro will return a data frame whose column names are given by microColumnNames, and such that the first column will
+	createEmptyMicro will return a data frame whose column names are given by microColumnNames. The first column of the resulting data frame will
   contain the "doses" vector by default.  The data frame will have as many rows as there are entries in "doses".  All of the
   frame's other entries will be NA.	This function will generate an error if "doses" contains duplicate entries or if the dose
   column name specified by "doseCol" doeses not occur in "microColumnNames". 
@@ -24,6 +24,7 @@ createEmptyMicro(doses, doseCol = "DOSE", microColumnNames = c("doseName" = dose
 	createEmptyMicro returns a data frame that is as described above.
 }
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\note{ Future versions of MSToolkit will relax the format of the MicroEvaluation dataset allowing a more free structure for this dataset. }
 \seealso{\code{\link{checkMicroFormat}}  }
 \examples{
   createEmptyMicro(doses = c(10, 20 ,30, 40))

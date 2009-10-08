@@ -10,7 +10,7 @@ addResidualError(response, covariance, errStruc = "additive", seed = .deriveFrom
 
 \arguments{
   \item{response}{ (Required) Numeric vector of response data }
-  \item{covariance}{ (Required) Residual error (co)variance.  This would be the lower-triangle of the matrix, or the matrix itself. The function \code{\link{parseCovMatrix}} is used to ensure that the matrix is in the right format. }
+  \item{covariance}{ (Required) Residual error (co)variance.  This should be the lower-triangle of the matrix, or the matrix itself. The function \code{\link{parseCovMatrix}} is used to ensure that the matrix is in the right format. Release 2.0 of MSToolkit only allows 1 residual error term. If a matrix is supplied only the first variance will be used in calculation of the residual error. Subsequent releases will allow full residual error variance-covariance matrices.}
   \item{errStruc}{ (Optional) Function describing how to apply residual error: "Additive" or "Proportional".   "Additive" is the default}
   \item{seed}{ (Optional) Random seed to use.  Derived from the current random seed by default }
 }
@@ -22,10 +22,10 @@ addResidualError(response, covariance, errStruc = "additive", seed = .deriveFrom
   The number of samples to take will be set by the number of elements in the 
   "response" vector.
 
-  Based on the "errStruc" input, the algorithm should continue as follows. 
- If it is Additive, the residual errors should be added to the response vector. If 
- it is Proportional, the residual errors should be added to the response vector,
- then the vector should be exponentiated
+ Based on the "errStruc" input, the algorithm should continue as follows. 
+ If it is Additive, the residual error will be added to the response vector. If 
+ it is Proportional, the residual error will be added to the response vector (usually log-transformed outcome),
+ then the resulting vector will be exponentiated. This allows log-normal error structures.
 }
 \value{
   A numeric vector
@@ -37,7 +37,7 @@ addResidualError(response, covariance, errStruc = "additive", seed = .deriveFrom
   for the response component. 
   
   The function \code{\link{createResponseVariable}} is also in the response component. 
-  It create the the response onto which \code{addResidualError} adds error.
+  It creates the the response onto which \code{addResidualError} adds error.
 }
 \examples{
   myVec <- 1:10

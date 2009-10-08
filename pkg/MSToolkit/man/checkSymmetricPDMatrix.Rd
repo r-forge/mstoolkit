@@ -13,8 +13,7 @@
   \item{tol}{ (Optional) The tolorence to use when comparing the value to 0.  The default is "1e-06" }
 }
 \value{
-  The function does not return anything. It only generate an error 
-  if something goes wrong.
+  No value returned. Only used in checks.
 }
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{

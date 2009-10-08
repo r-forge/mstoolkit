@@ -34,23 +34,19 @@ ectdDateFormat <- function(format){
   )
   cat( copyright, sep = "\n" )
 
-  if( "RUnit" %in% search() || "RUnit" %in% .packages(all = TRUE)){
-unitText <- readLines( textConnection('  
-################################################################################
-#                                                                Unit tests    # 
-# > mstoolkitUnitTests( )                                                      #
-################################################################################
-')) #'
-    cat(unitText, sep = "\n")
-  }
-  if( .checkGridAvailable() ){
-     gridText <- readLines(textConnection('
-################################################################################
-# You are running the package from a grid node. To take advantage of it, use   #
-# the grid argument in ?analyzeData                                            #
-################################################################################')) #'
-    cat(gridText, sep = "\n")
-  }
+ if( "RUnit" %in% search() || "RUnit" %in% .packages(all = TRUE)){ 
+ cat("#########################################################\n")
+cat("#                                          Unit tests    #\n") 
+cat("# > mstoolkitUnitTests( )                                #\n")
+cat("##########################################################\n")
+ }
+ 
+ if( .checkGridAvailable() ){
+cat("################################################################################\n")
+cat("# You are running the package from a grid node. To take advantage of it, use   #\n")
+cat("# the grid argument in ?analyzeData                                            #\n")
+cat("################################################################################\n")
+ }
 }
 
 .canUsePerl <- function(){

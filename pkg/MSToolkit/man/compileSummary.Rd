@@ -13,11 +13,11 @@ compileSummary(dataType = c("MicroEvaluation", "MacroEvaluation"), replicates = 
 \arguments{
   \item{dataType}{ (Optional) A string that indicates which of the two data types should be read. Must be either "MicroEvaluation" or "MacroEvaluation". Partial matching is used here. See \code{\link{match.arg}}.  Default is "MicroEvaluation" }
   \item{replicates}{ (Optional) Which replicates should be compiled. By default, the function will compile all available replicate data at the time }
-  \item{tryPerl}{ (Optional) Should the alternative "Perl" script be tried (faster). The perl script will ony be used if perl in available on the system, most likely if it is a unix system.  Default is TRUE }
+  \item{tryPerl}{ (Optional) The function uses R to compile the summary files using \code{\link{readAllData}}. Previous versions of MSToolkit used a Perl script to achieve this under Unix-alike systems as long as Perl was available.  Default is FALSE }
   \item{workingPath}{ (Optional) The working directory to be used as the root for the "Micro" and "Macro" evaluation directories.  Also the directory in which the compiled summary files will be created.  The current working directory is used by default }
 }
 \value{                                                                                      
-  CompileSummary does not return a value.
+  Does not return a value. Only compiles summary datasets.
 }
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
