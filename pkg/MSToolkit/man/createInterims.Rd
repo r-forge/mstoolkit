@@ -2,7 +2,7 @@
 \alias{createInterims}
 \title{ create the interim flag }
 \description{
-  That function creates the \emph{INTERIM} flag that identifies 
+  \code{createInterims} partitions the data into interim analysis subsets and creates the "INTERIM" flag that identifies 
   which subject is included in the analysis at every interim stage. 
 }
 \usage{
@@ -15,7 +15,7 @@ createInterims(subjects, proportion, seed = .deriveFromMasterSeed(),
   \item{seed}{ (Optional) The random number generation seed to use.  By default, this is derived from the current random seed }
   \item{idCol}{ (Optional) Name of the subject column ("SUBJ" by default) }
   \item{interimCol}{ (Optional) Name of the interim column ("INTERIM" by default) }
-  \item{method}{ (Optional) Method to use. Must be one of \emph{Sample} or \emph{Proportion}.  Default is \emph{Sample} }
+  \item{method}{ (Optional) Method to use. Must be one of "Sample" or "Proportion".  Default is "Sample" }
 }
 \details{
   If the "method" argument is set to "Sample", the interim numbers should be assigned using the following algorithm:

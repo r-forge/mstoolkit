@@ -2,7 +2,7 @@
 \alias{createExternalParameters}
 \title{Sample parameters from an external file}
 \description{
-  Create parameters for a simulated population by sampling them from an external file
+  Create parameters for a simulated population by sampling them from an external file. 
 }
 \usage{
   createExternalParameters(subjects, file, names, betNames, betNums, errStruc = "None", 
@@ -38,6 +38,8 @@
   
   If the relCol input is specified, this variable should also be retained in the result.
   The "parameter omit" flag will contain repeated "0" elements in the return result.
+
+  \code{createExternalParameters} assumes that sampling is performed for parameters at the subject level. That is, fixed and random effects can be sampled and combined using \code{errStruc} or retained as separate variables in order to create subject-specific parameter values. Future versions of MSToolkit will allow sampling at the replicate level e.g. sampling from MCMC posterior distribution output from WinBUGS.
 }
 \value{
   A data frame containing a subject variable, a "parameter omit flag" and a set of extracted parameters

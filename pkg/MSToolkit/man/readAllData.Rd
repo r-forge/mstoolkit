@@ -2,7 +2,7 @@
 \alias{readAllData}
 
 \title{Read scenario data}
-\description{Reads a single element of replicate, macro evaluation or micro evaluation data from the current scenario}
+\description{Reads all available replicate, macro evaluation or micro evaluation data from the current scenario}
 \usage{
 readAllData(dataType = c("ReplicateData", "MicroEvaluation", "MacroEvaluation"), 
     workingPath = getwd(), dirName = dataType, 

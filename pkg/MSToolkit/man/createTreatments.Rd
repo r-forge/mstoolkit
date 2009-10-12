@@ -20,6 +20,10 @@ createTreatments(doses, times = NULL, type = "Parallel", sequence,
   \item{trtCol}{ (Optional) Treatment variable name to create ("TRT" by default) }
 }
 \details{
+  \code{createTreatments} is used to specify the possible treatments available for the design. By default it assumes a "Parallel" group design but crossover designs with multiple sequences are possible by specifying \code{type} as "Crossover" and giving a matrix of possible sequences with each column specifying a treatment sequence.  It is also possible to define repeated measures designs by specifying values for \code{times}. If negative values are given in \code{times} then DOSE will automatically be set to zero (placebo) in order to simulate placebo run-in designs. \emph{TIME=0} is viewed as immediately post-dose and so is included with the appropriate DOSE value for each treatment arm.
+
+  MSToolkit was design with early phase trials in mind where we wish to simulate and compare several doses. However it is possible to view "DOSE" as a label and work with TRT or DOSE as an arbitrary variable - allowing for simulation and evaluation of designs with active comparators, no placebo arm (e.g. bioequivalence), or non-clinical designs, changing the \code{doseCol}, \code{timeCol} and \code{trtCol} to appropriate useful labels e.g. FACTOR, LITTER, TEMPERATURE, PRESSURE, etc.
+
   The function will first check for the required inputs.  If type is "Parallel", then doses must be provided.  If type is "Crossover", the sequence matrix must be provided.
   
   If the dose type is "Parallel" and there is are no specified "times", the function will create a data frame with Treatment set to "1 to number of doses" and a Dose variable with the doses specified.

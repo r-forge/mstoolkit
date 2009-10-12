@@ -43,6 +43,11 @@ suffix = ".Between", idCol = "SUBJ", seed = .deriveFromMasterSeed(), flagName = 
 }
 \details{
   This function is a wrapper for 2 lower level functions: \code{\link{createNormalParameters}} and \code{\link{createExternalParameters}} 
+
+  \code{createParameters} creates or samples fixed effect parameters which can vary between trial replicates. Within each replicate individual subjects can vary around the sampled fixed effect value. Usually this is only used if there are repeated measures for a single subject. The between subject variance is added to the fixed effect to give an individualised value to the parameter for each subject.
+
+  MSToolkit v2.0 applies "range" arguments to the fixed and random effects separately. This checks whether these individual components are within acceptable ranges, however it does not apply a range to the combination of these. If the combination of these values is required to be positive, we suggest working with the "Proportional" value for \code{errStruc} or work with log-transformed variables.  Future versions of MSToolkit will apply a range check to the combined parameter.
+
   The function passes the "gen" arguments to \code{\link{createNormalParameters}} and checks the return structure.
   It then passed the "ext" arguments to \code{\link{createExternalParameters}} and again checks the return structure.
   If only one of \code{\link{createNormalParameters}} or \code{\link{createExternalParameters}} are called, the single data structure is returned.

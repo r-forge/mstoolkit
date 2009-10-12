@@ -16,12 +16,12 @@ flagName = "PAROMIT", digits = 3)
   \item{names}{ (Required) Names of parameters to generate }
   \item{mean}{ (Required) Means for fixed parameters }
   \item{covariance}{ (Optional) Covariance matrix for fixed parameters.  By default, this is a matrix of zeros, representing no error to be included }
-  \item{range}{ (Optional) Range of acceptable values.  Missing by default, resulting in no "range" of values is applied to the data }
-  \item{betNames}{ (Optional) Between subject effects to create.  Default is to not create between subject data }
+  \item{range}{ (Optional) Range of acceptable values.  Missing by default - by default all generated values are acceptable. }
+  \item{betNames}{ (Optional) Names of fixed effects for which to create random between subject variance.  Default is to not create between subject data }
   \item{betMean}{ (Optional) Means for the between subject effects.  Default is to not create between subject data  }
   \item{betCov}{ (Optional) Covariance matrix for the between subject effects.  Default is to not create between subject data  }
   \item{betRange}{ (Optional) Range of acceptable values for the between subject effects.  Default is to not create between subject data  }
-  \item{errStruc}{ (Optional) Function to map effect: Additive, Proportional, or None (default is "None") }
+  \item{errStruc}{ (Optional) Function to map effect: Additive, Proportional, or None (default is "None"). If \code{errStruc} is set to "None" then fixed and between subject random effects are returned separately. }
   \item{suffix}{ (Optional) Suffix to use for retain between subject effects (default is ".Between") }
   \item{idCol}{ (Optional) Subject variable name for return data ("SUBJ" by default) }
   \item{maxDraws}{ (Optional) Maximum number of iterations for valid parameters (10 by default) }
@@ -30,6 +30,10 @@ flagName = "PAROMIT", digits = 3)
   \item{digits}{ (Optional) Number of digits to which to round generated continuous parameters.  Can be an atomic integer, in which case all variables are rounded according to it. Can be a numeric vector of the same length of the number of fixed parameters, in which case each parameter is rounded according to its value.  The default is 3 }
 }
 \details{
+  \code{createNormalParameters} creates fixed effect parameters which can vary between trial replicates. For each replicate a single draw is taken from a multivariate normal distribution centred on \code{mean} and with (co)variance \code{covariance}. Within each replicate individual subjects can vary around the sampled fixed effect value by specifying \code{betCov}. Usually this is only used if there are repeated measures for a single subject. The between subject variance is added to the fixed effect to give an individualised value to the parameter for each subject.
+
+  MSToolkit v2.0 applies "range" arguments to the fixed and random effects separately. This checks whether these individual components are within acceptable ranges, however it does not apply a range to the combination of these. If the combination of these values is required to be positive, we suggest working with the "Proportional" value for \code{errStruc} or work with log-transformed variables.  Future versions of MSToolkit will apply a range check to the combined parameter.
+
   The function will first create a single set of fixed effects, to be repeated for each subject specified.  This single set of fixed effects will be taken from a multivariate normal distribution with mean and covariance matrix supplied.
   If the "range" argument is provided, the function will take "maxDraws" samples of fixed effects and select one set of effect where the values are all "in range".  If none of the derived sets satisfy the "range" condition, the function will stop and return an error.
 

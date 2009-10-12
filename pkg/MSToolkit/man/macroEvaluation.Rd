@@ -17,7 +17,7 @@ macroEvaluation(data, macroCode, interimCol = "INTERIM", doseCol = "DOSE")
   \item{doseCol}{ (Optional) Name of the dose column, should be a valid name ("DOSE" by default). See \code{\link{validNames}} } 
 }
 \details{
-  The macro code is first studied to make sure that it is a function that takes a \code{data} argument. 
+  The macro code is first studied to make sure that it is a valid R function that takes a \code{data} argument. 
   The code is then executed against the micro data, and should produce a data frame containing a single 
   row. This is further checked using the \code{\link{checkMacroFormat}} function.
 }

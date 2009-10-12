@@ -3,7 +3,7 @@
 
 \title{Remove directories} 
 \description{
-This function removes directories containing data for the current scenario.
+This function removes directories containing data for the current scenario. Optionally called at the start of analyzeData in order to overwrite ReplicateData, MicroData and MacroData datasets with the new results.
 }
 
 \usage{

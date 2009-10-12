@@ -22,7 +22,7 @@ interimAnalysis(data, interimCode)
 
   If the return list contains a "STOP" element, and the "STOP" element is a logical value of length 1, this will be used to determine whether the trial should be stopped at this interim.
   
-  If the return list contains a "DROP" element, and the "DROP" element is a vector of dose values, this will be used to determine which doses to drop before the next interim.
+  If the return list contains a "DROP" element, and the "DROP" element is a vector of dose values, this will be used to determine which doses to drop before the next interim. Note that the function uses DOSE as opposed to TRT for determining which treatment arms to drop.
   
   Any list elements other than "DROP" or "STOP" will be ignored.
 }

@@ -2,7 +2,7 @@
 \alias{createMCAR}
 \title{ Missing Completely at Random }
 \description{
-  This function adds (or modifies) a "MISSING" flag to a dataset to simulate 
+  This function sets (or modifies) a "MISSING" flag to a dataset to simulate 
   a missing completely at random behaviour.  
 }
 \usage{
@@ -12,7 +12,7 @@ createMCAR(data, prop = 0, rule,
 \arguments{
   \item{data}{ (Required) Data frame to which to add missingness }
   \item{prop}{ (Optional) proportion of missingness between 0 and 1.  The default is "0" (so no missingness is generated) }
-  \item{rule}{ (Optional) Only observations matching the rule can be flagged as missing.  Be default, all observations are available to be missing }
+  \item{rule}{ (Optional) Only observations matching the rule can be flagged as missing.  Be default, all observations are available to be missing. For example, could set baseline measurements to be exempt from missingness. }
   \item{seed}{ (Optional) Random seed to use.  Based on the current random seed by default }
   \item{flagName}{ (Optional) name of the missing flag ("MISSING" by default) }
 }

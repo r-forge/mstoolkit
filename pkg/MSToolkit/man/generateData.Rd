@@ -115,6 +115,11 @@ The following components are called to create aspects of the simulated trial dat
 The function iteratively builds and combines the data components for each replicte, and stores the data in the "ReplicateData" subdirectory of the working directory.  
 This data can then be analyzed using a call to the \code{\link{analyzeData}} function.
 
+  MSToolkit was design with early phase trials in mind where we wish to simulate and compare several doses. However it is possible to view "DOSE" as a label and work with TRT or DOSE as an arbitrary variable - allowing for simulation and evaluation of designs with active comparators, no placebo arm (e.g. bioequivalence), or non-clinical designs, changing the \code{doseCol}, \code{timeCol} and \code{trtCol} to appropriate useful labels e.g. FACTOR, LITTER, TEMPERATURE, PRESSURE, etc.
+
+  MSToolkit creates or samples fixed effect parameters which can vary between trial replicates. Within each replicate individual subjects can vary around the sampled fixed effect value. Usually this is only used if there are repeated measures for a single subject. The between subject variance is added to the fixed effect to give an individualised value to the parameter for each subject.
+
+  MSToolkit generates response values using the concept of specifying a linear predictor which is then used as the input to a random number generator in order to create Normal, Binary and Poisson random variates.  \code{createResponse} specifies the linear predictor. In the case of Normally distributed response variables, a separate residual error is added using \code{addResidualError} function. 
 }
 \value{
   No value is returned from the generateData function.  However, as a side effect, a number of simulated replicate datasets are created.
