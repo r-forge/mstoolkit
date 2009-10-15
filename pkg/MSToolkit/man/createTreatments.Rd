@@ -24,14 +24,14 @@ createTreatments(doses, times = NULL, type = "Parallel", sequence,
 
   MSToolkit was design with early phase trials in mind where we wish to simulate and compare several doses. However it is possible to view "DOSE" as a label and work with TRT or DOSE as an arbitrary variable - allowing for simulation and evaluation of designs with active comparators, no placebo arm (e.g. bioequivalence), or non-clinical designs, changing the \code{doseCol}, \code{timeCol} and \code{trtCol} to appropriate useful labels e.g. FACTOR, LITTER, TEMPERATURE, PRESSURE, etc.
 
-  The function will first check for the required inputs.  If type is "Parallel", then doses must be provided.  If type is "Crossover", the sequence matrix must be provided.
+  The function will first check for the required inputs.  If \code{type} is "Parallel", then doses must be provided.  If \code{type} is "Crossover", the \code{sequence} matrix must be provided.
   
-  If the dose type is "Parallel" and there is are no specified "times", the function will create a data frame with Treatment set to "1 to number of doses" and a Dose variable with the doses specified.
-  If the dose type is "Parallel" and there is a specified "times" vector, the function will create a data frame with a parallel treatment regime for each dose specified.
+  If the \code{type} is "Parallel" and there is are no specified \code{times}, the function will create a data frame with Treatment set to "1 to number of doses" and a Dose variable with the doses specified.
+  If the \code{type} is "Parallel" and there is a specified \code{times} vector, the function will create a data frame with a parallel treatment regime for each dose specified.
 
-  If the dose type is "Crossover", and there is are no specified "times" input, the "times" input will be set to "1 to number of rows of the sequence matrix"
-  If "times" has been supplied, and has leading non-positive elements, the sequence matrix is appended to a set of run-in measurements (where dose is set to 0).
-  Based on the "times" and "sequence" matrix, a data frame is created by aligning each column of the matrix with the times specified.
+  If the \code{type} is "Crossover", and there is are no specified \code{times} input, the \code{times} input will be set to "1 to number of rows of the sequence matrix"
+  If \code{times} has been supplied, and has leading non-positive elements, the \code{sequence} matrix is appended to a set of run-in measurements (where dose is set to 0).
+  Based on the \code{times} and \code{sequence} matrix, a data frame is created by aligning each column of the matrix with the times specified.
 }
 \value{
   A data frame containing a treatment, dose and (optionally) a time variable

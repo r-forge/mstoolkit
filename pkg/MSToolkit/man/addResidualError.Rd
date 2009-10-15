@@ -16,15 +16,15 @@ addResidualError(response, covariance, errStruc = "additive", seed = .deriveFrom
 }
 \details{
   The first step in the algorithm will be to set the random number seed to 
-  the "seed" argument.  
+  the \code{seed} argument.  
   Then, a number of samples will be drawn from a multivariate normal 
   distribution with mean 0 and covariance set by the (parsed) \code{covariance} input. 
   The number of samples to take will be set by the number of elements in the 
-  "response" vector.
+  \code{response} vector.
 
- Based on the "errStruc" input, the algorithm should continue as follows. 
- If it is Additive, the residual error will be added to the response vector. If 
- it is Proportional, the residual error will be added to the response vector (usually log-transformed outcome),
+ Based on the \code{errStruc} input, the algorithm should continue as follows. 
+ If it is Additive, the residual error will be added to the \code{response} vector. If 
+ it is Proportional, the residual error will be added to the \code{response} vector (usually log-transformed outcome),
  then the resulting vector will be exponentiated. This allows log-normal error structures.
 }
 \value{

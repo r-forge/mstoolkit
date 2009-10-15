@@ -32,7 +32,7 @@ createResponse(data, equation, name = "RESP", invLink, distribution = "normal",
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 
 \details{
-  MSToolkit generates response values using the concept of specifying a linear predictor which is then used as the input to a random number generator in order to create Normal, Binary and Poisson random variates.  \code{createResponse} specifies the linear predictor. In the case of Normally distributed response variables, a separate residual error is added using \code{addResidualError} function. 
+  MSToolkit generates response values using the concept of specifying a linear predictor which is then used as the input to a random number generator in order to create Normal, Binary and Poisson random variates.  \code{\link{createResponse}} specifies the linear predictor. In the case of Normally distributed response variables, a separate residual error is added using \code{\link{addResidualError}} function. 
 }
 
 \seealso{ The lower-level function of the response component: 

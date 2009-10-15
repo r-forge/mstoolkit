@@ -20,8 +20,8 @@ readAllData(dataType = c("ReplicateData", "MicroEvaluation", "MacroEvaluation"),
   \item{repColName}{ (Optional) Name for created "Replicate" variable in the consolidated data frame (default is "Replicate") }
 }
 \value{
-	If consolidate is FALSE, the function will return a list of data frames.  
-  If consolidate is TRUE, the function will combine this list into a single data frame for return 
+	If \code{consolidate} is FALSE, the function will return a list of data frames.  
+  If \code{consolidate} is TRUE, the function will combine this list into a single data frame for return 
 }
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }

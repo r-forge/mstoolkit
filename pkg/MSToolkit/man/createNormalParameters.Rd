@@ -32,17 +32,15 @@ flagName = "PAROMIT", digits = 3)
 \details{
   \code{createNormalParameters} creates fixed effect parameters which can vary between trial replicates. For each replicate a single draw is taken from a multivariate normal distribution centred on \code{mean} and with (co)variance \code{covariance}. Within each replicate individual subjects can vary around the sampled fixed effect value by specifying \code{betCov}. Usually this is only used if there are repeated measures for a single subject. The between subject variance is added to the fixed effect to give an individualised value to the parameter for each subject.
 
-  MSToolkit v2.0 applies "range" arguments to the fixed and random effects separately. This checks whether these individual components are within acceptable ranges, however it does not apply a range to the combination of these. If the combination of these values is required to be positive, we suggest working with the "Proportional" value for \code{errStruc} or work with log-transformed variables.  Future versions of MSToolkit will apply a range check to the combined parameter.
-
   The function will first create a single set of fixed effects, to be repeated for each subject specified.  This single set of fixed effects will be taken from a multivariate normal distribution with mean and covariance matrix supplied.
-  If the "range" argument is provided, the function will take "maxDraws" samples of fixed effects and select one set of effect where the values are all "in range".  If none of the derived sets satisfy the "range" condition, the function will stop and return an error.
+  If the \code{range} argument is provided, the function will take \code{maxDraws} samples of fixed effects and select one set of effect where the values are all "in range".  If none of the derived sets satisfy the \code{range} condition, the function will stop and return an error.
 
-  If the "betNames" input has been suppied, and the "betNames" vector is a subset of the fixed effect names, between subject effects will be derived.
-  If the "betMean" input has not been supplied, the mean of the between effects distribution will be 0.  Samples for each subject will be taken from a multivariate normal distribution with mean "betMean" and covariate matrix  "betCov".
-  If the "betRange" input has been specified, the function will repetitively attempt to create between subject effects within the given range.  If, after "maxDraws" attempts there are still values outside of the range, the "parameter omit" flag will be set to "1" to signify and "out of range" element.
+  If the \code{betNames} input has been suppied, and the \code{betNames} vector is a subset of the fixed effect names, between subject effects will be derived.
+  If the \code{betMean} input has not been supplied, the mean of the between effects distribution will be 0.  Samples for each subject will be taken from a multivariate normal distribution with mean \code{betMean} and covariate matrix  \code{betCov}.
+  If the \code{betRange} input has been specified, the function will repetitively attempt to create between subject effects within the given range.  If, after \code{maxDraws} attempts there are still values outside of the range, the "parameter omit" flag will be set to "1" to signify and "out of range" element.
 
-  If fixed and between subject effects have been generated, the "errStruc" input will specify how the between subject effects are to be applied:
-  * None = Keep between subject effect seperate (and use the "suffix" suppied to name the variables)
+  If fixed and between subject effects have been generated, the \code{errStruc} input will specify how the between subject effects are to be applied:
+  * None = Keep between subject effect seperate (and use the \code{suffix} suppied to name the variables)
   * Additive = Add each between subject effect to the corresponding fixed effect
   * Proportional = Add each between subject effect to the corresponding fixed effect, then exponentiate the result
 }
@@ -50,6 +48,9 @@ flagName = "PAROMIT", digits = 3)
   A data frame containing a subject variable, a "parameter omit flag" and a set of extracted parameters
 }
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\note{
+  MSToolkit v2.0 applies \code{range} arguments to the fixed and random effects separately. This checks whether these individual components are within acceptable ranges, however it does not apply a range to the combination of these. If the combination of these values is required to be positive, we suggest working with the "Proportional" value for \code{errStruc} or work with log-transformed variables.  Future versions of MSToolkit will apply a range check to the combined parameter.
+}
 
 \seealso{ \code{\link{createParameters}} and \code{\link{createExternalParameters}}  }
 \examples{

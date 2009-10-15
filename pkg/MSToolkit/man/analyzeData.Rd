@@ -39,19 +39,19 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
 \details{
           
 The first task of the function will be to check the options specifed:
-* If the LSF GRID network is unavailable or if the length of the "replicates" input is 1, the "grid" flag will be set to FALSE
-* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "Rlsf" library 
-* If the length of the "replicates" vector is 1, the "waitAndCombine" flag will be set to FALSE
-* If the "waitAndCombine" flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
+* If the LSF GRID network is unavailable or if the length of the \code{replicates} input is 1, the \code{grid} flag will be set to FALSE
+* If the \code{grid} flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "Rlsf" library 
+* If the length of the \code{replicates} vector is 1, the \code{waitAndCombine} flag will be set to FALSE
+* If the \code{waitAndCombine} flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
 
-The \code{\link{analyzeData}} function will perform analysis across each replicate specified in the "replicates" vector.  For each replicate, the function will first call the \code{\link{analyzeRep}} with the required inputs.
+The \code{\link{analyzeData}} function will perform analysis across each replicate specified in the \code{replicates} vector.  For each replicate, the function will first call the \code{\link{analyzeRep}} with the required inputs.
 The output from the call to \code{\link{analyzeRep}} will be a data frame containing micro evaluation data.  This data frame will be checked to ensure it is of the correct format.
 If the return from \code{\link{analyzeRep}} is a valid "Micro Evaluation" dataset, it will be saved to the "MicroEvaluation" folder, and also passed to the \code{\link{macroEvaluation}} function for further analysis.
 If the return from \code{\link{macroEvaluation}} is a valid "Macro Evaluation" dataset, it will be saved to the "MicroEvaluation" folder.
 
 If interim analysis is to be performed using \code{interimCode} then values for \code{interimSubj} must be specified in \code{\link{generateData}}. If interim proportions have been specified in \code{interimSubj} then analysis is performed across the dataset as a whole, then across each interim dataset in turn. At each interim \code{interimCode} is called to apply decision-making e.g. dropping doses, stopping the study. If any doses are dropped then existing data from these doses are carried forward into subsequent interim analysis, however no new subjects on these doses are carried forward into future datasets.
 
-If the "waitAndCombine" flag is set to TRUE, the function will wait until all GRID jobs are finished (if GRID has been used), then compile the "Micro" and "Macro" evaluation results into single summary files (using the \code{\link{compileSummary}} function).
+If the \code{waitAndCombine} flag is set to TRUE, the function will wait until all GRID jobs are finished (if GRID has been used), then compile the "Micro" and "Macro" evaluation results into single summary files (using the \code{\link{compileSummary}} function).
 
 }
 \value{
@@ -62,9 +62,9 @@ If the "waitAndCombine" flag is set to TRUE, the function will wait until all GR
 \note{  
   There are some restrictions on the code inputs to the \code{\link{analyzeData}} function.  These restrictions are discussed here:
   
-  Analysis Code: The "analysisCode" input must be either an R function or a reference to an external file.  If it is a reference to external file, it must contain either SAS code (if software is "SAS") or R code (if software is "R").
+  Analysis Code: The \code{analysisCode} input must be either an R function or a reference to an external file.  If it is a reference to external file, it must contain either SAS code (if software is "SAS") or R code (if software is "R").
     If the code is an R function, or an external R script, it must accept a data frame as its only argument and return an acceptable "Micro Evaluation" data frame as set out in \code{\link{checkMicroFormat}}.
-    If the code is an external SAS script, it must accept use a SAS dataset called "work.infile" and create a SAS dataset called "work.outfile" that conforms to the "Micro Evalutation" format as set out in \code{\link{checkMicroFormat}}.
+    If the code is an external SAS script, it must accept use a SAS dataset called "work.infile" and create a SAS dataset called "work.outfile" that conforms to the "Micro Evalutation" format as set out in \code{\link{checkMicroFormat}}. Since the dataset infile is created using the "work" library, no \code{libname} statement is necessary in the SAS analysis code.
     More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{checkMicroFormat}}.
   
   Interim Code: The "interimCode" input must be an R function that accepts a single "Micro Evaluation" data input, and returns an R "list" structure that is either empty or contains one or more of the following elements:
@@ -72,7 +72,7 @@ If the "waitAndCombine" flag is set to TRUE, the function will wait until all GR
     An element called "DROP" which is a vector of numeric values relating to doses in the data to drop before the next interim is analyzed.
     More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{interimAnalysis}}.
 
-  Macro Code: The "macroCode" input must be an R function that accepts an enhanced "Micro Evaluation" data input, and returns a valid "Macro Evaluation" data structure (as specified in the help file for the \code{\link{checkMacroFormat}} function.
+  Macro Code: The \code{macroCode} input must be an R function that accepts an enhanced "Micro Evaluation" data input, and returns a valid "Macro Evaluation" data structure (as specified in the help file for the \code{\link{checkMacroFormat}} function.
 
 }
 \seealso{ 

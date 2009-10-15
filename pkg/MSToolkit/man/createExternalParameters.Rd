@@ -31,12 +31,12 @@
 \details{
   The data is first imported from the specified file, and any subset applied to it.  The function next checks that all required variables specifed appear in the imported data.
   Fixed effects (specified using names) are selected from the file along with between subject effects (if they are also identified).
-  If both fixed and between subject parameters have been selected, the function will use the errStruc input as follows:
-  * None = Keep between subject effect seperate (and use the "suffix" suppied to name the variables)
+  If both fixed and between subject parameters have been selected, the function will use the \code{errStruc} input as follows:
+  * None = Keep between subject effect seperate (and use the \code{suffix} suppied to name the variables)
   * Additive = Add each specified between subject effects to the corresponding fixed effect (based on the mapping specified in betNums)
   * Proportional = Add each between subject effect to the corresponding fixed effect (based on the mapping specified in betNums) then exponentiate the result  
   
-  If the relCol input is specified, this variable should also be retained in the result.
+  If the \code{refCol} input is specified, this variable should also be retained in the result.
   The "parameter omit" flag will contain repeated "0" elements in the return result.
 
   \code{createExternalParameters} assumes that sampling is performed for parameters at the subject level. That is, fixed and random effects can be sampled and combined using \code{errStruc} or retained as separate variables in order to create subject-specific parameter values. Future versions of MSToolkit will allow sampling at the replicate level e.g. sampling from MCMC posterior distribution output from WinBUGS.

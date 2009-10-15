@@ -20,9 +20,9 @@ createDiscreteCovariates(subjects, names, values, probs, probArray,
 }
 \details{
   The \code{values} and \code{probs} argument are parsed using the \code{\link{parseHashString}} helper
-  function. They could be either : 
+  function. They could be either:
+ 
   - a vector giving the values for each variable. 
-  
   \code{c("1,2", "1,2,3")} would mean that the first variable takes values 1 and 2, 
   and the second variable takes values 1, 2 and 3.
   
@@ -38,7 +38,7 @@ createDiscreteCovariates(subjects, names, values, probs, probArray,
   Alternatively, a \code{probArray} argument can be given. This should be a data frame containing 
   one more column (named "prob") than the number of variables to create. Each variable has a column
   which contains the values it can take. The prob column gives the probability for each combination.
-  See examples. The prob column should sum up to one.
+  See examples. The "prob" column should sum up to one.
 }
 \value{
   A data frame.

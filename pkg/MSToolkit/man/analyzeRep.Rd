@@ -32,13 +32,13 @@
 \details{
   The \code{\link{analyzeRep}} function calls the \code{\link{performAnalysis}} function in order to analyze and summarize a single simulated replicate dataset (held in the "ReplicateData" subdirectory of the specified working path).
 
-  The first step of the analysis is to use the removeMissing, removeParOmit and removeRespOmit flags (together with the missingFlag, parOmitFlag and respOmitFlag inputs) in order to subset the data if required.  For example, we may wish to remove all observations flagged as "missing" in an earlier simulation of subject dropout.  The subset is applied to the data before the analysis.
+  The first step of the analysis is to use the \code{removeMissing}, \code{removeParOmit} and \code{removeRespOmit} flags (together with the \code{missingFlag}, \code{parOmitFlag} and \code{respOmitFlag} inputs) in order to subset the data if required.  For example, we may wish to remove all observations flagged as "missing" in an earlier simulation of subject dropout.  The subset is applied to the data before the analysis.
 
-  The analysis code must be either an R function, a reference to an external R script, or a reference to an external SAS script.  If the software is set as "SAS", it is assumed that the analysisCode is an external SAS script.
+  The analysis code must be either an R function, a reference to an external R script, or a reference to an external SAS script.  If the \code{software} is set as "SAS", it is assumed that the \code{analysisCode} file is an external SAS script.
   If the analysis code is a SAS script, it must accept a singe dataset called work.infile, and create an output dataset called work.outfile.  The work.outfile dataset must be a valid "Micro Evaluation" structure as specified in the help file for \code{\link{checkMicroFormat}}.    
-  If the software is "R", the analysis code input must be either an R function or an R script.  The R analysis code must also return a valid "Micro Evaluatoin" structure as specified in function \code{\link{checkMicroFormat}} 
+  If the \code{software} is "R", the analysis code input must be either an R function or an R script.  The R analysis code must also return a valid "Micro Evaluatoin" structure as specified in function \code{\link{checkMicroFormat}} 
 
-  The first step in \code{\link{analyzeRep}} is to perform a full analysis on the data (which has possibly been subset be the remove* inputs).  Following the analysis, the \code{\link{checkMicroFormat}} function is used to ensure the return data is a valid "Micro Evaluation" data structure.
+  The first step in \code{\link{analyzeRep}} is to perform a full analysis on the data (which has possibly been subset by the \code{remove...} inputs).  Following the analysis, the \code{\link{checkMicroFormat}} function is used to ensure the return data is a valid "Micro Evaluation" data structure.
   The return structure is appended with drop and stop flags (set to 0) and with interim variables (where interim is "FULL").
   
   If interim analysis is to be performed using \code{interimCode} then values for \code{interimSubj} must be specified in \code{\link{generateData}}. If interim proportions have been specified in \code{interimSubj} then analysis is performed across the dataset as a whole, then across each interim dataset in turn. At each interim \code{interimCode} is called to apply decision-making e.g. dropping doses, stopping the study. If any doses are dropped then existing data from these doses are carried forward into subsequent interim analysis, however no new subjects on these doses are carried forward into future datasets.
@@ -54,12 +54,12 @@
 \note{  
   There are some restrictions on the code inputs to the \code{\link{analyzeData}} function.  These restrictions are discussed here:
   
-  Analysis Code: The "analysisCode" input must be either an R function or a reference to an external file.  If it is a reference to external file, it must contain either SAS code (if software is "SAS") or R code (if software is "R").
+  Analysis Code: The \code{analysisCode} input must be either an R function or a reference to an external file.  If it is a reference to external file, it must contain either SAS code (if \code{software} is "SAS") or R code (if \code{software} is "R").
     If the code is an R function, or an external R script, it must accept a data frame as its only argument and return an acceptable "Micro Evaluation" data frame as set out in \code{\link{checkMicroFormat}}.
     If the code is an external SAS script, it must accept use a SAS dataset called "work.infile" and create a SAS dataset called "work.outfile" that conforms to the "Micro Evalutation" format as set out in \code{\link{checkMicroFormat}}.
     More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{checkMicroFormat}}.
   
-  Interim Code: The "interimCode" input must be an R function that accepts a single "Micro Evaluation" data input, and returns an R "list" structure that is either empty or contains one or more of the following elements:
+  Interim Code: The \code{interimCode} input must be an R function that accepts a single "Micro Evaluation" data input, and returns an R "list" structure that is either empty or contains one or more of the following elements:
     An element called "STOP" which is a logical vector of length 1.  This tells the \code{\link{analyzeData}} function whether the analysis should be halted at this interim
     An element called "DROP" which is a vector of numeric values relating to doses in the data to drop before the next interim is analyzed.
     More information on "Micro Evaluation" structures can be found in the help file for function \code{\link{interimAnalysis}}.

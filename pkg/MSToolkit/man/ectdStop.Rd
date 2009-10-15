@@ -15,7 +15,7 @@ ectdWarning(..., call. = TRUE, immediate. = FALSE, domain = NULL)
 
 \arguments{
   \item{msg}{ (Required) Message to be displayed to the user }
-  \item{verbose}{ (Optional) Should more details be given when showing the error message/warning.  By default, this is controlled by support function "ectdVerbose" }
+  \item{verbose}{ (Optional) Should more details be given when showing the error message/warning.  By default, this is controlled by support function \code{\linke{ectdVerbose}} }
   \item{call., domain, immediate.}{  See \code{\link{warning}} and \code{\link{stop}}. }
   \item{\dots}{passed to warning}
 }

@@ -24,7 +24,7 @@ performAnalysis(analysisCode, doses, data, software = c("R", "SAS"), infile,
 }
 \details{
   The function tries to perform the analysis contained in the \code{analysisCode} against the \code{data}.  
-  The analysis code specified is either an external file containing code (SAS and R), or an R function (R only).
+  The \code{analysisCode} specified is either an external file containing code (SAS and R), or an R function (R only).
   
   If software is set to "SAS" the analysis code is assumed to be a reference to an external SAS script.  The SAS code must accept a singe dataset called work.infile, and create an output dataset called work.outfile.  The work.outfile dataset must be a valid "Micro Evaluation" structure as specified in the help file for \code{\link{checkMicroFormat}}.
   If the software is "R", the analysis code input must be either an R function or an R script.  The R analysis code must also return a valid "Micro Evaluatoin" structure as specified in function \code{\link{checkMicroFormat}} 

@@ -19,7 +19,7 @@ checkMicroFormat(doses, dat, doseCol = "DOSE", microColumnNames = c(doseCol, "ME
 }
 \details{
 
-\code{checkMicroFormat} will first perform a series of basic checks on \code{dat}.  If any of these fail it will call \code{createEmptyMicro(doses, doseCol, microColumnNames)} to generate an "empty" micro evaluation data frame for the given dose vector and column names.  
+\code{checkMicroFormat} will first perform a series of basic checks on \code{dat}.  If any of these fail it will call \code{\link{createEmptyMicro}(doses, doseCol, microColumnNames)} to generate an "empty" micro evaluation data frame for the given dose vector and column names.  
 
 The checks for a valid structure are as follows: 
 (1) \code{dat} has at least 1 row

@@ -12,16 +12,16 @@ createDirectories(dirNames = c("ReplicateData", "MicroEvaluation", "MacroEvaluat
 }
 
 \arguments{
-  \item{dirNames}{ (Optional) A vector of directories to create under the "workingPath" directory.  By default, directories "ReplicateData", "MicroEvaluation" and "MacroEvaluation" are created }
+  \item{dirNames}{ (Optional) A vector of directories to create under the \code{workingPath} directory.  By default, directories "ReplicateData", "MicroEvaluation" and "MacroEvaluation" are created }
   \item{workingPath}{ (Optional) The working directory in which to create directories.  The current working directory is used by default }
   \item{warn}{ (Optional) A logical value.  Should warnings from the directory creation be shown?  FALSE by default }
 }
 
 \details{
-  Attempts to create directories named in character vector "dirNames" within the "workingPath" directory
+  Attempts to create directories named in character vector \code{dirNames} within the \code{workingPath} directory
 }
 \value{
-  A logical vector the same length as "dirNames", indicating whether or not the corresponding directories were successfully created
+  A logical vector the same length as \code{dirNames}, indicating whether or not the corresponding directories were successfully created
 }
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }

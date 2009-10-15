@@ -18,9 +18,9 @@
   \item{missingMsg}{ (Optional) Message to display if the input is not provided.  A standard message is displayed by default }
 }
 \details{
-  parseHashString does one of four things depending on the arguments passed to it: (1) If the input is a single string
+  parseHashString does one of four things depending on the arguments passed to it: (1) If \code{input} is a single string
 composed of commas, numbers and hash symbols, it will split the string into along the hash symbols and then process the resulting
-strings with \code{parseCharInput}.  The result will be a list of numerical vectors.  For example, \code{parseHashString("1,2\#3,4")}
+strings with \code{\link{parseCharInput}}.  The result will be a list of numerical vectors.  For example, \code{parseHashString("1,2\#3,4")}
 will create a list with elements c(1,2) and c(3,4). (2) If the input is a vector of strings that don't have any hash symbols,
  it will it will simply apply parseCharInput to each element of the vector and construct a list from the result.  Thus the same
  list created in the previous example could also be created by calling \code{parseHashString(c("1,2", "3,4")}.  (3) If the input

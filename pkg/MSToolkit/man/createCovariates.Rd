@@ -28,7 +28,7 @@ createCovariates(subjects, conNames = NULL, conMean, conCov, conRange = NULL, co
    and \code{\link{createExternalCovariates}}
 }
 \details{
-  According to the presence of each "names" argument, the function calls lower-level functions to generate covariates.
+  According to the presence of each \code{names} argument, the function calls lower-level functions to generate covariates.
   Foe example, if \code{conNames} is given, the function will attempt to generate covariates from
   a continuous distribution using the \code{\link{createContinuousCovariates}} function.
   

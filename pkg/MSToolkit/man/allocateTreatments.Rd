@@ -2,8 +2,7 @@
 \alias{allocateTreatments}
 \title{ Allocate treatment to subjects }
 \description{
-  The \emph{Allocate} component is responsible for allocating simulated 
-  subjects to a treatment group. 
+  Allocates simulated subjects to treatment groups. 
 }                    
 \usage{
 allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE, 
@@ -11,7 +10,7 @@ allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE,
 
 }
 \arguments{
- \item{trts}{ (Required) Number of treatments to which subjects can be allocated.  Subjects will be allocated to treatments "1:trts" }
+ \item{trts}{ (Required) Number of treatments to which subjects can be allocated.  Subjects will be allocated to treatments "1:\code{trts}" }
  \item{subjects}{ (Required) Number of subjects to be allocated across treatment groups }
  \item{prop}{ (Optional) Vector of probabilities for allocating subjects to each group.  By default, subjects are assigned to each group with equal probability. Proportions should sum to 1.  }
  \item{ordered}{ (Optional) Should treatments be allocated in order of subject number (ie. first N subjects gets treatment 1) as opposed to random assignment.  Default is FALSE (random assignment) }
@@ -20,11 +19,11 @@ allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE,
  \item{trtCol}{ (Optional) Treatment variable name.  "TRT" by default }
 }
 \details{
- Subjects are randomly allocated to a single treatment.  The possible treatments are numbered "1" to "trts".
+ Subjects are randomly allocated to a single treatment.  The possible treatments are numbered "1" to \code{trts}.
 
- If "subjects" is a single number, the proportion argument is used to determine the proportion to be allocated to each treatment.  By default, subjects are allocated to each treatment group with probability "1/trts". If "subjects" is a vector with length "trts", this explicity defines the number of subjects to be allocate to each treatment group.
+ If \code{subjects} is a single number, the proportion argument is used to determine the proportion to be allocated to each treatment.  By default, subjects are allocated to each treatment group with probability "1/trts". If \code{subjects} is a vector with length \code{trts}, this explicity defines the number of subjects to be allocate to each treatment group.
  
- If "ordered" is TRUE, the allocation is done in order (eg. subject 1 gets treatment 1).  If "FALSE", random allocation is performed.
+ If \code{ordered} is TRUE, the allocation is done in order (eg. subject 1 gets treatment 1).  If "FALSE", random allocation is performed.
  
 }
 \value{

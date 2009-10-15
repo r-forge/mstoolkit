@@ -16,10 +16,10 @@ removeDirectories(dirNames = c("ReplicateData", "MicroEvaluation", "MacroEvaluat
 }
 
 \details{
-  dirNames must be a character vector.  The function will attempt to remove each of the directories identified in the dirNames vector from within the "workingPath" directory
+  \code{dirNames} must be a character vector.  The function will attempt to remove each of the directories identified in the \code{dirNames} vector from within the \code{workingPath} directory
 }  
 \value{
-  A logical vector the same length as the dirNames, indicating whether or not the corresponding directories were successfully removed
+  A logical vector the same length as the \code{dirNames}, indicating whether or not the corresponding directories were successfully removed
 }
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }

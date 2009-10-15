@@ -17,7 +17,7 @@ initialChar(txt, adm = "[:lower:]", err = "Not acceptable value")
 }
 
 \value{
-initalChar returns a lower case version of the first letter contained in the string "txt" if that character is admissable.  
+initalChar returns a lower case version of the first letter contained in the string \code{txt} if that character is admissable.  
 If it is not (or no letter is found), an error message will be printed.
 }
 

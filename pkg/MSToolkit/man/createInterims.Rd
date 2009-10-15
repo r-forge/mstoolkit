@@ -18,13 +18,13 @@ createInterims(subjects, proportion, seed = .deriveFromMasterSeed(),
   \item{method}{ (Optional) Method to use. Must be one of "Sample" or "Proportion".  Default is "Sample" }
 }
 \details{
-  If the "method" argument is set to "Sample", the interim numbers should be assigned using the following algorithm:
+  If the \code{method} argument is set to "Sample", the interim numbers should be assigned using the following algorithm:
 Store the number of subjects (nSubjects) and the number of interims (nInterims)
 Append a zero to the start of the proportions and take differences to get a vector of "non-cumulative" probabilities
 Take "nSubjects" samples from the values "1" to "nInterims" with probabilities set to the derived "non-cumulative" probabilities
 Replace the "interim" variable with these values.
 
-If the "method" argument is set to "Proportion", the interim numbers should be assigned using the following algorithm:
+If the \code{method} argument is set to "Proportion", the interim numbers should be assigned using the following algorithm:
 Store the number of subjects (nSubjects) and the number of interims (nInterims)
 Convert the cumulative proportions to "non-cumulative" probabilities
 Allocate a "base" number of subjects to each interim (found by multiplying nSubjects by the set of probabilities, then take the floor of the resulting values)
