@@ -21,7 +21,7 @@ generateData(replicateN, subjects, treatSubj = subjects, treatDoses, treatSeq, t
   \item{replicateN}{ (Required) Number of replicates for which to create simulated data }
   \item{subjects}{ (Required) Number of subjects in simulation }
   \item{treatSubj}{ (Optional) Number of subjects to which to allocate treatments, or a vector of allocations }
-  \item{treatDoses}{ (Optional) Vector of numeric treatment doses.  By default, this is the same as the "subjects" input }
+  \item{treatDoses}{ (Required) Vector of numeric treatment doses.  By default, this is the same as the "subjects" input }
   \item{treatSeq}{ (Optional) Treatment matrix for crossover designs.  Missing by default, but this is required when treatType is set to "Crossover" }
   \item{treatType}{ (Optional) Treatment type: 'Parallel' or 'Crossover'.  Default is "Parallel" }
   \item{treatPeriod}{ (Optional) Vector of numeric treatment time points.  Missing by default, resulting in no "time" element in the generated data }
