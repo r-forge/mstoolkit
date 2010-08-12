@@ -1,11 +1,11 @@
 Package: MSToolkit
 Type: Package
 Title: The MSToolkit library for clinical trial design
-Version: 2.0
-Date: 2009-06-29
-Author: Mango Solutions & Pfizer
+Version: 3.0.2
+Date: 2010-02-23
+Author: Mango Solutions <mstoolkit@mango-solutions.com>
 Maintainer: MSToolkit <mstoolkit@googlemail.com>
-Description: MSToolkit library for evaluating clinical trial design and analysis operating characteristics through simulation.
-Depends: R (>= 2.3.1), MASS
-Suggests: RUnit, Rlsf
+Description: MSToolkit library for Clinical Trial Design
+Depends: R (>= 2.6.1), MASS
+Suggests: RUnit, RNMImport, RNMExport, Rlsf
 License: GPL

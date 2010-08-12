@@ -25,7 +25,7 @@ createCovariates <- function(
   workingPath = getwd(), #@ Working directory
   
   ## common args
-  idCol = "SUBJ",  #@ Subject variable name for return data
+  idCol = getEctdColName("Subject"),  #@ Subject variable name for return data
   seed=.deriveFromMasterSeed() #@ random seed
 ){
  	###############################################################################
@@ -78,17 +78,17 @@ createCovariates <- function(
     if(!missing(extRefCol) )  extArgs$refCol <- extRefCol
      
     do.call( createExternalCovariates, extArgs)
-  }    
-  
-  ## calling the createDiscreteCovariates function
-  dataList$discrete <- if( !is.null(disNames) ){
-    disArgs <- list( subjects = subjects, idCol = idCol, seed = seed, 
-      names = disNames,  includeIDCol = FALSE )
-    if( !missing(disValues   )) disArgs$values    <- disValues   
-    if( !missing(disProbs    )) disArgs$probs     <- disProbs    
-    if( !missing(disProbArray)) disArgs$probArray <- disProbArray
+  }
 
-    do.call( createDiscreteCovariates, disArgs)
+  ## calling the createDiscreteCovariates function
+  probCall <- !missing(disProbArray) && length(disProbArray)
+  dataList$discrete <- if( !is.null(disNames) | probCall){
+    disArgs <- list( subjects = subjects, idCol = idCol, seed = seed, includeIDCol = FALSE )
+		if( !missing(disNames    )) disArgs$names     <- disNames
+		if( !missing(disValues   )) disArgs$values    <- disValues   
+		if( !missing(disProbs    )) disArgs$probs     <- disProbs    
+		if( !missing(disProbArray)) disArgs$probArray <- disProbArray
+		do.call( createDiscreteCovariates, disArgs)
   }
    
   names( dataList )  <- NULL  

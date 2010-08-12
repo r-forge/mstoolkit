@@ -2,8 +2,8 @@ createInterims <- function(
   subjects,                          #@ set of subject to be assigned to interim
   proportion,                        #@ Proportion of total subjects per interim
   seed = .deriveFromMasterSeed(),    #@ random seed to use
-  idCol = "SUBJ",                      #@ name of the ID column
-  interimCol = "INTERIM",            #@ name of the imterim column
+  idCol = getEctdColName("Subject"),                      #@ name of the ID column
+  interimCol = getEctdColName("Interim"),            #@ name of the imterim column
   method = "Sample"                  #@ the method to use
 ){
   ###############################################################################
@@ -21,7 +21,7 @@ createInterims <- function(
   ## validate the names
   validNames( idCol, interimCol)
   if( idCol == interimCol ){
-    ectdStop("Arguments `idCol` and `interimCol` should be different")
+    ectdStop("`idCol` and `interimCol` should be different")
   }
   
   ## tidy up the method argument

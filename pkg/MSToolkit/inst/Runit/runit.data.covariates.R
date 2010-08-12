@@ -1,4 +1,4 @@
-if( !exists("unitTestPath")) unitTestPath <- "."
+if( !exists("unitTestPath")) unitTestPath <- system.file(package = "MSToolkit", "Runit")
 covariates.datapath <- file.path( unitTestPath , "data", "createCovariates" )
 cat("covariates.datapath: ", covariates.datapath , "\n")
 

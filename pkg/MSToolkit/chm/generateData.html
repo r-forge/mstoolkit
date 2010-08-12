@@ -30,7 +30,7 @@ generateData(replicateN, subjects, treatSubj = subjects, treatDoses, treatSeq, t
   extParRefColName, extParDataId = idCol, respInvLink, respDist = "Normal", respVCov, respErrStruc = "Additive", respCrit, respDigits = 3, mcarProp = 0, mcarRule, dropFun,
   dropFunExtraArgs = list(), interimSubj, interimMethod = "Sample", seed = .deriveFromMasterSeed(), idCol = "SUBJ", doseCol = "DOSE", timeCol = "TIME", 
   trtCol = "TRT", parOmitFlag = "PAROMIT", respOmitFlag = "RESPOMIT", missingFlag = "MISSING", interimCol = "INTERIM", parBtwSuffix = ".Between", 
-  deleteDirs = TRUE, covDiff = TRUE, treatDiff = TRUE, workingPath = getwd() )
+  deleteCurrData = TRUE, covDiff = TRUE, treatDiff = TRUE, workingPath = getwd() )
 </pre>
 
 
@@ -241,7 +241,7 @@ generateData(replicateN, subjects, treatSubj = subjects, treatDoses, treatSeq, t
 <tr valign="top"><td><code>parBtwSuffix</code></td>
 <td>
 (Optional) Suffix for retained between subject effects variables.  Suffix ".Between" is used by default </td></tr>
-<tr valign="top"><td><code>deleteDirs</code></td>
+<tr valign="top"><td><code>deleteCurrData</code></td>
 <td>
 (Optional) Should existing data be deleted before starting generation phase (TRUE by default) </td></tr>
 <tr valign="top"><td><code>covDiff</code></td>

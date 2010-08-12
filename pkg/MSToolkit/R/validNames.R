@@ -19,3 +19,54 @@ validNames <- function( ... ) {
           
 }
 
+"checkColNames" <- function(dNames, cols) {
+	validNames(cols)		# Check column names are valid inputs
+	colTest <- cols %in% dNames
+	if (!all(colTest)) {
+		missCols <- paste("\"", cols[!colTest], "\"", sep="", collapse=", ")
+		ectdStop(paste("Some required columns missing from the data:", missCols))
+	}
+	TRUE
+}
+
+.checkLogical <- function(..., single = TRUE) {
+	inList <- list(...)
+	isOk <- sapply(inList, is.logical)
+	if (single) isOk <- isOk & sapply(inList, length) == 1
+	if (any(myTest <- !isOk)) {
+		theCall <- match.call(expand.dots = TRUE)
+		theCall <- as.character(theCall)[1+1:length(inList)]
+		whichNot <- theCall[myTest]
+		errorMessage <- paste(if (single) "Single character" else "Character", "expected:")
+		ectdStop(paste(errorMessage, paste(whichNot, sep=", ")))
+	}
+	isOk
+}
+
+.checkNumeric <- function(..., single = TRUE) {
+	inList <- list(...)
+	isOk <- sapply(inList, is.numeric)
+	if (single) isOk <- isOk & sapply(inList, length) == 1
+	if (any(myTest <- !isOk)) {
+		theCall <- match.call(expand.dots = TRUE)
+		theCall <- as.character(theCall)[1+1:length(inList)]
+		whichNot <- theCall[myTest]
+		errorMessage <- paste(if (single) "Single character" else "Character", "expected:")
+		ectdStop(paste(errorMessage, paste(whichNot, sep=", ")))
+	}
+	isOk
+}
+
+.checkCharacter <- function(..., single = TRUE) {
+	inList <- list(...)
+	isOk <- sapply(inList, is.character)
+	if (single) isOk <- isOk & sapply(inList, length) == 1
+	if (any(myTest <- !isOk)) {
+		theCall <- match.call(expand.dots = TRUE)
+		theCall <- as.character(theCall)[1+1:length(inList)]
+		whichNot <- theCall[myTest]
+		errorMessage <- paste(if (single) "Single character" else "Character", "expected:")
+		ectdStop(paste(errorMessage, paste(whichNot, sep=", ")))
+	}
+	isOk
+}

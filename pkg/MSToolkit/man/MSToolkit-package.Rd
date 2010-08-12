@@ -13,9 +13,12 @@ Originally designed and built for Pfizer by Mango Solutions, the MSToolkit libra
 Package: \tab MSToolkit\cr
 Type: \tab Package\cr
 Version: \tab 2.0\cr
-Date: \tab 15 Oct 2009\cr
+Date: \tab 2010-01-25\cr
 }}
 
 \author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} } 
 
 \keyword{ package }
+\seealso{
+  Neal Thomas' "DoseResponse" library
+}

@@ -1,6 +1,7 @@
 mstoolkitUnitTests <- function(htmlreport = FALSE, showdetails =  TRUE){
   
-  oldverbose <- ectdVerbose( FALSE )
+  oldverbose <- getEctdVerbose()
+  setEctdVerbose( FALSE )
    
   ## unit tests will not be done if RUnit is not available
   if(require("RUnit", quietly=TRUE)) {
@@ -47,7 +48,7 @@ mstoolkitUnitTests <- function(htmlreport = FALSE, showdetails =  TRUE){
     warning("cannot run unit tests -- package RUnit is not available")
   }     
 
-  ectdVerbose( oldverbose )
+  setEctdVerbose( oldverbose )
   invisible(NULL)
   
 }

@@ -27,7 +27,7 @@ single expression with "&".  Hence c("1 < Y", "2 < Z <= 5") would become \code{(
 \value{
 An expression constructed as detailed above.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} } 
+\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
 \section{Warning}{  The character "|" is not allowed in any of the expressions contained in "code" for the \code{parseRangeCode} function.}
 \seealso{ \code{\link{subset}}, \code{\link{parse}}  }
 \examples{

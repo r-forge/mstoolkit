@@ -25,3 +25,4 @@ checkSymmetricPDMatrix <- function( mat, tol = 1e-6 ){
       ectdStop("matrix not positive definite")
   
 }
+
