@@ -27,7 +27,7 @@ Note: The data storage only impacts replicate data - micro and macro evaluation 
 The "getEctdDataMethod" function returns the current data method ("CSV", "RData" or "Internal")
 The "setEctdDataMethod" function invisibly returns the method that has just been set as the default
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{
 
 	nowMethod <- getEctdDataMethod()

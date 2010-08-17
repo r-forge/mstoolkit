@@ -19,7 +19,7 @@ convertSASIncludeRows(includeRows, doseCol = getEctdColName("Dose"), interimCol 
 \value{
 A single character string
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 convertSASIncludeRows( cbind(rep(1:2, each = 3), c(0, 15, 30, 0, 30, 45) ) )
 } 

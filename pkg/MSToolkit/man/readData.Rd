@@ -19,7 +19,7 @@ readData(dataNumber, dataType = c("ReplicateData", "MicroEvaluation", "MacroEval
 	readData will return a data frame containing the desired element of data if it exists.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{writeData}}}
 \examples{
 	\dontrun{

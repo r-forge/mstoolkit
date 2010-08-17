@@ -31,7 +31,7 @@ parsePredCode(model, respCol = getEctdColName("Response"))
 \value{
   A dataset with new columns added
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 
 parsePredCode(c(

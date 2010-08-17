@@ -54,7 +54,7 @@ suffix = ".Between", idCol = "SUBJ", seed = .deriveFromMasterSeed(), flagName = 
   A data frame with a subject variable, a "parameter omit" flag and derived/imported parameter variables
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{createNormalParameters}} and \code{\link{createExternalParameters}} }
 \examples{\dontrun{
 

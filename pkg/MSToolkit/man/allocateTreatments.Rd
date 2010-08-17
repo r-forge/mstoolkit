@@ -35,7 +35,7 @@ allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE,
 \code{TRT}{The Treatment numeric that the subject is allocated to }
   ...
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createTreatments}} to create the set of possible treatments given a 
   sequence matrix for a crossover design or a set of doses for a parallel design.

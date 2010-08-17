@@ -27,7 +27,7 @@
 	A numeric vector of replicate values
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
   
   \dontrun{

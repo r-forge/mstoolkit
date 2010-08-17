@@ -19,7 +19,7 @@ createNmMatrix(x, dimnames = NULL, byrow = TRUE)
 \value{
 	A matrix
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 	createNmMatrix(1:3)
 	createNmMatrix(1:6)

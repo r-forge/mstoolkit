@@ -26,7 +26,7 @@ createTvDefinition(drugName, drugValue, doses, times = NULL, type = c("Parallel"
 	A "tvDefinition" object
 }
 
-\author{ MSToolkit Support \email{support@mango-solutions.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 
 \examples{
 

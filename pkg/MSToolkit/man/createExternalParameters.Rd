@@ -48,7 +48,7 @@ If earlier versions of MSToolkit, the "Proportional" error structure was impleme
 \value{
   A data frame containing a subject variable, a "parameter omit flag" and a set of extracted parameters
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createParameters}} and \code{\link{createNormalParameters}}
 }

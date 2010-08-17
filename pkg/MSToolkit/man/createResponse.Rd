@@ -31,7 +31,7 @@ createResponse(data, equation, name = "RESP", invLink, distribution = "normal",
 \note{
 In earlier versions of MSToolkit, the "Proportional" Error Structure behaved differently (it assumed parameters passed were on the log scale)
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ The lower-level function of the response component: 
   \code{\link{createResponseVariable}} and \code{\link{addResidualError}} are called 
   by \code{createResponse}.

@@ -48,5 +48,5 @@ calculateObsSummary(data, respCol = getEctdColName("Response"), bVar = NULL, sub
 \value{
 	A data frame of response summaries
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \keyword{ Observed }

@@ -25,5 +25,5 @@ If \code{writeFiles} is TRUE, each updated control file object is written out to
 \value{
 A list of updated control file objects will be invisibly returned
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \keyword{ nonmem }

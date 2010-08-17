@@ -43,7 +43,7 @@ createCovariates(subjects, conNames = NULL, conMean, conCov, conRange = NULL, co
   \code{conNames}, \code{extNames}, \code{disNames} and \code{idCol}.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createContinuousCovariates}}, 
   \code{\link{createDiscreteCovariates}} and

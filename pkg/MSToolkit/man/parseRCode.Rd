@@ -15,5 +15,5 @@ The \code{parseRCode} function wraps "parse" and checks to ensure a valid expres
 \value{
 An \link{expression} object
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 

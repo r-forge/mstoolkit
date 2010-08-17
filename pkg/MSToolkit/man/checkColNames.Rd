@@ -17,7 +17,7 @@ checkColNames(dNames, cols)
 \value{
 	A TRUE value (if all of "cols" are found in "dNames") or an exception if not
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 
 	checkColNames(LETTERS, "D")						# Returns TRUE

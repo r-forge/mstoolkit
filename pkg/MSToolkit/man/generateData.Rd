@@ -121,7 +121,7 @@ This data can then be analyzed using a call to the \code{\link{analyzeData}} fun
   No value is returned from the generateData function.  However, as a side effect, a number of simulated replicate datasets are created.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createTreatments}}, \code{\link{allocateTreatments}}, \code{\link{createCovariates}}, \code{\link{createParameters}}, 
   \code{\link{createResponse}}, \code{\link{createMCAR}}, \code{\link{createDropout}}, \code{\link{createInterims}} and \code{\link{analyzeData}}

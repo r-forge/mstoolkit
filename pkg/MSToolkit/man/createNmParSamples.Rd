@@ -31,5 +31,5 @@ If method is "Covariance" and the covariance matrix can be extracted, samples ar
 	* An element called "OMEGA", containing a matrix of between subject effects
 	* An element called "SIGMA", containing a matrix of within subject effects
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \keyword{ nonmem }

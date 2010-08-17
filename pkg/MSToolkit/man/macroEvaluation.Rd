@@ -25,7 +25,7 @@ macroEvaluation(data, macroCode, interimCol = "INTERIM", doseCol = "DOSE")
   A data frame that complies with \code{\link{checkMacroFormat}}
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
   # example of micro data with interim
   microData <- read.csv( 

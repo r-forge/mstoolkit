@@ -21,7 +21,7 @@ writeData(dat, dataNumber, dataType = c("ReplicateData", "MacroEvaluation", "Mic
 \value{
   Returns TRUE if the file was successfully created
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{readData}}}
 \examples{
   \dontrun{

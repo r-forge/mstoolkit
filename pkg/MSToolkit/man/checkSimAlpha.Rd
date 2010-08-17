@@ -18,7 +18,7 @@ If alpha is less than 0.5, it is assumed to tbe on the [0,.5] scale (ie. .05 ins
 \value{
 	A single numeric between .5 and 1
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
 	checkSimAlpha("95%")
 	checkSimAlpha(95)

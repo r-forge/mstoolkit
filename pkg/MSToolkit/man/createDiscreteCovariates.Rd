@@ -44,7 +44,7 @@ createDiscreteCovariates(subjects, names, values, probs, probArray,
 \value{
   A data frame.
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createContinuousCovariates}}, 
   \code{\link{createExternalCovariates}}, and 

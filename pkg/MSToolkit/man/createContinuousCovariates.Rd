@@ -22,7 +22,7 @@ createContinuousCovariates(subjects, names, mean, covariance = 1, range = NULL, 
   \item{idCol}{ (Optional) Name of the subject column. Must be a valid R name (See \code{\link{validNames}}) and not equal to one entry of \code{names}.  "SUBJ" by default }
   \item{includeIDCol}{ (Optional) Should the subject column be included.  Typically only set to FALSE when called from \code{\link{createCovariates}}.  Defaults to TRUE }
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{ 
 \code{\link{createDiscreteCovariates}} to create covariates for a discrete distribution.
 

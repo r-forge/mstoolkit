@@ -29,7 +29,7 @@ will create a list with elements c(1,2) and c(3,4). (2) If the input is a vector
 \value{ A list of numerical vectors.
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{parseCharInput}}}
 \examples{
 parseHashString("1.5, 2, 3.2\#5, 4.2\#10,11")

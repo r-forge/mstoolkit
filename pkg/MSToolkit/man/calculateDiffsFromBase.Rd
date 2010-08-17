@@ -32,4 +32,4 @@ NULL
 \value{
 	A data frame, where responses have had each subjects baseline response subtracted
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }

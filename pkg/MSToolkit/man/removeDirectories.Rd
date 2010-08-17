@@ -24,7 +24,7 @@ removeDirectories(dirNames = c("ReplicateData", "MicroEvaluation", "MacroEvaluat
   A logical vector the same length as the dirNames, indicating whether or not the corresponding directories were successfully removed
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 \examples{
   \dontrun{
     createDirectories(dirNames = c("ReplicateData", "MicroEvaluation"))

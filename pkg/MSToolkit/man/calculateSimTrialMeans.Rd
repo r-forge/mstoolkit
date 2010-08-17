@@ -44,4 +44,4 @@ calculateSimTrialMeans(data, respCol = getEctdColName("Response"), bVar = doseCo
 \value{
 	A data frame of trial "means"
 }
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} }
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }

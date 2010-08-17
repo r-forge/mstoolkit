@@ -50,7 +50,7 @@ If earlier versions of MSToolkit, the "Proportional" error structure was impleme
   A data frame containing parameter data
 }
 
-\author{ MSToolkit Support \email{DL-MSToolkit\_Support@pfizer.com} } 
+\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
 
 \seealso{ \code{\link{createParameters}} and \code{\link{createExternalParameters}}  }
 \examples{
