@@ -8,7 +8,7 @@ Wraps the \emph{RNMExport} library functionality into a single function call, wh
 wrapRNMExport(sampList, obj, ctlName, path = getwd(), digits = 4, 
     fixThetas = FALSE, writeFiles = TRUE, subDirs = "nmRuns") 
 }
-\arguments {
+\arguments{
         \item{sampList}{ List of new parameter samples, typically generated using \link{createNmParSamples} } 
         \item{obj}{ The NONMEM object to be used as a basis } 
         \item{ctlName}{ Output file name for new control files } 
