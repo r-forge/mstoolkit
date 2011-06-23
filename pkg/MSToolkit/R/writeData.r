@@ -28,7 +28,7 @@
   				fullPath <- .dataGetFullPath(dataNumber = dataNumber, dataType = dataType, workingPath = workingPath, method = method, prefix = prefix)
   
  				# Write the file
-				tryWrite <- try(write.csv(dat, fullPath, append = append, row.names = FALSE))
+				tryWrite <- try(write.table(dat, fullPath, append = append, row.names = FALSE,sep=",",quote=F))
 				if(class(tryWrite) == "try-error") ectdStop("Error when writing the data to file $fullPath:\n\t$tryWrite")
 			},
 			"RData" = {
