@@ -10,7 +10,7 @@ generateData( replicateN = 5, subjects = 100, treatDoses = c(0, 5, 10, 50, 100),
   interimSubj = ".3,.7" 
   )
 
-source("emaxfit.R")
+demo(emaxfit,ask=F)
 
 emaxCode <- function(data){
     uniDoses <- sort( unique(data$DOSE)) 
