@@ -49,15 +49,20 @@
 	model
 }
 
+## MKS - 24Jun11
+## Changed second arguments below to include decimal place 
+## to handle cases where operator is numeric but non integer.
+## Following Klaas Prins suggestion
+
 .convertNmOperators <- function(model) {
 	model <- gsub(" = ", " <- ", model)
-	model <- gsub("([A-Za-z0-9]+)\\.EQ\\.([A-Za-z0-9]+)", "(\\1 == \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.NE\\.([A-Za-z0-9]+)", "(\\1 != \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.NQ\\.([A-Za-z0-9]+)", "(\\1 != \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.LT\\.([A-Za-z0-9]+)", "(\\1 < \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.GT\\.([A-Za-z0-9]+)", "(\\1 > \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.GE\\.([A-Za-z0-9]+)", "(\\1 >= \\2)", model)
-	model <- gsub("([A-Za-z0-9]+)\\.LE\\.([A-Za-z0-9]+)", "(\\1 <= \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.EQ\\.([A-Za-z0-9.]+)", "(\\1 == \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.NE\\.([A-Za-z0-9.]+)", "(\\1 != \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.NQ\\.([A-Za-z0-9.]+)", "(\\1 != \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.LT\\.([A-Za-z0-9.]+)", "(\\1 < \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.GT\\.([A-Za-z0-9.]+)", "(\\1 > \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.GE\\.([A-Za-z0-9.]+)", "(\\1 >= \\2)", model)
+	model <- gsub("([A-Za-z0-9]+)\\.LE\\.([A-Za-z0-9.]+)", "(\\1 <= \\2)", model)
 	model <- gsub("\\.OR\\.", " | ", model)
 	model <- gsub("\\.AND\\.", " & ", model)
 	model
