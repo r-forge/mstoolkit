@@ -1,8 +1,8 @@
 Package: MSToolkit
 Type: Package
 Title: The MSToolkit library for clinical trial design
-Version: 3.0.2
-Date: 2010-02-23
+Version: 3.0.3
+Date: 2011-06-24
 Author: Mango Solutions <mstoolkit@mango-solutions.com>
 Maintainer: MSToolkit <mstoolkit@googlemail.com>
 Description: MSToolkit library for Clinical Trial Design
