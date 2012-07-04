@@ -7,7 +7,7 @@
   replicate of data.
 }
 \usage{
-macroEvaluation(data, macroCode, interimCol = "INTERIM", doseCol = "DOSE")
+macroEvaluation(data, macroCode, interimCol = getEctdColName("Interim") , doseCol = getEctdColName("Dose"))
 }
 
 \arguments{

@@ -5,9 +5,9 @@
   Create a response from a dataset and an equation.
 }
 \usage{
-createResponse(data, equation, name = "RESP", invLink, distribution = "normal", 
+createResponse(data, equation, name = getEctdColName("Response"), invLink, distribution = "normal", 
   covariance, errStruc = c("Additive", "Proportional", "Log-Normal"), range, digits = 3, 
-  seed, flagName = "RESPOMIT")
+  seed = .deriveFromMasterSeed(), flagName = getEctdColName("RespOmit"))
 }
 \arguments{
   \item{data}{ (Required) Data structure to which to add response. }

@@ -7,7 +7,7 @@
 }
 \usage{
 createMCAR(data, prop = 0, rule, 
-  seed = .deriveFromMasterSeed(), flagName = "MISSING")
+  seed = .deriveFromMasterSeed(), flagName = getEctdColName("Missing"))
 }
 \arguments{
   \item{data}{ (Required) Data frame to which to add missingness }

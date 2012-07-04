@@ -14,7 +14,7 @@
 				fileNames <- gsub("\\.csv", "", gsub(casefold(prefix), "", fileNames))
 				if (!length(fileNames)) ectdStop(paste("No files to read from directory", path))
 				replicates <- try(as.numeric(fileNames))
-				if (class(replicates) == "try-error") ectdStop(paste("File names in directory", sourceDir, "of wrong format"))
+				if (class(replicates) == "try-error") ectdStop(paste("File names in directory", path, "of wrong format"))
 			},
 			"RData" = {
 				path <- file.path(workingPath, path)
@@ -24,7 +24,7 @@
 				fileNames <- gsub("\\.rdata", "", gsub(casefold(prefix), "", fileNames))
 				if (!length(fileNames)) ectdStop(paste("No files to read from directory", path))
 				replicates <- try(as.numeric(fileNames))
-				if (class(replicates) == "try-error") ectdStop(paste("File names in directory", sourceDir, "of wrong format"))
+				if (class(replicates) == "try-error") ectdStop(paste("File names in directory", path, "of wrong format"))
 			},
 			"Internal" = {
 				if (!length(.ectdEnv$DataStore)) ectdStop("No data to read from internal data store")

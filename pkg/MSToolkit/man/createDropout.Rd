@@ -7,8 +7,8 @@
 }
 \usage{
 createDropout(data, dropFunc, 
-  seed = .deriveFromMasterSeed(), idCol = "SUBJ",
-  timeCol = "TIME", flagName = "MISSING", ...)
+  seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"),
+  timeCol = getEctdColName("Time"), flagName = getEctdColName("Missing"), ...)
 }
 
 \arguments{

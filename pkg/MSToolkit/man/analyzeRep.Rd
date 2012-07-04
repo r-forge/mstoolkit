@@ -8,7 +8,7 @@
 \usage{
   analyzeRep(analysisCode, replicate, removeMissing = TRUE, removeParOmit = TRUE, 
   removeRespOmit = TRUE, interimCode, software = c("R", "SAS"), seed = .deriveFromMasterSeed(), 
-  parOmitFlag = "PAROMIT", respOmitFlag = "RESPOMIT", missingFlag = "MISSING", interimCol = "INTERIM", doseCol = "DOSE", 
+  parOmitFlag = getEctdColName("ParOmit"), respOmitFlag = getEctdColName("RespOmit"), missingFlag = getEctdColName("Missing"), interimCol = getEctdColName("Interim"), doseCol = getEctdColName("Dose"), 
   initialDoses = NULL, stayDropped = TRUE, fullAnalysis = TRUE, workingPath = getwd(), method = getEctdDataMethod())
 }
 

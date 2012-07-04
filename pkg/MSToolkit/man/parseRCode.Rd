@@ -1,4 +1,5 @@
 \name{parseRCode}
+\alias{parseRCode}
 \title{ Parse R Code }
 \description{
 Parses character string to ensure it is valid R code, returning an R "expression" object

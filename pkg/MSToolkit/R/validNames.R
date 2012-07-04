@@ -11,6 +11,7 @@ validNames <- function( ... ) {
   
   sapply( list(...), function(x){
     if( !is.null(x) && x %!~% "^[\\.]?[a-zA-Z][\\.0-9a-zA-Z]*$"  ){
+	   ..nm <- get("..nm")
        wrongs <- paste( x[..nm], collapse= ", ")
        ectdStop( "$wrongs : invalid R name(s)" )
     }

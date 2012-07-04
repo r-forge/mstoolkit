@@ -61,6 +61,7 @@ createDiscreteCovariates <- function(
   names(values) <- names
     
   subjects <- .expandSubjects( subjects )
+  nSubjects <- get("nSubjects")
   
   grid <- .handleProbArray( probArray, values, probs)
   

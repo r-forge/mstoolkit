@@ -28,7 +28,8 @@ createInterims <- function(
   method <- initialChar(method, "ps", "method must be `Sample` or `Proportion`")
                         
   ## handle the case where sujects is of length 1
-  subjects <- .expandSubjects( subjects )  
+  subjects <- .expandSubjects( subjects ) 
+  nSubjects <- get("nSubjects")
   
   ## generate the non-cumulative proportions from the cumulative
   proportion <- if( missing(proportion) || is.null(proportion) ) {

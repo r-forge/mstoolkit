@@ -6,7 +6,7 @@ Create covariates from a discrete distribution
 }
 \usage{
 createDiscreteCovariates(subjects, names, values, probs, probArray, 
-  seed = .deriveFromMasterSeed(), idCol = "SUBJ", includeIDCol = TRUE)
+  seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"), includeIDCol = TRUE)
 }
 \arguments{
   \item{subjects}{ (Required) Vector of subjects (or number of subjects) for which to create covariates }

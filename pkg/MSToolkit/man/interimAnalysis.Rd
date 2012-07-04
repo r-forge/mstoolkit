@@ -8,12 +8,13 @@
   the analysis at this interim stage.
 }
 \usage{
-interimAnalysis(data, interimCode)
+interimAnalysis(data, interimCode, uniqueDoses = NULL)
 }
 
 \arguments{
   \item{data}{ (Required) Dataset to analyze  }
   \item{interimCode}{ (Required) Function to execute against the data that should produce a list structure as described below}
+  \item{uniqueDoses}{ Unique study doses}
 }
 \value{
   The output of the interim code should be an R "list" structure.  

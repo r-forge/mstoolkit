@@ -10,7 +10,7 @@
 \usage{
 createCovariates(subjects, conNames = NULL, conMean, conCov, conRange = NULL, conDigits, 
   conMaxDraws = 100, disNames = NULL, disValues, disProbs, disProbArray, extNames = NULL,
-  extFile, extSubset, extRefCol, extSameRow = TRUE, extDataId = idCol, workingPath = getwd(), idCol = "SUBJ", 
+  extFile, extSubset, extRefCol, extSameRow = TRUE, extDataId = idCol, workingPath = getwd(), idCol = getEctdColName("Subject"), 
   seed = .deriveFromMasterSeed())
 }
 \arguments{

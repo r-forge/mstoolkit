@@ -7,7 +7,7 @@
 }
 \usage{
 createTreatments(doses, times = NULL, type = "Parallel", sequence, 
-  doseCol = "DOSE", timeCol = "TIME", trtCol = "TRT")
+  doseCol = getEctdColName("Dose"), timeCol = getEctdColName("Time"), trtCol = getEctdColName("Trt"))
 }
 
 \arguments{

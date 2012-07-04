@@ -7,7 +7,7 @@
 }
 \usage{
 createContinuousCovariates(subjects, names, mean, covariance = 1, range = NULL, digits, 
-  maxDraws = 100, seed = .deriveFromMasterSeed(), idCol = "SUBJ", includeIDCol = TRUE)
+  maxDraws = 100, seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"), includeIDCol = TRUE)
 
 }
 \arguments{

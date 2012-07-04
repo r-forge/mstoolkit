@@ -8,7 +8,7 @@ for more information.
 }
 
 \usage{
-checkMicroFormat(data, doseCol = "DOSE", mustHaveDose = FALSE)
+checkMicroFormat(data, doseCol = getEctdColName("Dose"), mustHaveDose = FALSE)
 }
 
 \arguments{

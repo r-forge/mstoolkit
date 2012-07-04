@@ -10,7 +10,7 @@
 performAnalysis(analysisCode, doses, data, software = c("R", "SAS"),  
   includeRows = NULL, interimCol = getEctdColName("Interim"), 
   doseCol = getEctdColName("Dose"), seed = .deriveFromMasterSeed(), 
-  workingPath = getwd(), cleanUp = TRUE)
+  workingPath = getwd(), cleanUp = TRUE, tempSasDir = tempdir())
 }
 
 \arguments{
@@ -24,6 +24,7 @@ performAnalysis(analysisCode, doses, data, software = c("R", "SAS"),
   \item{seed}{ (Optional) Random number generation seed.  By default, this is derived from the current random seed }
   \item{workingPath}{ (Optional) Working directory for the analysis.  The default is the current working directory }
   \item{cleanUp}{ (Optional) Logical: Should we remove the files that have been passed in and out of SAS? }
+  \item{tempSasDir}{ Temporary Sas Directory }
 }
 \details{
   The function tries to perform the analysis contained in the \code{analysisCode} against the \code{data}.  

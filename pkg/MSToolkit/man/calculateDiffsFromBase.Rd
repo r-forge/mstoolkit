@@ -5,10 +5,9 @@
 	Calculate responses differences from baseline for each subject
 }
 \usage{
-function (data, respCol = getEctdColName("Response"), idCol = getEctdColName("Subject"), 
+calculateDiffsFromBase(data, respCol = getEctdColName("Response"), idCol = getEctdColName("Subject"), 
     timeCol = getEctdColName("Time"), replicateCol = getEctdColName("Replicate"), 
     baseDef = paste(timeCol, "<= 0"), tolerance = 1e-05, removeBaseline = TRUE) 
-NULL
 }
 \arguments{
         \item{data}{ Data frame } 

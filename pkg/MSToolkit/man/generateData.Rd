@@ -7,13 +7,13 @@
 }
 \usage{
 generateData(replicateN, subjects = NULL, treatSubj = subjects, treatDoses, treatSeq, treatType = "Parallel", treatPeriod, 
-  genParNames, genParMean, genParVCov = 0, respEqn, respName = "RESP", treatProp, treatOrder = FALSE, conCovNames, conCovMean, conCovVCov, conCovCrit = NULL, 
+  genParNames, genParMean, genParVCov = 0, respEqn, respName = getEctdColName("Response"), treatProp, treatOrder = FALSE, conCovNames, conCovMean, conCovVCov, conCovCrit = NULL, 
   conCovDigits = 3, conCovMaxDraws = 100, disCovNames, disCovVals, disCovProb, disCovProbArray, extCovNames, extCovFile, extCovSubset, extCovRefCol, 
   extCovSameRow = TRUE, extCovDataId = idCol, genParCrit, genParBtwNames, genParBtwMean, genParBtwVCov, genParErrStruc = "None", 
-  genParMaxDraws = 100, genParRangeTolerance = .8, extParFile, extParNames, extParBtwNames, extParBtwNums, extParSubset = NULL, extParCrit, extParErrStruc = "None", extParRefColData, 
+  genParMaxDraws = 100, genParRangeTolerance = .5, extParFile, extParNames, extParBtwNames, extParBtwNums, extParSubset = NULL, extParCrit, extParErrStruc = "None", extParRefColData, 
   extParRefColName, extParDataId = idCol, respInvLink, respDist = "Normal", respVCov, respErrStruc = "Additive", respCrit, respDigits = 3, mcarProp = 0, mcarRule, dropFun,
-  dropFunExtraArgs = list(), interimSubj, interimMethod = "Sample", seed = .deriveFromMasterSeed(), idCol = "SUBJ", doseCol = "DOSE", timeCol = "TIME", 
-  trtCol = "TRT", parOmitFlag = "PAROMIT", respOmitFlag = "RESPOMIT", missingFlag = "MISSING", interimCol = "INTERIM", parBtwSuffix = ".Between", 
+  dropFunExtraArgs = list(), interimSubj, interimMethod = "Sample", seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"), doseCol = getEctdColName("Dose"), timeCol = getEctdColName("Time"), 
+  trtCol = getEctdColName("Trt"), parOmitFlag = getEctdColName("ParOmit"), respOmitFlag = getEctdColName("RespOmit"), missingFlag = getEctdColName("Missing"), interimCol = getEctdColName("Interim"), parBtwSuffix = ".Between", 
   deleteCurrData = TRUE, covDiff = TRUE, treatDiff = TRUE, workingPath = getwd() )
 }
 

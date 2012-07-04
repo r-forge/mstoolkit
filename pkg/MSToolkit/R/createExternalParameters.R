@@ -37,6 +37,7 @@
 	dataId   <- parseCharInput( dataId, convertToNumeric = FALSE, expected = 1, valid = TRUE)
 	flagName <- parseCharInput( flagName, convertToNumeric = FALSE, expected = 1, valid = TRUE)
 	allnames <- c( dataId, names )
+	nSubjects <- get("nSubjects")
 
 	# Check the error structure
 	getErrStruc <- try(match.arg(errStruc))

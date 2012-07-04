@@ -14,6 +14,8 @@ mstoolkitUnitTests <- function(htmlreport = FALSE, showdetails =  TRUE){
     errorLog <- file( "errors.log", open = "wt" ) 
     sink( errorLog,  type = "message" )
     sink( errorLog )
+	unitTestPath <- get("unitTestPath", pos = .GlobalEnv )
+	systemTestPath <- get("systemTestPath", pos = .GlobalEnv )
     testSuite <- defineTestSuite( name=paste(pkg, "unit testing"), dirs=unitTestPath)
     tests <- runTestSuite(testSuite)
     

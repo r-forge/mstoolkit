@@ -15,6 +15,6 @@
 								paste(sapply(sys.calls(), function(x) as.character(x[[1]])), 
 										collapse = " > ") %.n% "----------------------------------------------------------------------"
 					else .strinterp(msg), silent = TRUE)
-	.Internal(stop(TRUE, msg))
+	stop(msg)
 }
 

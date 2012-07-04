@@ -7,8 +7,8 @@
 \usage{
   createExternalParameters(subjects, file, names, range, betNames, betNums, 
   errStruc = c("None", "Proportional", "Additive", "Log-Normal"), 
-  subset = NULL, refCol, refColName, idCol = "SUBJ", 
-  seed = .deriveFromMasterSeed(), flagName = "PAROMIT", refColSuffix = "refCol", 
+  subset = NULL, refCol, refColName, idCol = getEctdColName("Subject"), 
+  seed = .deriveFromMasterSeed(), flagName = getEctdColName("ParOmit"), refColSuffix = "refCol", 
   dataId = idCol, workingPath = getwd())
 }
 \arguments{

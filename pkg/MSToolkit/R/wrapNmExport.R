@@ -136,7 +136,7 @@
 				datafile(datafile(dataFile)) <- 
 						switch(.Platform$OS.type, 
 								windows=gsub("/", "\\\\", shortPathName(file.path(path, datafile(dataFile)))),
-								file.path(testDir, datafile(dataFile))
+								file.path(path, datafile(dataFile))
 						)
 				datafile(ctl) <- dataFile
 				

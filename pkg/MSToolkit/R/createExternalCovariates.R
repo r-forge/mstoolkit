@@ -25,6 +25,7 @@ createExternalCovariates <- function(
   
   set.seed( seed )
   subjects <- .expandSubjects( subjects )
+  nSubjects <- get("nSubjects")
   names    <- parseCharInput(names, convertToNumeric = FALSE, checkdup = TRUE)
   subset   <- parseRangeCode( subset )
   validNames( idCol, dataId, names)

@@ -6,7 +6,7 @@
 }
 \usage{
 createExternalCovariates(subjects, names, file, sameRow = TRUE, 
-  subset = NULL, refCol = NULL, dataId = idCol, idCol = "SUBJ", 
+  subset = NULL, refCol = NULL, dataId = idCol, idCol = getEctdColName("Subject"), 
   percent = 20, seed = .deriveFromMasterSeed(), includeIDCol = TRUE, 
   refColSuffix = "refCol", workingPath = getwd())
 }

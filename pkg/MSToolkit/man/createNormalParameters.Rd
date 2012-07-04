@@ -6,9 +6,9 @@
   Creates a set of fixed (and optionally between subject) parameter variables by sampling from a multivariate normal distribution
 }
 \usage{
-createNormalParameters(subjects, names, mean, covariance = 0, range, betNames, betMean, betCov, 
-errStruc = c("None", "Proportional", "Additive", "Log-Normal"), suffix = ".Between", idCol = "SUBJ", 
-maxDraws = 10, seed = .deriveFromMasterSeed(), flagName = "PAROMIT", digits = 3)
+createNormalParameters(subjects, names, mean, covariance = 0, range, betNames, betMean = 0, betCov = 0, 
+errStruc = c("None", "Proportional", "Additive", "Log-Normal"), suffix = ".Between", idCol = getEctdColName("Subject"), 
+maxDraws = 10, seed = .deriveFromMasterSeed(), flagName = getEctdColName("ParOmit"), digits = 3, parRangeTolerance = 0.5)
 }
 
 \arguments{

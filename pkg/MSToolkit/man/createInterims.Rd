@@ -7,7 +7,7 @@
 }
 \usage{
 createInterims(subjects, proportion, seed = .deriveFromMasterSeed(), 
-  idCol = "SUBJ", interimCol = "INTERIM", method = "Sample")
+  idCol = getEctdColName("Subject"), interimCol = getEctdColName("Interim"), method = "Sample")
 }
 \arguments{
   \item{subjects}{ (Required) Vector of subjects or number of subjects }

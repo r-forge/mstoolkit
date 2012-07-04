@@ -1,6 +1,5 @@
 \name{parseRangeCode}
 \alias{parseRangeCode}
-\alias{parseRCode}
 
 \title{Parse a numerical range expression} 
 \description{parseRangeCode: Converts inequalities of up to two comparators stored in a vector of strings into an executable R expression.  For
@@ -10,7 +9,6 @@
 
 \usage{
 parseRangeCode(code)
-parseRCode(code)
 }
 
 \arguments{

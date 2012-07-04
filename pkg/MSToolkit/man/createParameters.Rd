@@ -8,9 +8,9 @@
 \usage{
 createParameters(subjects, genNames, genFixedMean, genFixedCov = 0, genRange, 
 genBetweenNames, genBetweenMean, genBetweenCov, genErrStruc = "None", 
-genMaxDraws = 10, genParRangeTolerance = .8, extFile, extNames, extBetween, extBetweenNums, extSubset, 
+genMaxDraws = 10, genParRangeTolerance = .5, extFile, extNames, extBetween, extBetweenNums, extSubset, extRange,
 extErrStruc = "None", extRefCol, extRefColName, extRefColSuffix, extIndEffects, extDataId=idCol, workingPath = getwd(), 
-suffix = ".Between", idCol = "SUBJ", seed = .deriveFromMasterSeed(), flagName = "PAROMIT")
+suffix = ".Between", idCol = getEctdColName("Subject"), seed = .deriveFromMasterSeed(), flagName = getEctdColName("ParOmit"))
 }
 
 \arguments{

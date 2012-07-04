@@ -7,7 +7,7 @@
 }                    
 \usage{
 allocateTreatments(trts, subjects, prop = NULL, ordered = FALSE, 
-  seed = .deriveFromMasterSeed(), idCol = "SUBJ", trtCol = "TRT")
+  seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"), trtCol = getEctdColName("Trt"))
 
 }
 \arguments{

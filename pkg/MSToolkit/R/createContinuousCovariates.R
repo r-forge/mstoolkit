@@ -28,6 +28,7 @@ createContinuousCovariates <- function(
   if( missing(mean) ) 
     ectdStop("`mean` is needed in `createContinuousCovariates`")
   subjects <- .expandSubjects( subjects )
+  nSubjects <- get("nSubjects")
   
   mean  <- parseCharInput( mean  )
   nCov <- length( mean )

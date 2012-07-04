@@ -9,9 +9,9 @@
 analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL, 
   software = "R", grid = TRUE, waitAndCombine = TRUE, cleanUp = FALSE, 
   removeMissing = TRUE, removeParOmit = TRUE, removeRespOmit = TRUE, 
-  seed = .deriveFromMasterSeed(), parOmitFlag = "PAROMIT", 
-  respOmitFlag = "RESPOMIT", missingFlag = "MISSING", interimCol = "INTERIM",
-  doseCol = "DOSE", sleepTime = 15, deleteCurrData = TRUE, initialDoses = NULL, 
+  seed = .deriveFromMasterSeed(), parOmitFlag = getEctdColName("ParOmit"), 
+  respOmitFlag = getEctdColName("RespOmit"), missingFlag = getEctdColName("Missing"), interimCol = getEctdColName("Interim"),
+  doseCol = getEctdColName("Dose"), sleepTime = 15, deleteCurrData = TRUE, initialDoses = NULL, 
   stayDropped = TRUE, fullAnalysis = TRUE, workingPath = getwd(), method = getEctdDataMethod())
 }
 

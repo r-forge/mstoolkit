@@ -91,7 +91,8 @@
 		}
 	}
 	if (waitAndCombine) {   
-    if (grid) {
+	if (grid) {
+	  lsf.job.status <- get("lsf.job.status")
       gridStatus <- sapply(gridJobs, lsf.job.status)
       checkJobs <- gridStatus %in% c("EXIT", "DONE")
       iter <- 1

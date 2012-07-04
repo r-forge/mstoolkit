@@ -1,4 +1,5 @@
 \name{getReplicates}
+\alias{getReplicates}
 \title{ Trial replicates vector }
 \description{
 	Get a vector of available trial replicates, based on a specified data storage method

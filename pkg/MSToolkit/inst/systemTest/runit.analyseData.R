@@ -155,7 +155,8 @@ test.analyseData.SASScript <- function(){
 			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
 		}
 	}
-	else checkTrue(FALSE, " (CAN NOT TEST > 'SAS' NOT FOUND)")
+	#else checkTrue(FALSE, " (CAN NOT TEST > 'SAS' NOT FOUND)")
+	else warning(" (CAN NOT TEST > 'SAS' NOT FOUND)")
 }
 
 test.analyseData.Interims <- function(){
@@ -331,8 +332,13 @@ test.analyseData.gridCalling <- function(){
 		if (any(file.exists(file.path(whichPath, targetFiles)))) {
 			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
 		}
-	}
-	else checkTrue(FALSE, " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
+	} else {
+		if(.Platform$OS.type == "windows") {
+			checkTrue(suppressWarnings(require(parallel, quietly=TRUE)) , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
+		} else {
+			checkTrue(FALSE , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
+		}
+	}  
 
 }
 
