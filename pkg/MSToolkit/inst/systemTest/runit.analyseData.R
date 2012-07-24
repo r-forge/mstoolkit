@@ -155,8 +155,7 @@ test.analyseData.SASScript <- function(){
 			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
 		}
 	}
-	#else checkTrue(FALSE, " (CAN NOT TEST > 'SAS' NOT FOUND)")
-	else warning(" (CAN NOT TEST > 'SAS' NOT FOUND)")
+	else checkTrue(FALSE, " (CAN NOT TEST > 'SAS' NOT FOUND)")
 }
 
 test.analyseData.Interims <- function(){
@@ -332,12 +331,42 @@ test.analyseData.gridCalling <- function(){
 		if (any(file.exists(file.path(whichPath, targetFiles)))) {
 			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
 		}
-	} else {
-		if(.Platform$OS.type == "windows") {
-			checkTrue(suppressWarnings(require(parallel, quietly=TRUE)) , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
-		} else {
-			checkTrue(FALSE , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
+	} else if (require("doParallel", quietly = TRUE) && require("foreach", quietly = TRUE)) {
+		whichPath <- interimPath
+		lmCode <- function(data) {
+			myLm <- lm(RESP ~ DOSE, data = data)
+			newData <- data.frame(DOSE = sort(unique(data$DOSE)))
+			doseMeans <- as.data.frame(predict(myLm, newData, se.fit = TRUE, interval = "confidence")$fit)
+			names(doseMeans) <- c("Mean", "Lower", "Upper")
+			data.frame(DOSE = sort(unique(data$DOSE)), doseMeans, N = as.vector(table(data$DOSE)))
 		}
+		
+		iCode <- function(data, uniDoses = c(0, 5, 25, 50, 100)) {
+			zeroUpper <- data$Upper[1]
+			whichLower <- data$Lower < zeroUpper
+			whichLower[1] <- FALSE
+			list(KEEP = !whichLower)
+			Sys.sleep(1)
+		}
+		
+		mCode <- function(data, doseCol, interimCol) {
+			data.frame(DROPPED = sum(data$DROPPED), TEST = 1)
+		}
+		
+		# Delete Files
+		targetFiles <- c("microSummary.csv", "macroSummary.csv", "MicroEvaluation", "MacroEvaluation")
+		if (any(file.exists(file.path(whichPath, targetFiles)))) {
+			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
+		}
+		
+		analyzeData(replicates = 1:6, analysisCode = lmCode, macroCode = mCode, interimCode = iCode, workingPath = whichPath, grid = TRUE)
+		microFiles <- file.info(dir(file.path(whichPath, "MicroEvaluation"), full.names = TRUE))
+		orderTime <- order(microFiles$mtime)
+		orderName <- order(rownames(microFiles))
+		checkTrue(!all(orderTime == orderName ))
+		
+	} else {
+		checkTrue(FALSE , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
 	}  
 
 }

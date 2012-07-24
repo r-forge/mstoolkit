@@ -5,6 +5,8 @@
 		method = c("Covariance", "Final", "Initial")		#@ Method for creating samples
 ) 
 {
+	# Stop if library not there
+	if (!require(RNMImport)) ectdStop("RNMImport library not found")
 	
 	# Set the seed	
 	set.seed(seed)
@@ -16,10 +18,10 @@
 	## Get parameter estimates
 	switch(class(run),
 		"NMRun" = {
-			thVals <- switch(method, "Initial" = getThetas(run, "initial")[2,], getThetas(run))
-			omVals <- switch(method, "Initial" =  getOmegas(run, "initial"),  getOmegas(run))
-			sgVals <- switch(method, "Initial" = getSigmas(run, "initial"), getSigmas(run))
-			theCov <- getEstimateCov(run)
+			thVals <- switch(method, "Initial" = RNMImport:::getThetas(run, "initial")[2,], RNMImport:::getThetas(run))
+			omVals <- switch(method, "Initial" =  RNMImport:::getOmegas(run, "initial"),  RNMImport:::getOmegas(run))
+			sgVals <- switch(method, "Initial" = RNMImport:::getSigmas(run, "initial"), RNMImport:::getSigmas(run))
+			theCov <- RNMImport:::getEstimateCov(run)
 		},
 		"nmRunReport" = {
 			if (method == "Initial") ectdStop("For 'initial' method, a control file object or full run must be provided")

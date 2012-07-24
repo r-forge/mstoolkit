@@ -7,5 +7,5 @@ Author: Mango Solutions <mstoolkit@mango-solutions.com>
 Maintainer: MSToolkit <mstoolkit@googlemail.com>
 Description: MSToolkit library for Clinical Trial Design
 Depends: R (>= 2.6.1), MASS, methods
-Suggests: RUnit, RNMImport, RNMExport, Rlsf
+Suggests: RUnit, RNMImport, Rlsf, doParallel, foreach
 License: GPL
