@@ -28,7 +28,7 @@ compileSummary(dataType = c("MicroEvaluation", "MacroEvaluation"), replicates = 
   CompileSummary does not return a value.
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{
   \dontrun{
     # a directory MicroEvaluation need to be there and be full 

@@ -35,7 +35,7 @@ createExternalCovariates(subjects, names, file, sameRow = TRUE,
 \value{
   A data frame containing the imported variables, and possibly a reference variable. 
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createContinuousCovariates}}, 
   \code{\link{createDiscreteCovariates}}, and 

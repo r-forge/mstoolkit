@@ -16,7 +16,7 @@ Version: \tab 2.0\cr
 Date: \tab 2010-01-25\cr
 }}
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} } 
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} } 
 
 \keyword{ package }
 \seealso{

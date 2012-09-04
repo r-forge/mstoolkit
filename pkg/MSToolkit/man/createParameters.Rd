@@ -54,7 +54,7 @@ suffix = ".Between", idCol = getEctdColName("Subject"), seed = .deriveFromMaster
   A data frame with a subject variable, a "parameter omit" flag and derived/imported parameter variables
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{createNormalParameters}} and \code{\link{createExternalParameters}} }
 \examples{\dontrun{
 

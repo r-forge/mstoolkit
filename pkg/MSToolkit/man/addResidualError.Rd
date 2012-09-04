@@ -33,7 +33,7 @@ addResidualError(response, covariance, errStruc = c("Additive", "Proportional", 
 \note{
 In earlier versions of MSToolkit, the "Proportional" Error Structure behaved differently (it assumed parameters passed were on the log scale)
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ 
   This function is typically not directly called by the user, but rather called 
   by the function \code{\link{createResponse}} that is the high-level function 

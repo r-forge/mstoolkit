@@ -35,7 +35,7 @@
 \value{
   The function (invisibly) returns the previous value of the arguments.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{options}} provides a similar mechanism for R options.}
 \examples{\dontrun{
   oldverb <- setEctdVerbose( TRUE )

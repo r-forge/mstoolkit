@@ -29,7 +29,7 @@ createDropout(data, dropFunc,
 \value{
   An updated data frame with added/updated "missing" column
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{checkDropOutFun}} and \code{\link{createMCAR}}}
 \examples{
 \dontrun{

@@ -33,7 +33,7 @@ createTreatments(doses, times = NULL, type = "Parallel", sequence,
   A data frame containing a treatment, dose and (optionally) a time variable
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{allocateTreatments}} }
 \examples{
 

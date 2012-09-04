@@ -31,7 +31,7 @@ If any of these fail it will stop or return a NULL structure
 
 \value{A data frame as described above}
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{\code{\link{createEmptyMicro}}}
 \examples{
   

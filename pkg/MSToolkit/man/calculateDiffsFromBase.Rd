@@ -31,4 +31,4 @@ calculateDiffsFromBase(data, respCol = getEctdColName("Response"), idCol = getEc
 \value{
 	A data frame, where responses have had each subjects baseline response subtracted
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }

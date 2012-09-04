@@ -16,7 +16,7 @@
   The function does not return anything. It only generate an error 
   if something goes wrong.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{
   checkSymmetricPDMatrix( diag(4), 4)
   \dontrun{

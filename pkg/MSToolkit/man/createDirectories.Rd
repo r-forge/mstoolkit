@@ -27,7 +27,7 @@ createDirectories(dirNames = c("ReplicateData", "MicroEvaluation", "MacroEvaluat
   A logical vector the same length as "dirNames", indicating whether or not the corresponding directories were successfully created
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{
   \dontrun{
     # Create 2 of the 3 directories

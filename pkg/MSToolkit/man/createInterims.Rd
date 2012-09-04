@@ -36,7 +36,7 @@ If any subjects are left at this stage, use the "sample" method (below) to alloc
   \item{SUBJ}{Subject identifier, named after \code{idCol}.}
   \item{INTERIM }{Interim flag, named after \code{interimCol}.}
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{generateData}} }
 \examples{
   # first interim with 10% of the subjects

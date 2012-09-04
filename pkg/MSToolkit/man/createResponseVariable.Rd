@@ -22,7 +22,7 @@ createResponseVariable(data, equation, preTest = TRUE, subsetSize = 5)
 \value{
   A numeric vector corresponding to the response variable.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{addResidualError}} adds a residual error to a response. 
   
   The function \code{\link{createResponse} } is the high level function in the 

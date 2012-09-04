@@ -59,7 +59,7 @@ The "matchEctdColNames" function returns a single character identifying the vari
 The other functions to not explicitly return anything
 
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{
 
 	getEctdColName("Subject")								# Get the current Subject variable

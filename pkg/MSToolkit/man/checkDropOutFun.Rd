@@ -27,7 +27,7 @@ checkDropOutFun(fun, data, sizeSubset = 5, useSubset= TRUE, ...)
   if the function is not correct.
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \note{  
   if \code{useSubset} is set to TRUE, only a subset of the data 
   is used to perform the check. The size of the subset is then 

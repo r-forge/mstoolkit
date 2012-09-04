@@ -20,7 +20,7 @@ initalChar returns a lower case version of the first letter contained in the str
 If it is not (or no letter is found), an error message will be printed.
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \note{  
 This function is not case sensitive. 
 }

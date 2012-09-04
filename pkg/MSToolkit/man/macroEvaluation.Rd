@@ -25,7 +25,7 @@ macroEvaluation(data, macroCode, interimCol = getEctdColName("Interim") , doseCo
   A data frame that complies with \code{\link{checkMacroFormat}}
 }
 
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{
   # example of micro data with interim
   microData <- read.csv( 

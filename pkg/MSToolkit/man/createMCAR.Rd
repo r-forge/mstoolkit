@@ -23,7 +23,7 @@ createMCAR(data, prop = 0, rule,
 \value{
   the \code{data} argument to which a MISSING flag is added or modified.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{createDropout}} for drop out missingness.
 
 \code{\link{parseRangeCode}} to handle the \code{rule} argument.}

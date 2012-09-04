@@ -36,7 +36,7 @@ performAnalysis(analysisCode, doses, data, software = c("R", "SAS"),
 \value{
 The function should output a valid "Micro Evaluation" data structure as specified in the \code{\link{checkMicroFormat}} help file.
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ \code{\link{checkMicroFormat}}}
 \examples{\dontrun{
   

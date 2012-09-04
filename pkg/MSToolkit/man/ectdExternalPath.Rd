@@ -27,7 +27,7 @@ The "getEctdExternalPath" function returns the current execution path for a give
 The "setEctdExternalPath" function invisibly returns the updated path list
 
 }
-\author{ Mango Solutions & Pfizer \email{mstoolkit@googlemail.com} }
+\author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{
 
 	getEctdExternalPath()		# Look at available paths
