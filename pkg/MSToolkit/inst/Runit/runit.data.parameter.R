@@ -310,8 +310,12 @@ dataLogNorm <- createNormalParameters( 50, names = "X,Y,Z" ,
 
 checkTrue( identical( .roundIt(dataAdd [,c("X", "Y") ], 5), .roundIt(dataNone[,c("X", "Y") ] + dataNone[, paste( c("X", "Y"),  ".Between", sep = "") ], 5)  )  , 
 		msg = "check the errStruc, not all between, None and Add" )
-checkTrue( all( .roundIt(dataLogNorm[,c("Z", "Y") ] - (dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])), 2) == 0 ) , 
-		msg = "check the errStruc, not all between, None and Prop, different order")
+#checkTrue( all( .roundIt(dataLogNorm[,c("Z", "Y") ] - (dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])), 2) == 0 ) , 
+#		msg = "check the errStruc, not all between, None and Prop, different order")
+v1 <- dataLogNorm[,c("Z", "Y") ]
+v2 <- dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])
+checkEqualsNumeric(v1, v2, tolerance = 0.1, msg = "\ncheck the errStruc, not all between, None and Prop, different order(1)")
+
 checkTrue( identical( dataAdd$Z , dataNone$Z  )  , msg = "check the errStruc, not between, None and Add" )
 checkTrue( identical( dataLogNorm$Z, dataNone$Z  ) , msg = "check the errStruc, not between, None and Prop")  
 
@@ -328,8 +332,12 @@ checkTrue( identical( dataLogNorm$Z, dataNone$Z  ) , msg = "check the errStruc, 
   checkTrue( all( .roundIt(dataAdd [,c("Z", "Y") ]- (dataNone[,c("Z", "Y") ] + dataNone[,paste( c("Z", "Y"), ".Between",sep = "") ]), 3)  ==0) , 
     msg = "check the errStruc, not all between, None and Prop, different order")
 
-checkTrue( all( .roundIt(dataLogNorm[,c("Z", "Y") ] - (dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])), 2) == 0 ) , 
-		msg = "check the errStruc, not all between, None and Prop, different order")
+#checkTrue( all( .roundIt(dataLogNorm[,c("Z", "Y") ] - (dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])), 2) == 0 ) , 
+#		msg = "check the errStruc, not all between, None and Prop, different order")
+v1 <- dataLogNorm[,c("Z", "Y") ]
+v2 <- dataNone[,c("Z", "Y") ] * exp( dataNone[,paste( c("Z", "Y"), ".Between",sep ="") ])
+checkEqualsNumeric(v1, v2, tolerance = 0.1, msg = "\ncheck the errStruc, not all between, None and Prop, different order(2)")
+
 checkTrue( all( dataAdd$X - dataNone$X  ==0) , 
     msg = "check the errStruc, not between, None and Prop, different order")
   checkTrue( all( dataLogNorm$X - dataNone$X ==0  ) , 
