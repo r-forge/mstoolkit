@@ -26,13 +26,8 @@
   proportion
 }
 
-.deriveFromMasterSeed <- function() {
-	op <- options(digits.secs = 6)
-	seedStr <- as.character(Sys.time())
-	options(op)
-	seedChar <- strsplit(seedStr, "\\.")
-	seed <- as.numeric(seedChar[[1]][2])
-	return(seed)
+.deriveFromMasterSeed <- function(){
+	sample(1:999, 1) 
 }
  
 ### regular expression toys
