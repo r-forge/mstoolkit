@@ -32,8 +32,6 @@ The "setEctdExternalPath" function invisibly returns the updated path list
 
 	getEctdExternalPath()		# Look at available paths
 
-	getEctdExternalPath("RLSF_UNIX")		# Get the "RLSF on Unix" path
-
 	getEctdExternalPath("SASPATH_WIN")		# Get the "SAS Execution on Windows" path
 		
 }}

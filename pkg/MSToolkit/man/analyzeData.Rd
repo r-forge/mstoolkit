@@ -23,7 +23,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
   \item{software}{ (Optional) The software to be used for analysis: either "R" or "SAS".  "R" is the default software used }
   \item{grid}{ (Optional) If available, should the analysis be split across the grid system.  TRUE by default }
   \item{waitAndCombine}{ (Optional) Should the process wait for all analyses to finish, then combine into micro and macro summary files?  TRUE by default}
-  \item{cleanUp}{ (Optional) Should micro/macro directories and "Rlsf*" files be removed on completion?  TRUE by default}
+  \item{cleanUp}{ (Optional) Should micro/macro directories be removed on completion?  TRUE by default}
   \item{removeMissing}{ (Optional) Should rows marked as 'Missing' during the data generation step be removed from the data before analysis is performed?  TRUE by default}
   \item{removeParOmit}{ (Optional) Should any rows marked as 'Omitted' during the parameter data generation step (ie. parameters out of range) be removed from the data before analysis is performed?  TRUE by default}
   \item{removeRespOmit}{ (Optional) Should any rows marked as 'Omitted' during the response generation step (ie. responses out of range) be removed from the data before analysis is performed?  TRUE by default}
@@ -45,7 +45,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
           
 The first task of the function will be to check the options specifed:
 * If the "grid" network is unavailable or if the length of the "replicates" input is 1, the "grid" flag will be set to FALSE
-* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "RLsf" library 
+* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "doParallel" or "doSNOW" libraries 
 * If the length of the "replicates" vector is 1, the "waitAndCombine" flag will be set to FALSE
 * If the "waitAndCombine" flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
 
@@ -55,6 +55,8 @@ If the return from \code{\link{analyzeRep}} is a valid "Micro Evaluation" datase
 If the return from \code{\link{macroEvaluation}} is a valid "Macro Evaluation" dataset, it will be saved to the "MicroEvaluation" folder.
 
 If the "waitAndCombine" flag is set to TRUE, the function will wait until all grid jobs are finished (if grid has been used), then compile the "Micro" and "Macro" evaluation results into single summary files (using the \code{\link{compileSummary}} function).
+
+If the host list in "ECTD.ini" contains the node names rather than "localhost", the function will use \code{\link[snow]{makeCluster}} to start a SNOW cluster for parallelization. 
 
 }
 \value{

@@ -57,7 +57,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
 (Optional) Should the process wait for all analyses to finish, then combine into micro and macro summary files?  TRUE by default</td></tr>
 <tr valign="top"><td><code>cleanUp</code></td>
 <td>
-(Optional) Should micro/macro directories and "Rlsf*" files be removed on completion?  TRUE by default</td></tr>
+(Optional) Should micro/macro directories be removed on completion?  TRUE by default</td></tr>
 <tr valign="top"><td><code>removeMissing</code></td>
 <td>
 (Optional) Should rows marked as 'Missing' during the data generation step be removed from the data before analysis is performed?  TRUE by default</td></tr>
@@ -101,7 +101,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
 <p>
 The first task of the function will be to check the options specifed:
 * If the "grid" network is unavailable or if the length of the "replicates" input is 1, the "grid" flag will be set to FALSE
-* If the "grid" flag is TRUE, the call to <code><a href="analyzeData.html">analyzeData</a></code> will be split across multiple processors using the "RLsf" library 
+* If the "grid" flag is TRUE, the call to <code><a href="analyzeData.html">analyzeData</a></code> will be split across multiple processors using the "doParallel" or "doSNOW" libraries
 * If the length of the "replicates" vector is 1, the "waitAndCombine" flag will be set to FALSE
 * If the "waitAndCombine" flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
 </p>

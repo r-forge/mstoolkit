@@ -29,6 +29,8 @@ createContinuousCovariates(subjects, names, mean, covariance = 1, range = NULL, 
 \code{\link{createExternalCovariates}} to create covariates by \emph{sampling} 
 data from an external file.
 
+\code{\link{createTimeVaryingCovariates}} to create time-varying covariates.
+
 \code{\link{createCovariates}} that wraps \code{createContinuousCovariates} and the 
 two other described above.
 }                       

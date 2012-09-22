@@ -60,8 +60,8 @@ test.meta.externalPath <- function(){
 	checkException(getEctdExternalPath (letters), "Invalid input to .getEctdExternalPath: Multiple")
 
 	# Getting a path
-	currentPath <- getEctdExternalPath ( "RLSF_UNIX" )
-	checkEquals(currentPath, get("externalPaths", env = .ectdEnv)["RLSF_UNIX"], "Extracts path correctly")
+	currentPath <- getEctdExternalPath ( "SASPATH_UNIX" )
+	checkEquals(currentPath, get("externalPaths", env = .ectdEnv)["SASPATH_UNIX"], "Extracts path correctly")
 
 	# Calling errors: .setEctdExternalPath
 	checkException(setEctdExternalPath(), "Invalid input to .setEctdExternalPath: Missing pathName")
@@ -72,9 +72,9 @@ test.meta.externalPath <- function(){
 	checkException(setEctdExternalPath("X", letters), "Invalid input to .setEctdExternalPath: Multiple Value")
 
 	# Setting a path
-	setEctdExternalPath("RLSF_UNIX", "TEST")
-	checkEquals(getEctdExternalPath( "RLSF_UNIX" ) , c("RLSF_UNIX" = "TEST"), "Sets an external path correctly")
-	setEctdExternalPath("RLSF_UNIX", currentPath)
+	setEctdExternalPath("SASPATH_UNIX", "TEST")
+	checkEquals(getEctdExternalPath( "SASPATH_UNIX" ) , c("SASPATH_UNIX" = "TEST"), "Sets an external path correctly")
+	setEctdExternalPath("SASPATH_UNIX", currentPath)
 	checkTrue(all(names(get("externalPaths", env = .ectdEnv)) == getEctdExternalPath()))
 } 
 

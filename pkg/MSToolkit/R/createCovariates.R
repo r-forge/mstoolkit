@@ -24,6 +24,14 @@ createCovariates <- function(
   extDataId=idCol, #@ Subject variable name from file
   workingPath = getwd(), #@ Working directory
   
+  ## arguments for the `createTimeVaryingCovariates` function
+  timeNames=NULL,
+  timeMean,
+  timeCov,
+  timeRange=NULL,
+  timeCol = getEctdColName("Time"),
+  timePeriod,
+  
   ## common args
   idCol = getEctdColName("Subject"),  #@ Subject variable name for return data
   seed=.deriveFromMasterSeed() #@ random seed
@@ -44,12 +52,14 @@ createCovariates <- function(
            
   subjects <- .expandSubjects( subjects )
   idCol    <- parseCharInput( idCol, convertToNumeric = FALSE, expected = 1, valid = TRUE)
+  timeCol  <- parseCharInput( timeCol, convertToNumeric = FALSE, expected = 1, valid = TRUE)
   
   conNames <- parseCharInput( conNames, convertToNumeric = FALSE, checkdup = TRUE ) 
   extNames <- parseCharInput( extNames, convertToNumeric = FALSE, checkdup = TRUE ) 
   disNames <- parseCharInput( disNames, convertToNumeric = FALSE, checkdup = TRUE ) 
-  if( any(duplicated(c(conNames, extNames, disNames))))
-    ectdStop("duplicated names in `conNames`, `extNames`, `disNames`")
+  timeNames <- parseCharInput( timeNames, convertToNumeric = FALSE, checkdup = TRUE ) 
+  if( any(duplicated(c(conNames, extNames, disNames, timeNames))))
+    ectdStop("duplicated names in `conNames`, `extNames`, `disNames`, `timeNames`")
 
   ## calling the createContinuousCovariates function
   dataList <- NULL
@@ -90,9 +100,26 @@ createCovariates <- function(
 		if( !missing(disProbArray)) disArgs$probArray <- disProbArray
 		do.call( createDiscreteCovariates, disArgs)
   }
-   
+  
   names( dataList )  <- NULL  
   out <- do.call(data.frame, dataList[!sapply(dataList, is.null)]  )
+  
+  out.time <- if( !is.null(timeNames) ){
+	  timeArgs <- list( 
+			  subjects = subjects,  names    = timeNames, 
+			  idCol    = idCol,  seed     = seed, 
+			  range    = timeRange, maxDraws = conMaxDraws, 
+			  timeCol = timeCol)
+	  if(!missing(timeMean))    timeArgs$mean       <- timeMean
+	  if(!missing(timeCov))     timeArgs$covariance <- timeCov
+	  if(!missing(conDigits))  timeArgs$digits     <- conDigits
+	  if(!missing(timePeriod))  timeArgs$treatPeriod     <- timePeriod
+	  
+	  do.call( createTimeVaryingCovariates, timeArgs)
+  }  
+  
+  if (!is.null(out.time)) out <- merge(out.time, out)
+  
   out 
   
 }

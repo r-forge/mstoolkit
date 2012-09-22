@@ -8,8 +8,8 @@
 \usage{
 generateData(replicateN, subjects = NULL, treatSubj = subjects, treatDoses, treatSeq, treatType = "Parallel", treatPeriod, 
   genParNames, genParMean, genParVCov = 0, respEqn, respName = getEctdColName("Response"), treatProp, treatOrder = FALSE, conCovNames, conCovMean, conCovVCov, conCovCrit = NULL, 
-  conCovDigits = 3, conCovMaxDraws = 100, disCovNames, disCovVals, disCovProb, disCovProbArray, extCovNames, extCovFile, extCovSubset, extCovRefCol, 
-  extCovSameRow = TRUE, extCovDataId = idCol, genParCrit, genParBtwNames, genParBtwMean, genParBtwVCov, genParErrStruc = "None", 
+  conCovDigits = 3, conCovMaxDraws = 100, disCovNames, disCovVals, disCovProb, disCovProbArray, extCovNames, extCovFile, extCovSubset, extCovRefCol, extCovSameRow = TRUE, extCovDataId = idCol, 
+  timeCovNames , timeCovMean, timeCovVCov, timeCovCrit = NULL, genParCrit, genParBtwNames, genParBtwMean, genParBtwVCov, genParErrStruc = "None", 
   genParMaxDraws = 100, genParRangeTolerance = .5, extParFile, extParNames, extParBtwNames, extParBtwNums, extParSubset = NULL, extParCrit, extParErrStruc = "None", extParRefColData, 
   extParRefColName, extParDataId = idCol, respInvLink, respDist = "Normal", respVCov, respErrStruc = "Additive", respCrit, respDigits = 3, mcarProp = 0, mcarRule, dropFun,
   dropFunExtraArgs = list(), interimSubj, interimMethod = "Sample", seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"), doseCol = getEctdColName("Dose"), timeCol = getEctdColName("Time"), 
@@ -48,6 +48,10 @@ generateData(replicateN, subjects = NULL, treatSubj = subjects, treatDoses, trea
   \item{extCovRefCol}{ (Optional) Reference variable.  Missing by default }
   \item{extCovSameRow}{ (Optional) Logical flag: should covariates sampled be from the same row.  TRUE by default }
   \item{extCovDataId}{ (Optional) Subject variable name from file.  Same as "idCol" by default }
+  \item{timeCovNames}{ (Optional) Time-varying covariate names.  Missing by default, resulting in no Time-varying covariates being created }
+  \item{timeCovMean}{ (Optional) Time-varying covariate means.  Missing by default }
+  \item{timeCovVCov}{ (Optional) Time-varying covariate covariance matrix.  Missing by default }
+  \item{timeCovCrit}{ (Optional) Time-varying covariate acceptable range.  Missing by default }
   \item{genParCrit}{ (Optional) Range of acceptable values for generated fixed effects.  Missing by default }
   \item{genParBtwNames}{ (Optional) Between subject effects to generate.  Missing by default, resulting in no created between subject effects }
   \item{genParBtwMean}{ (Optional) Means for generated between subject effects.  Missing by default }

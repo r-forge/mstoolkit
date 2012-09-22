@@ -47,7 +47,8 @@ createDiscreteCovariates(subjects, names, values, probs, probArray,
 \author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ 
   \code{\link{createContinuousCovariates}}, 
-  \code{\link{createExternalCovariates}}, and 
+  \code{\link{createExternalCovariates}},  
+  \code{\link{createTimeVaryingCovariates}}, and
   \code{\link{createCovariates}}
 }
 \examples{

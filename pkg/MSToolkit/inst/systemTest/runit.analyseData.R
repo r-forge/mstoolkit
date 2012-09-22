@@ -274,64 +274,13 @@ test.analyseData.MacroEval <- function(){
 	}
 }
 
-test.analyseData.gridCalling <- function(){
+test.analyseData.gridCalling <- function() {
 	
 	systemTestPath <- system.file(package = "MSToolkit", "systemTest", "data")
 	interimPath <- file.path(systemTestPath, "Interim")
 	scriptsPath <- file.path(systemTestPath, "Scripts")
 	
 	if (MSToolkit:::.checkGridAvailable()) {
-		# Allow automated interim analysis step and data update based on of microevluation outputs   
-		whichPath <- interimPath
-		setEctdDataMethod("CSV")
-		
-		lmCode <- function(data) {
-			myLm <- lm(RESP ~ DOSE, data = data)
-			newData <- data.frame(DOSE = sort(unique(data$DOSE)))
-			doseMeans <- as.data.frame(predict(myLm, newData, se.fit = TRUE, interval = "confidence")$fit)
-			names(doseMeans) <- c("Mean", "Lower", "Upper")
-			data.frame(DOSE = sort(unique(data$DOSE)), doseMeans, N = as.vector(table(data$DOSE)))
-		}
-		
-		iCode <- function(data, uniDoses = c(0, 5, 25, 50, 100)) {
-			zeroUpper <- data$Upper[1]
-			whichLower <- data$Lower < zeroUpper
-			whichLower[1] <- FALSE
-			list(KEEP = !whichLower)
-		}
-		
-		mCode <- function(data, doseCol, interimCol) {
-			data.frame(DROPPED = sum(data$DROPPED), TEST = 1)
-		}
-		
-		# Delete Files
-		targetFiles <- c("microSummary.csv", "macroSummary.csv", "MicroEvaluation", "MacroEvaluation")
-		if (any(file.exists(file.path(whichPath, targetFiles)))) {
-			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
-		}
-		
-		analyzeData(replicates = 1:3, analysisCode = lmCode, macroCode = mCode, interimCode = iCode, workingPath = whichPath, grid = TRUE)
-		
-		checkTrue(all(file.exists(file.path(whichPath, targetFiles))))
-		microFiles <- list.files(file.path(whichPath, "MicroEvaluation"))
-		macroFiles <- list.files(file.path(whichPath, "MacroEvaluation"))
-		checkTrue(all(microFiles == paste("micro000", 1:3, ".csv", sep="")))
-		checkTrue(all(macroFiles == paste("macro000", 1:3, ".csv", sep="")))
-		
-		getMicro <- read.csv(file.path(whichPath, "microSummary.csv"))
-		getMacro <- read.csv(file.path(whichPath, "macroSummary.csv"))
-		checkTrue(nrow(getMacro) == 3 & all(getMacro$Replicate == 1:3) & all(getMacro$DROPPED == 1) & all(getMacro$TEST == 1))
-		splitMicro <- lapply(split(getMicro[-1], getMicro$Replicate), function(df) {
-					row.names(df) <- 1:nrow(df)
-					df
-				})
-		checkTrue(length(splitMicro) == 3)
-		checkTrue(identical(splitMicro[[1]], splitMicro[[3]]))
-		
-		if (any(file.exists(file.path(whichPath, targetFiles)))) {
-			for (i in targetFiles) try(unlink(file.path(whichPath, i), recursive = TRUE), silent = TRUE)
-		}
-	} else if (require("doParallel", quietly = TRUE) && require("foreach", quietly = TRUE)) {
 		whichPath <- interimPath
 		lmCode <- function(data) {
 			myLm <- lm(RESP ~ DOSE, data = data)
@@ -364,7 +313,6 @@ test.analyseData.gridCalling <- function(){
 		orderTime <- order(microFiles$mtime)
 		orderName <- order(rownames(microFiles))
 		checkTrue(!all(orderTime == orderName ))
-		
 	} else {
 		checkTrue(FALSE , " (CAN NOT TEST - 'GRID' NOT AVAILABLE)")
 	}  

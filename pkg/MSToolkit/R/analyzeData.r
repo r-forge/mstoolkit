@@ -41,15 +41,6 @@
 	macroCode <- .checkFun(macroCode, "data")
 	replicates <- .checkReplicates( replicates, workingPath = workingPath, method = method)
 	
-	# If there is not 'Rlsf', use 'parallel' to do parallel processing
-	grid.para <- FALSE
-	if (require("doParallel", quietly = TRUE) && require("foreach", quietly = TRUE)) {
-		nclusters <- parallel:::detectCores() - 1
-		if (nclusters > 1 && nclusters <= length(replicates)) {
-			grid.para <- grid
-		}
-	}
-	
 	if (grid && !.checkGridAvailable()) grid <- FALSE
 	if (length(replicates) == 1) grid <- waitAndCombine <- FALSE
 
@@ -59,28 +50,33 @@
   
 	## Split jobs and call grid
 	if (grid) {
-		funCall[[1]] <- as.name(".ectdSubmit")              # Call the .ectdSubmit function for LSF split
-		funCall$grid <- funCall$waitAndCombine <- funCall$deleteCurrData <- FALSE     # Don't split grid job over grid or compile
-		funCall$func <- "analyzeData"                       # Grid function to call is analyzeData
-		funCall$debug <- TRUE                               # Set debug flag on the grid system
-		funCall$packages <- c("MSToolkit", "MASS")          # Required packages
-		if (software == "SAS") funCall$reqSas <- TRUE       # Need to queue on a SAS machine
-		repSplit <- .splitGridVector(replicates)            # Split replicates for Grid execution
-		gridJobs <- lapply(repSplit, function(i, call) {
-			call$replicates <- i
-			eval(call)
-		}, call=funCall)
-		evalTime <- Sys.time()                              # Store time at grid evaluation
-	} else if (grid.para) {
-		nreps <- ceiling(length(replicates) / nclusters )
-		repSplit <- .splitGridVector(replicates, nreps)
-		cl <- parallel:::makeCluster(nclusters)
-		doParallel:::registerDoParallel(cl)
+		
+		getPaths <- get("externalPaths", envir = .ectdEnv)
+		snowopt <- getPaths[grepl("^SNOW_OPT\\.", names(getPaths))]
+		names(snowopt) <- gsub("^SNOW_OPT\\.", "", names(snowopt))
+		splitf <- as.numeric(as.factor(names(snowopt))) * ceiling(seq_along(snowopt) / length(unique(snowopt))) / seq_along(unique(snowopt))
+		snowopt <- lapply(split(snowopt, as.factor(splitf)), as.list)
+		islocal <- all(sapply(snowopt, function(X) X[["host"]]) %in% c(Sys.info()[["nodename"]], "localhost"))
+		
+		if (!islocal && suppressWarnings(require(doSNOW, quietly = TRUE))) {
+			nclusters <- length(snowopt)
+			cl <- snow:::makeCluster(snowopt, type = "SOCK")
+			doSNOW:::registerDoSNOW(cl)
+			stopCluster <- snow:::stopCluster
+		} else {
+			nclusters <- parallel:::detectCores() - 1
+			cl <- parallel:::makeCluster(nclusters)
+			doParallel:::registerDoParallel(cl)
+			stopCluster <- parallel:::stopCluster
+		}
+		
+		repSplit <- .splitGridVector(replicates, ceiling(length(replicates) / nclusters ))
 		`%dopar%` <- foreach:::"%dopar%"
 		k <- 0
-		tmp <- foreach:::foreach(k = 1:nclusters, .packages = c("MSToolkit", "MASS")) %dopar% {
+		
+		tmp <- foreach:::foreach(k = 1:length(repSplit), .packages = c("MSToolkit", "MASS")) %dopar% {
 			for (i in repSplit[[k]]) {
-			
+				
 				microData <- analyzeRep(replicate = i, analysisCode = analysisCode, 
 						interimCode = interimCode, software = software, removeMissing = removeMissing, 
 						removeParOmit = removeParOmit, removeRespOmit = removeRespOmit, 
@@ -102,7 +98,9 @@
 				else ectdWarning(paste("No return output from replicate", i))
 			}
 		}
-		parallel:::stopCluster(cl)
+
+		stopCluster(cl)
+		evalTime <- Sys.time()                              # Store time at grid evaluation
 	} else {
 		
 		# Loop through and analyze replicates
@@ -132,27 +130,7 @@
 	}
 	
 	if (waitAndCombine) {   
-		if (grid) {
-			lsf.job.status <- get("lsf.job.status")
-	      	gridStatus <- sapply(gridJobs, lsf.job.status)
-	      	checkJobs <- gridStatus %in% c("EXIT", "DONE")
-	      	iter <- 1
-	      	while (any(!checkJobs)) {
-	        	if (any(gridStatus == "DONE")) {
-	          		compileSummary("Micro", workingPath = workingPath)
-	          		compileSummary("Macro", workingPath = workingPath)
-				}
-		        ## Write log file
-		        writeLogFile(gridStatus, evalTime, workingPath = workingPath)
-		        iter <- iter + 1
-		        if (iter > 1000) ectdStop("Job timed out")
-		        Sys.sleep(sleepTime)
-		        gridStatus <- sapply(gridJobs, lsf.job.status)
-		        checkJobs <- gridStatus %in% c("EXIT", "DONE")
-			}
-	      	writeLogFile(gridStatus, evalTime, workingPath = workingPath)
-	    }
-    
+
     	compileSummary("Micro", workingPath = workingPath)
     	compileSummary("Macro", workingPath = workingPath)      
     

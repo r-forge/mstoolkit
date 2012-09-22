@@ -811,3 +811,72 @@ test.generateData.Version2.0 <- function() {
 	resetEctdColNames()
 	
 }	
+
+test.generateData.timevarying <- function() {
+	
+	## set up a temp directory as the workingPath
+	dir.create( workPath <- tempfile() )
+	setEctdDataMethod("CSV")
+	
+	# Set up elements of the run
+	respFun <- "E0 + (EMAX * DOSE) / (ED50 + DOSE)"
+	
+	# Execute call
+	resetEctdColNames()
+	genCalltime1 <- try(generateData(replicateN = 2, subjects = 500, treatDoses = c(0, 15, 30), treatPeriod = 0:3, 
+					disCovNames = "DisCov1,DisCov2", disCovVals="1,2#1,2,3", disCovProbArray = rbind(c(.1, .1, .3), c(.3, .1, .1)),
+					timeCovNames = "T1,T2", timeCovMean  = list("2.3,2.5,2.9,3.1", rep(5, 4)), timeCovVCov = list(1, 1:4), timeCovCrit = list("T1>0", "T2>0"),
+					genParNames = c("E0","ED50","EMAX"), genParMean = c(0, 50, 10), genParVCov=diag(c(1, 0, 0)), 
+					genParBtwNames = c("E0", "EMAX"), genParBtwVCov = diag(2), genParErrStruc = "None",
+					respEqn = respFun, covDiff = FALSE, treatDiff = FALSE, seed=1, parBtwSuffix=".Extra", deleteCurrData = FALSE, 
+					workingPath = workPath))
+	resetEctdColNames()
+	
+	# Check basics
+	checkTrue(class(genCalltime1) != "try-error", msg = "Check the call was successful")
+	checkTrue(file.exists( file.path( workPath, "ReplicateData")), msg = "Check ReplicateData directory has been created")
+	checkTrue(file.exists( file.path( workPath, "ReplicateData", "replicate0001.csv" ) ), msg = "Check Replicate Data replicate0001.csv was created")
+	checkTrue(file.exists( file.path( workPath, "ReplicateData", "replicate0002.csv" ) ), msg = "Check Replicate Data replicate0002.csv was created" )
+
+	# Import the data
+	x <- lapply(1:2, readData, dataType="Replicate", workingPath = workPath )
+	checkEquals(names(x[[1]])[1:8], c("SUBJ", "TIME", "TRT", "DOSE", "T1", "T2", "DisCov1", "DisCov2" ))
+	
+	resetEctdColNames()
+	genCalltime2 <- try(generateData(replicateN = 2, subjects = 500, treatDoses = c(0, 15, 30), treatPeriod = 0:3, 
+					disCovNames = "DisCov1,DisCov2", disCovVals="1,2#1,2,3", disCovProbArray = rbind(c(.1, .1, .3), c(.3, .1, .1)),
+					timeCovNames = "T1,T2", timeCovMean  = list("2.3,2.5,2.9", rep(5, 3)), timeCovVCov = list(1, 1:3), timeCovCrit = list("T1>0", "T2>0"),
+					genParNames = c("E0","ED50","EMAX"), genParMean = c(0, 50, 10), genParVCov=diag(c(1, 0, 0)), 
+					genParBtwNames = c("E0", "EMAX"), genParBtwVCov = diag(2), genParErrStruc = "None",
+					respEqn = respFun, covDiff = FALSE, treatDiff = FALSE, seed=1, parBtwSuffix=".Extra", deleteCurrData = FALSE, 
+					workingPath = workPath))
+	resetEctdColNames()
+	checkTrue(inherits(genCalltime2, "try-error"))
+	
+	resetEctdColNames()
+	genCalltime3 <- try(generateData(replicateN = 2, subjects = 500, treatDoses = c(0, 15, 30), 
+					disCovNames = "DisCov1,DisCov2", disCovVals="1,2#1,2,3", disCovProbArray = rbind(c(.1, .1, .3), c(.3, .1, .1)),
+					timeCovNames = "T1,T2", timeCovMean  = list("2.3,2.5,2.9", rep(5, 3)), timeCovVCov = list(1, 1:3), timeCovCrit = list("T1>0", "T2>0"),
+					genParNames = c("E0","ED50","EMAX"), genParMean = c(0, 50, 10), genParVCov=diag(c(1, 0, 0)), 
+					genParBtwNames = c("E0", "EMAX"), genParBtwVCov = diag(2), genParErrStruc = "None",
+					respEqn = respFun, covDiff = FALSE, treatDiff = FALSE, seed=1, parBtwSuffix=".Extra", deleteCurrData = FALSE, 
+					workingPath = workPath))
+	resetEctdColNames()
+	checkTrue(inherits(genCalltime3, "try-error"))
+	
+	resetEctdColNames()
+	genCalltime4 <- try(generateData(replicateN = 2, subjects = 500, treatDoses = c(0, 15, 30), treatPeriod = 0:3, 
+					disCovNames = "DisCov1,DisCov2", disCovVals="1,2#1,2,3", disCovProbArray = rbind(c(.1, .1, .3), c(.3, .1, .1)),
+					timeCovNames = "T1,T2", timeCovMean  = list("2.3,2.5,2.9,3.1", rep(5, 4)), timeCovCrit = list("T1>0", "T2>0"),
+					genParNames = c("E0","ED50","EMAX"), genParMean = c(0, 50, 10), genParVCov=diag(c(1, 0, 0)), 
+					genParBtwNames = c("E0", "EMAX"), genParBtwVCov = diag(2), genParErrStruc = "None",
+					respEqn = respFun, covDiff = FALSE, treatDiff = FALSE, seed=1, parBtwSuffix=".Extra", deleteCurrData = FALSE, 
+					workingPath = workPath))
+	resetEctdColNames()
+	x <- lapply(3:4, readData, dataType="Replicate", workingPath = workPath )
+	checkEquals(unique(x[[1]]$T1), parseCharInput("2.3,2.5,2.9,3.1"))
+	cat(workPath)
+	unlink(workPath, recursive = TRUE)
+	invisible(NULL)
+}
+

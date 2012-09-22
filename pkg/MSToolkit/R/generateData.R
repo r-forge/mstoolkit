@@ -1,77 +1,81 @@
 generateData <- function(
 		 replicateN ,	                              #@  Number of replicates
 		 subjects = NULL,	                          #@ Number of subjects in simulation
-		 treatSubj = subjects,	                    #@ Number of subjects to which to allocate treatments, or a vector of allocations
+		 treatSubj = subjects,	                      #@ Number of subjects to which to allocate treatments, or a vector of allocations
 		 treatDoses ,	                              #@ Treatment doses
-		 treatSeq ,	                                #@ Treatment matrix for crossover designs
+		 treatSeq ,	                                  #@ Treatment matrix for crossover designs
 		 treatType = "Parallel",	                  #@ Treatment type: Parallel or Crossover
-		 treatPeriod ,	                            #@ Treatment time points
-		 genParNames ,	                            #@ Names of fixed effects to generate
+		 treatPeriod ,	                              #@ Treatment time points
+		 genParNames ,	                              #@ Names of fixed effects to generate
 		 genParMean ,	                              #@ Means for generating fixed parameters
 		 genParVCov  = 0,	                          #@ Covariance matrix for generating fixed parameters
-		 respEqn ,	                                #@ Formula for creating response
-		 respName = getEctdColName("Response"),	#@ Response variable name
-		 treatProp ,                                #@ Proportions for sampling
+		 respEqn ,	                                  #@ Formula for creating response
+		 respName = getEctdColName("Response"),	      #@ Response variable name
+		 treatProp ,                                  #@ Proportions for sampling
 		 treatOrder = FALSE,	                      #@ Logical flag: should allocations be assigned in order
-		 conCovNames ,	                            #@ Continuous covariate names
+		 conCovNames ,	                              #@ Continuous covariate names
 		 conCovMean ,	                              #@ Continuous covariate means
 		 conCovVCov ,	                              #@ Continuous covariate covariance matrix
-		 conCovCrit = NULL,	                        #@ Continuous covariate acceptable range
-		 conCovDigits = 3,	                        #@ Continuous covariate rounding digits
-		 conCovMaxDraws = 100,	                    #@ Continuous covariate maximum draws
-		 disCovNames ,	                            #@ Discrete covariate names
+		 conCovCrit = NULL,	                          #@ Continuous covariate acceptable range
+		 conCovDigits = 3,	                          #@ Continuous covariate rounding digits
+		 conCovMaxDraws = 100,	                      #@ Continuous covariate maximum draws
+		 disCovNames ,	                              #@ Discrete covariate names
 		 disCovVals ,	                              #@ Discrete covariate values
 		 disCovProb ,	                              #@ Discrete covariate probabilities
-		 disCovProbArray ,	                        #@ Array of probabilities for multivariate sampling
-		 extCovNames ,	                            #@ Names for the continuous covariates
+		 disCovProbArray ,	                          #@ Array of probabilities for multivariate sampling
+		 extCovNames ,	                              #@ Names for the continuous covariates
 		 extCovFile ,	                              #@ File from which to import (including full or relative path)
-		 extCovSubset ,	                            #@ Subset to apply to data
-		 extCovRefCol ,	                            #@ Reference variable
-		 extCovSameRow = TRUE,	                    #@ Logical flag: should covariates sampled be from the same row
-		 extCovDataId = idCol,	                    #@ Subject variable name from file
+		 extCovSubset ,	                              #@ Subset to apply to data
+		 extCovRefCol ,	                              #@ Reference variable
+		 extCovSameRow = TRUE,	                      #@ Logical flag: should covariates sampled be from the same row
+		 extCovDataId = idCol,	                      #@ Subject variable name from file
+		 timeCovNames ,	                              #@ Time-varying covariate names
+		 timeCovMean ,	                              #@ Time-varying covariate means
+		 timeCovVCov ,	                              #@ Time-varying covariate covariance
+		 timeCovCrit = NULL,	                      #@ Time-varying covariate acceptable range   
 		 genParCrit,	                              #@ Range of acceptable values for generated parameters
 		 genParBtwNames ,	                          #@ Between subject effects to generate
 		 genParBtwMean ,	                          #@ Means for generated between subject effects
 		 genParBtwVCov ,	                          #@ Covariance matrix for generated between subject effects
 		 genParErrStruc = "None",	                  #@ Function to map generated effects: Additive, Proportional or None
-		 genParMaxDraws = 100,	                    #@ Maximum number of iterations to generate valid parameters
-		 genParRangeTolerance = .5,					#@ Proportion of subjects with "in range" parameters that we'd be happy proceeding with
+		 genParMaxDraws = 100,	                      #@ Maximum number of iterations to generate valid parameters
+		 genParRangeTolerance = .5,					  #@ Proportion of subjects with "in range" parameters that we'd be happy proceeding with
 		 extParFile ,	                              #@ File name for external parameter data to import
-		 extParNames ,	                            #@ Names of parameters to import from external file
+		 extParNames ,	                              #@ Names of parameters to import from external file
 		 extParBtwNames ,	                          #@ Between subject effects variables to import from external file
 		 extParBtwNums , 	                          #@ Integer mapping between random and fixed effects in imported parameter data
 		 extParSubset = NULL,	                      #@ Subsets to be applied to imported parameter before sampling
 		 extParCrit,	                              #@ Range of acceptable values for generated parameters
 		 extParErrStruc = "None",	                  #@ Function to map effects from imported parameter data: Additive, Proportional or None
-		 extParRefColData ,	                        #@ Reference column in imported parameter data
-		 extParRefColName ,	                        #@ Reference column name from imported parameter data
-		 extParDataId = idCol,                      #@ Subject variable in external parameter file
+		 extParRefColData ,	                          #@ Reference column in imported parameter data
+		 extParRefColName ,	                          #@ Reference column name from imported parameter data
+		 extParDataId = idCol,                        #@ Subject variable in external parameter file
 		 respInvLink,	                              #@ Inverse link function for the linear predictor
 		 respDist = "Normal",	                      #@ Outcome response variable distribution
-		 respVCov ,	                                #@ Residual error (co)variance to apply to generated response
-		 respErrStruc = "Additive",	                #@ Function describing how to apply residual error to the generated response: Additive or Proportional
-		 respCrit,	                                #@ Range of acceptable values for created response
+		 respVCov ,	                                  #@ Residual error (co)variance to apply to generated response
+		 respErrStruc = "Additive",	                  #@ Function describing how to apply residual error to the generated response: Additive or Proportional
+		 respCrit,	                                  #@ Range of acceptable values for created response
 		 respDigits = 3,	                          #@ Number of digits to which to round the created response
-		 mcarProp = 0,	                            #@ Proportion of observations to set to missing at random
-		 mcarRule,	                                #@ Rule to specify which observations of the data should be included for MCAR allocation
-		 dropFun ,	                                #@ User defined function to define criteria for subject dropout
-		 dropFunExtraArgs = list(),	                #@ Additional arguments to the dropout function
-		 interimSubj ,	                            #@ Proportion of total subjects to be assigned to each interim analysis
-		 interimMethod = "Sample",	                #@ Method for creating interim variable: Sample or Proportion
-         seed = .deriveFromMasterSeed(),            #@ random seed
-		 idCol = getEctdColName("Subject"),	    #@ Subject variable name
-		 doseCol = getEctdColName("Dose"),	        #@ Dose variable name
-		 timeCol = getEctdColName("Time"),	        #@ Time variable name
-		 trtCol = getEctdColName("Trt"),	        #@ Treatment variable name
-		 parOmitFlag = getEctdColName("ParOmit"),	#@ Parameter omit flag name
-		 respOmitFlag = getEctdColName("RespOmit"),#@ Response omit flag name
-		 missingFlag = getEctdColName("Missing"),  #@ Missingness flag name
-		 interimCol = getEctdColName("Interim"),   #@ Interim variable name
-		 parBtwSuffix = ".Between",                 #@ Suffix for retained between subject effects variables
-		 deleteCurrData = TRUE,                     #@ Should existing data be deleted before starting generation phase
-		 covDiff = TRUE,                            #@ Should covariates differ between replicates
-		 treatDiff = TRUE,                          #@ Should treatment allocation differ between replicates
-     workingPath = getwd()                      #@ Working directory from which to create data
+		 mcarProp = 0,	                              #@ Proportion of observations to set to missing at random
+		 mcarRule,	                                  #@ Rule to specify which observations of the data should be included for MCAR allocation
+		 dropFun ,	                                  #@ User defined function to define criteria for subject dropout
+		 dropFunExtraArgs = list(),	                  #@ Additional arguments to the dropout function
+		 interimSubj ,	                              #@ Proportion of total subjects to be assigned to each interim analysis
+		 interimMethod = "Sample",	                  #@ Method for creating interim variable: Sample or Proportion
+         seed = .deriveFromMasterSeed(),              #@ random seed
+		 idCol = getEctdColName("Subject"),	          #@ Subject variable name
+		 doseCol = getEctdColName("Dose"),	          #@ Dose variable name
+		 timeCol = getEctdColName("Time"),	          #@ Time variable name
+		 trtCol = getEctdColName("Trt"),	          #@ Treatment variable name
+		 parOmitFlag = getEctdColName("ParOmit"),	  #@ Parameter omit flag name
+		 respOmitFlag = getEctdColName("RespOmit"),   #@ Response omit flag name
+		 missingFlag = getEctdColName("Missing"),     #@ Missingness flag name
+		 interimCol = getEctdColName("Interim"),      #@ Interim variable name
+		 parBtwSuffix = ".Between",                   #@ Suffix for retained between subject effects variables
+		 deleteCurrData = TRUE,                       #@ Should existing data be deleted before starting generation phase
+		 covDiff = TRUE,                              #@ Should covariates differ between replicates
+		 treatDiff = TRUE,                            #@ Should treatment allocation differ between replicates
+		 workingPath = getwd()                        #@ Working directory from which to create data
 ){
  	###############################################################################
 	# Mango Solutions, Chippenham SN14 0SQ 2006
@@ -87,7 +91,7 @@ generateData <- function(
 	resetEctdColNames()
 	
 	# TODO: Better way of extracting default arguments to this function
-	defNames <- c("treatSubj", "treatType", "respName", "treatOrder", "conCovCrit", "conCovDigits", "conCovMaxDraws", "extCovSameRow", "extCovDataId", 
+	defNames <- c("treatSubj", "treatType", "respName", "treatOrder", "conCovCrit", "conCovDigits", "conCovMaxDraws", "extCovSameRow", "extCovDataId", "timeCovCrit", 
 		"genParErrStruc", "respDist", "respErrStruc", "respDigits", "genParVCov", "mcarProp", "dropFunExtraArgs", "interimMethod", "seed", "idCol", "doseCol", "timeCol",
     	"trtCol", "parOmitFlag", "respOmitFlag", "missingFlag", "interimCol", "parBtwSuffix", "deleteCurrData", "covDiff", "treatDiff", "extParDataId")
   	callNames <- union(names(match.call())[-1], defNames)
@@ -117,7 +121,8 @@ generateData <- function(
   	allocateList <- innerCallList(c(subjects = "treatSubj", prop = "treatProp", ordered = "treatOrder", idCol = "idCol", trtCol = "trtCol"))
   	covList <- innerCallList(c(subjects = "subjects", conNames = "conCovNames", conMean = "conCovMean", conCov = "conCovVCov", conRange = "conCovCrit", conDigits = "conCovDigits", 
     	conMaxDraws = "conCovMaxDraws", disNames = "disCovNames", disValues = "disCovVals", disProbs = "disCovProb", disProbArray = "disCovProbArray", extNames = "extCovNames", 
-    	extFile = "extCovFile", extSubset = "extCovSubset", extRefCol = "extCovRefCol", extSameRow = "extCovSameRow", extDataId = "extCovDataId", idCol = "idCol", workingPath = "workingPath"))
+    	extFile = "extCovFile", extSubset = "extCovSubset", extRefCol = "extCovRefCol", extSameRow = "extCovSameRow", extDataId = "extCovDataId", idCol = "idCol", workingPath = "workingPath",
+		timeNames = "timeCovNames", timeMean = "timeCovMean", timeCov = "timeCovVCov", timeRange = "timeCovCrit", timeCol = "timeCol", timePeriod = "treatPeriod"))
 	parList <- innerCallList(c(subjects = "subjects", genNames = "genParNames", genFixedMean = "genParMean", 
 		genFixedCov = "genParVCov", genRange = "genParCrit", genBetweenNames = "genParBtwNames", genBetweenMean = "genParBtwMean", genBetweenCov = "genParBtwVCov", 
 		genErrStruc = "genParErrStruc", genMaxDraws = "genParMaxDraws", genParRangeTolerance = "genParRangeTolerance", extFile = "extParFile", extNames = "extParNames", extBetween = "extParBtwNames", extBetweenNums = "extParBtwNums", extSubset = "extParSubset", 
@@ -174,10 +179,12 @@ generateData <- function(
 		 allocData <- allocData [ rep(1:nrow(allocData), length = subjects), , drop = FALSE]
 		 allocData[[idCol]] <- 1:subjects
 	 }
-	 coreData <- merge(merge(treatData, allocData, by=trtCol), covData, by=idCol)
-			sortBy <- c(idCol, trtCol, timeCol, doseCol)
-			sortBy <- sortBy [ sortBy %in% names(coreData) ]
-			if (length(sortBy)) coreData <- coreData [ do.call("order", coreData[sortBy]),,drop=FALSE]
+	 
+	 if (timeCol %in% names(covData)) bycov <- c(idCol, timeCol) else bycov <- idCol
+	 coreData <- merge(merge(treatData, allocData, by=trtCol), covData, by=bycov)
+	 sortBy <- c(idCol, trtCol, timeCol, doseCol)
+	 sortBy <- sortBy [ sortBy %in% names(coreData) ]
+	 if (length(sortBy)) coreData <- coreData [ do.call("order", coreData[sortBy]),,drop=FALSE]
 	
    	 ## Replicate Looping: Parameters and Reponse
    	 if (!missing(extParRefColData) && length(extParRefColData) == 1 && is.character(extParRefColData) && !length(grep(",", extParRefColData))) {

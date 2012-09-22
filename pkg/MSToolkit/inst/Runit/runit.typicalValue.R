@@ -47,6 +47,19 @@ test.data.parsePred <- function() {
 	checkTrue(length(parsePredCode(inTest)) == length(outTest))
 	checkTrue(all(parsePredCode(inTest) == outTest))
 	
+	# non-integer values
+	inTest <- c(
+			"X1 = THETA(1)^EPS(2)", 
+			"X2 = A.GT.0.99.AND.B.EQ.2.0.OR.C.LE..51"
+	)
+	outTest <- c(
+			"X1  <-  TH1^EPS2", 
+			"X2  <-  (A > 0.99) & (B == 2.0) | (C <= .51)"
+	)	
+	parsePredCode(inTest)
+	checkTrue(length(parsePredCode(inTest)) == length(outTest))
+	checkTrue(all(parsePredCode(inTest) == outTest))
+	
 	inTest <- c(
 			"X1=EXP(THETA(1))", 
 			"X2=LOG(THETA(2))",

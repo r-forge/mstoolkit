@@ -26,8 +26,13 @@
   proportion
 }
 
-.deriveFromMasterSeed <- function(){
-  sample(1:999, 1) 
+.deriveFromMasterSeed <- function() {
+	op <- options(digits.secs = 6)
+	seedStr <- as.character(Sys.time())
+	options(op)
+	seedChar <- strsplit(seedStr, "\\.")
+	seed <- as.numeric(seedChar[[1]][2])
+	return(seed)
 }
  
 ### regular expression toys
@@ -79,50 +84,53 @@
   subjects
 }
 
-.handleProbArray <- function( probArray, values, probs){
-  
-  if( !missing(probArray) && is.matrix(probArray) ){
-    sum(probArray) == 1 || ectdStop("`probArray` does not sum up to one")
-    if( missing(values) ) { 
-      values <- dimnames(probArray)
-      if( is.null(values) ){
-        values <- sapply( dim(probArray), seq)
-      }
-    }
-    if( !all(  dim(probArray)  == sapply(values, length)  )) 
-      ectdStop("Dimension problem between `probArray` and `values`")
-    out <- cbind( do.call( expand.grid, values ), probs = as.vector( probArray) )
-    out <- subset( out, probs > 0)
+.handleProbArray <- function( probArray, values, probs) {
+	if( !missing(probArray) && is.matrix(probArray) ) {
+		sum(probArray) == 1 || ectdStop("`probArray` does not sum up to one")
+		if( missing(values) ) {
+			values <- dimnames(probArray)
+			if( is.null(values) ) {
+				values <- sapply( dim(probArray), seq)
+			}
+		}
+		if( !all(  dim(probArray)  == sapply(values, length)  )) ectdStop("Dimension problem between `probArray` and `values`")
+		out <- cbind( do.call( expand.grid, values ), probs = as.vector( probArray) )
+		out <- subset( out, probs > 0)
+		
+	} else { 
+		## make tests on the probArray or build it
+    	if ( missing(probArray) ) {
+			# try to build it
+			if(missing(values) || missing(probs) ) ectdStop("`values` and `probs` must be supplied if probArray is missing")
+			probArray <- probs[[1]]
+			lp <- length(probs)
+			if(lp>1) {
+				for(idx in 2:lp) {
+					probArray <- probArray %o% probs[[idx]]
+				}
+			}
+		} else {
+			# check the probArray
+			if (is.data.frame(probArray)) {
+				if(sum(probArray[,ncol(probArray)]) != 1) ectdStop("the probArray does not sum up to one")
+				if(ncol(probArray) - 1 != length(values)) ectdStop("The `probArray` has wrong dimensions")
+			}
+			
+			if (is.array(probArray)) {
+				if(sum(probArray) != 1) ectdStop("the probArray does not sum up to one")
+				if(length(dim(probArray)) != length(values)) ectdStop("The `probArray` has wrong dimensions")
+			}
+			
+		}
     
-  } else { 
-  
-  
-    ## make tests on the probArray or build it
-    if( missing(probArray) ){ # try to build it
-      if(missing(values) || missing(probs) )
-        ectdStop("`values` and `probs` must be supplied if probArray is missing")
-      probArray <- probs[[1]]
-      lp <- length(probs)
-      if(lp>1){
-        for(idx in 2:lp){
-          probArray <- probArray %o% probs[[idx]]
-        }
-      }
-    } else {   # check the probArray
-      if(sum(probArray[,ncol(probArray)]) != 1)
-        ectdStop("the probArray does not sum up to one")
-      if(length(dim(probArray)) != length(values))
-        ectdStop("The `probArray` has wrong dimensions")
-    }
-    
-    ## make the grid                               
-    out <- cbind( do.call( expand.grid, values ), PROB = as.vector(probArray) )
-  }
-  ## make sure they are all factors
-  for( va in 1:length(values)){
-    out[,va] <- factor(out[,va])
-  }
-  out
+		## make the grid                               
+		out <- cbind( do.call( expand.grid, values ), probs = as.vector(probArray) )
+	}
+	## make sure they are all factors
+	for( va in 1:length(values)) {
+		out[,va] <- factor(out[,va])
+	}
+	out
 }
 
 .eval <- function( txt ){
@@ -176,7 +184,7 @@
 }
 
 .checkGridAvailable <- function(){
-  .Platform$OS.type != "windows" && suppressWarnings(require(Rlsf, quietly=TRUE))
+  suppressWarnings(require(foreach, quietly = TRUE) &&  (require(doSNOW, quietly = TRUE) || require(doParallel, quietly = TRUE))) 
 }
 
 .splitGridVector <- function(vec, nReps = 100) {
@@ -187,31 +195,6 @@
   split(vec, startVec)
 }
 
-".ectdSubmit" <- function(func, ..., savelist=c(), packages=NULL, ncpus=1, debug=FALSE, reqSas = FALSE) {
-
-    # Set the RLSF_R environmental variable
-    if (length(grep("solaris", version$platform, ignore.case = TRUE))) Sys.setenv("RLSF_R" = getEctdExternalPath("RLSF_UNIX"))
-    else Sys.setenv("RLSF_R" = getEctdExternalPath("RLSF_LINUX"))
-    .log("Setting the RLSF_R environmental variable to", Sys.getenv("RLSF_R"))
-
-    # Build the call to the grid
-    fname <- tempfile(pattern = "Rlsf_data", tmpdir = getwd())
-    lsf.call <- as.call(list(as.name(func), ...) )
-    savelist <- c(savelist, "lsf.call", "packages")
-    save(list=savelist, file=fname)
-    script <- paste(file.path(.path.package("Rlsf"), "RunLsfJob"), fname)
-    jobid <- .Call("lsf_job_submit", as.integer(debug), script, as.integer(ncpus), PACKAGE="Rlsf")
-    
-    # If SAS is required, modify the LSF call
-    if (reqSas) {
-       try(system(paste("bmod -R sas", jobid), intern=TRUE), silent = TRUE)
-       .log("Setting the job resource tag to SAS ...")
-    }
-
-    # Return the job list information
-    if (jobid) list(jobid=jobid,fname=fname,debug=debug)
-    else return(NULL)
-  }
 
 .ectdSasCall <- function(params, 
   sasLoc = if (.Platform$OS.type == "windows") getEctdExternalPath("SASPATH_WIN") else getEctdExternalPath("SASPATH_UNIX"), 
@@ -261,8 +244,10 @@
 			.log("removing micro and macro directories")
 			removeDirectories(c("MicroEvaluation", "MacroEvaluation"), workingPath = workingPath)
 			if(grid){ 
-				.log("Removing Rlsf generated files")
-				try(file.remove(list.files(pattern="Rlsf_.*")), silent = TRUE)
+				allconns <- showConnections()
+				sockconns <- rownames(allconns)[which(allconns[, "class"] == "sockconn")]
+				if (length(sockconns) > 0) for (i in sockconns) try(close(getConnection(i)))
+				.log("clusters were shut down")
 			}
 		}
 		else {
