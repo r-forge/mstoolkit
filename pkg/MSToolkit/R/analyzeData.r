@@ -65,6 +65,7 @@
 			stopCluster <- snow:::stopCluster
 		} else {
 			nclusters <- parallel:::detectCores() - 1
+			if (is.numeric(getOption("max.clusters"))) nclusters <- min(nclusters, getOption("max.clusters"))
 			cl <- parallel:::makeCluster(nclusters)
 			doParallel:::registerDoParallel(cl)
 			stopCluster <- parallel:::stopCluster

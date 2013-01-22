@@ -15,5 +15,6 @@
   if( .checkGridAvailable() ){
 	  gridText <- "# Grid execution available: use 'grid' argument in ?analyzeData"
 	  packageStartupMessage( paste(gridText, collapse = "\n") )
+	  options(max.clusters = 2)
   }
 }
