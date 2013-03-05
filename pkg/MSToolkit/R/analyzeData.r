@@ -50,26 +50,12 @@
   
 	## Split jobs and call grid
 	if (grid) {
-		
-		getPaths <- get("externalPaths", envir = .ectdEnv)
-		snowopt <- getPaths[grepl("^SNOW_OPT\\.", names(getPaths))]
-		names(snowopt) <- gsub("^SNOW_OPT\\.", "", names(snowopt))
-		splitf <- as.numeric(as.factor(names(snowopt))) * ceiling(seq_along(snowopt) / length(unique(snowopt))) / seq_along(unique(snowopt))
-		snowopt <- lapply(split(snowopt, as.factor(splitf)), as.list)
-		islocal <- all(sapply(snowopt, function(X) X[["host"]]) %in% c(Sys.info()[["nodename"]], "localhost"))
-		
-		if (!islocal && suppressWarnings(require(doSNOW, quietly = TRUE))) {
-			nclusters <- length(snowopt)
-			cl <- snow:::makeCluster(snowopt, type = "SOCK")
-			doSNOW:::registerDoSNOW(cl)
-			stopCluster <- snow:::stopCluster
-		} else {
-			nclusters <- parallel:::detectCores() - 1
-			if (is.numeric(getOption("max.clusters"))) nclusters <- min(nclusters, getOption("max.clusters"))
-			cl <- parallel:::makeCluster(nclusters)
-			doParallel:::registerDoParallel(cl)
-			stopCluster <- parallel:::stopCluster
-		}
+			
+		nclusters <- parallel:::detectCores() - 1
+		if (is.numeric(getOption("max.clusters"))) nclusters <- min(nclusters, getOption("max.clusters"))
+		cl <- parallel:::makeCluster(nclusters)
+		doParallel:::registerDoParallel(cl)
+		stopCluster <- parallel:::stopCluster
 		
 		repSplit <- .splitGridVector(replicates, ceiling(length(replicates) / nclusters ))
 		`%dopar%` <- foreach:::"%dopar%"

@@ -45,7 +45,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
           
 The first task of the function will be to check the options specifed:
 * If the "grid" network is unavailable or if the length of the "replicates" input is 1, the "grid" flag will be set to FALSE
-* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "doParallel" or "doSNOW" libraries 
+* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "doParallel" library 
 * If the length of the "replicates" vector is 1, the "waitAndCombine" flag will be set to FALSE
 * If the "waitAndCombine" flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
 
@@ -55,8 +55,6 @@ If the return from \code{\link{analyzeRep}} is a valid "Micro Evaluation" datase
 If the return from \code{\link{macroEvaluation}} is a valid "Macro Evaluation" dataset, it will be saved to the "MicroEvaluation" folder.
 
 If the "waitAndCombine" flag is set to TRUE, the function will wait until all grid jobs are finished (if grid has been used), then compile the "Micro" and "Macro" evaluation results into single summary files (using the \code{\link{compileSummary}} function).
-
-If the host list in "ECTD.ini" contains the node names rather than "localhost", the function will use \code{\link[snow]{makeCluster}} to start a SNOW cluster for parallelization. 
 
 }
 \value{
