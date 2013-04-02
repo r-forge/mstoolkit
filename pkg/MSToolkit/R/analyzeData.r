@@ -54,37 +54,51 @@
 		nclusters <- parallel:::detectCores() - 1
 		if (is.numeric(getOption("max.clusters"))) nclusters <- min(nclusters, getOption("max.clusters"))
 		cl <- parallel:::makeCluster(nclusters)
-		doParallel:::registerDoParallel(cl)
 		stopCluster <- parallel:::stopCluster
 		
 		repSplit <- .splitGridVector(replicates, ceiling(length(replicates) / nclusters ))
-		`%dopar%` <- foreach:::"%dopar%"
-		k <- 0
-		
-		tmp <- foreach:::foreach(k = 1:length(repSplit), .packages = c("MSToolkit", "MASS")) %dopar% {
-			for (i in repSplit[[k]]) {
-				
-				microData <- analyzeRep(replicate = i, analysisCode = analysisCode, 
-						interimCode = interimCode, software = software, removeMissing = removeMissing, 
-						removeParOmit = removeParOmit, removeRespOmit = removeRespOmit, 
-						seed = seed + i, parOmitFlag = parOmitFlag, respOmitFlag = respOmitFlag, 
-						missingFlag = missingFlag, interimCol = interimCol, doseCol = doseCol, 
-						initialDoses = initialDoses, stayDropped = stayDropped, fullAnalysis = fullAnalysis,
-						workingPath = workingPath, method = method)
+
+		arguments=list( analysisCode = analysisCode, 
+						interimCode = interimCode, 
+                        software = software, 
+                        removeMissing = removeMissing, 
+						removeParOmit = removeParOmit, 
+                        removeRespOmit = removeRespOmit, 
+						seed = seed,  
+                        parOmitFlag = parOmitFlag, 
+                        respOmitFlag = respOmitFlag, 
+						missingFlag = missingFlag, 
+                        interimCol = interimCol, 
+                        doseCol = doseCol, 
+						initialDoses = initialDoses, 
+                        stayDropped = stayDropped, 
+                        fullAnalysis = fullAnalysis,
+						workingPath = workingPath, 
+                        macroCode = macroCode,
+                        method = method)
+        clusterApply(cl=cl, repSplit, function(l,a){
+			for (i in l) {
+				microData <- analyzeRep(replicate = i, analysisCode = a$analysisCode, 
+						interimCode = a$interimCode, software = a$software, removeMissing = a$removeMissing, 
+						removeParOmit = a$removeParOmit, removeRespOmit = a$removeRespOmit, 
+						seed = a$seed + i, parOmitFlag = a$parOmitFlag, respOmitFlag = a$respOmitFlag, 
+						missingFlag = a$missingFlag, interimCol = a$interimCol, doseCol = a$doseCol, 
+						initialDoses = a$initialDoses, stayDropped = a$stayDropped, fullAnalysis = a$fullAnalysis,
+						workingPath = a$workingPath, method = a$method)
 				
 				# Write out data
 				if (is.data.frame(microData) && nrow(microData)) {
 					
-					writeData(microData, i, "Micro", workingPath = workingPath)
+					writeData(microData, i, "Micro", workingPath = a$workingPath)
 					
-					macroData <- macroEvaluation(microData, macroCode = macroCode, 
-							interimCol = interimCol, doseCol = doseCol)
+					macroData <- macroEvaluation(microData, macroCode = a$macroCode, 
+							interimCol = a$interimCol, doseCol = a$doseCol)
 					
-					writeData(macroData, i, "Macro", workingPath = workingPath)
+					writeData(macroData, i, "Macro", workingPath = a$workingPath)
 				}
 				else ectdWarning(paste("No return output from replicate", i))
 			}
-		}
+		}, arguments)
 
 		stopCluster(cl)
 		evalTime <- Sys.time()                              # Store time at grid evaluation

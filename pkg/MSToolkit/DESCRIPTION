@@ -7,5 +7,5 @@ Author: Mike K Smith <mstoolkit@mango-solutions.com>
 Maintainer: Mike K Smith <mstoolkit@googlemail.com>
 Description: MSToolkit library for Clinical Trial Design
 Depends: R (>= 2.14.0), MASS, methods
-Suggests: RUnit, RNMImport, doParallel, foreach
+Suggests: RUnit, RNMImport, parallel
 License: GPL

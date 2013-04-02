@@ -179,7 +179,7 @@
 }
 
 .checkGridAvailable <- function(){
-  suppressWarnings(require(foreach, quietly = TRUE) &&  require(doParallel, quietly = TRUE)) 
+  suppressWarnings(require(parallel, quietly = TRUE))
 }
 
 .splitGridVector <- function(vec, nReps = 100) {

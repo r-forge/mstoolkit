@@ -45,7 +45,7 @@ analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL,
           
 The first task of the function will be to check the options specifed:
 * If the "grid" network is unavailable or if the length of the "replicates" input is 1, the "grid" flag will be set to FALSE
-* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "doParallel" library 
+* If the "grid" flag is TRUE, the call to \code{\link{analyzeData}} will be split across multiple processors using the "parallel" library 
 * If the length of the "replicates" vector is 1, the "waitAndCombine" flag will be set to FALSE
 * If the "waitAndCombine" flag is set to FALSE, the "cleanUp" flag will also be set to FALSE
 
