@@ -4,7 +4,7 @@
   macroCode,                         #@ Macro evaluation code
   interimCode = NULL,                #@ Interim analysis code
   software = "R",                    #@ Software for analysis: R or SAS
-  grid = TRUE,                       #@ Split analysis across the grid?
+  grid = FALSE,                       #@ Split analysis across the grid?
   waitAndCombine = TRUE,             #@ Wait for all analyses to finish, then combine into single file?
   cleanUp = FALSE,                   #@ Delete micro/macro directories on completion?
   removeMissing = TRUE,              #@ Remove Missing rows?

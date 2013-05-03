@@ -193,7 +193,7 @@
 
 .ectdSasCall <- function(params, 
   sasLoc = if (.Platform$OS.type == "windows") getEctdExternalPath("SASPATH_WIN") else getEctdExternalPath("SASPATH_UNIX"), 
-  macroLoc = file.path(.path.package("MSToolkit"), "sasAnalysis.sas"), 
+  macroLoc = file.path(path.package("MSToolkit"), "sasAnalysis.sas"), 
   logFile = file.path(workingPath, "sasLogfile.log"),
   printFile = file.path(workingPath, "sasOutput.lst"),
   workingPath = getwd()) 

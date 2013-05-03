@@ -1,7 +1,7 @@
   
 .onAttach <- function(libname, pkgname ){
   # Add paths from ECTD.ini to the environment
-  sourceOut <- try(source( file.path( .path.package("MSToolkit"), "ECTD.ini" ))$value)
+  sourceOut <- try(source( file.path( path.package("MSToolkit"), "ECTD.ini" ))$value)
   if (class(sourceOut) != "try-error") assign("externalPaths", sourceOut, envir = .ectdEnv)
   copyright <- readLines(system.file("COPYRIGHT", package = "MSToolkit" ) )
   copyright <- gsub( "\\$version", packageDescription("MSToolkit", fields = "Version"), copyright)
