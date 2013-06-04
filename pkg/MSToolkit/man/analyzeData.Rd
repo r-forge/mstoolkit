@@ -7,7 +7,7 @@
 }
 \usage{
 analyzeData(replicates = "*", analysisCode, macroCode, interimCode = NULL, 
-  software = "R", grid = TRUE, waitAndCombine = TRUE, cleanUp = FALSE, 
+  software = "R", grid = FALSE, waitAndCombine = TRUE, cleanUp = FALSE, 
   removeMissing = TRUE, removeParOmit = TRUE, removeRespOmit = TRUE, 
   seed = .deriveFromMasterSeed(), parOmitFlag = getEctdColName("ParOmit"), 
   respOmitFlag = getEctdColName("RespOmit"), missingFlag = getEctdColName("Missing"), interimCol = getEctdColName("Interim"),
