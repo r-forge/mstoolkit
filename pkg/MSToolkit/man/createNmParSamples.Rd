@@ -5,12 +5,15 @@
 	Creates a list containing a set of "THETA", "OMEGA" and "SIGMA" parameter values, based on either the initial or final estimates of a NONMEM run
 }
 \usage{
-createNmParSamples(N, run, seed = .deriveFromMasterSeed(), 
+createNmParSamples(N, 
+  run, 
+  seed = .deriveFromMasterSeed(), 
 	method = c("Covariance", "Final", "Initial")) 
 }
 \arguments{
         \item{N}{ Number of samples to take } 
-        \item{run}{ Either a NONMEM run, NONMEM control file, or NONMEM output file, as imported using \emph{RNMImport} } 
+        \item{run}{ Either a NONMEM run, NONMEM control file, or NONMEM output file, as 
+        imported using \emph{RNMImport} } 
         \item{seed}{ Random number seed } 
         \item{method}{ Parameter method: Covariance, Final or Initial}
 }

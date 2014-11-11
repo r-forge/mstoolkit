@@ -12,7 +12,8 @@ checkColNames(dNames, cols)
 \item{cols}{ Character vector of column names that should be found in the data frame }
 }
 \details{
-	Checks that all column names specified in "cols" are found in the data frame names (given by "dNames") and produces a neat error message if not
+	Checks that all column names specified in "cols" are found in the data frame names (given by 
+  "dNames") and produces a neat error message if not
 }
 \value{
 	A TRUE value (if all of "cols" are found in "dNames") or an exception if not

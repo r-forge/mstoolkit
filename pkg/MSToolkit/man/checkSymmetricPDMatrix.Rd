@@ -10,7 +10,8 @@
 }
 \arguments{
   \item{mat}{ (Required) The matrix to check }
-  \item{tol}{ (Optional) The tolorence to use when comparing the value to 0.  The default is "1e-06" }
+  \item{tol}{ (Optional) The tolorence to use when comparing the value to 0.  The default is 
+  "1e-06" }
 }
 \value{
   The function does not return anything. It only generate an error 

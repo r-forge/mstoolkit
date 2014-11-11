@@ -3,12 +3,17 @@
 \alias{parsePredCode}
 \title{ Parses and applys NONMEM statements } 
 \description{
-	Parses NONMEM statements and attempts to apply them to a data frame in order to create a response variable
+	Parses NONMEM statements and attempts to apply them to a data frame in order to create a 
+  response variable
 }
 \usage{
 
-applyPredCode(df, pred, respCol = getEctdColName("Response"), report = TRUE, 
-    keepCols = respCol, verbose = getEctdVerbose()) 
+applyPredCode(df, 
+  pred, 
+  respCol = getEctdColName("Response"), 
+  report = TRUE, 
+  keepCols = respCol, 
+  verbose = getEctdVerbose()) 
 
 parsePredCode(model, respCol = getEctdColName("Response")) 
 
@@ -20,12 +25,16 @@ parsePredCode(model, respCol = getEctdColName("Response"))
   \item{respCol}{ Response column name ( iven by \link{getEctdColName} by default) }
   \item{report}{ Logical: should a textual report be produced? }
   \item{keepCols}{ Character vector of column names to retain in the return dataset }
-  \item{verbose}{ Logical: Should verbose logging be used? ( given by \link{getEctdVerbose} by default) }
-  \item{model}{ File containing analysis code (for R or SAS) or an R function for analysis (R only) }
+  \item{verbose}{ Logical: Should verbose logging be used? ( given by \link{getEctdVerbose} by 
+  default) }
+  \item{model}{ File containing analysis code (for R or SAS) or an R function for analysis (R 
+  only) }
 }
 \details{
-  The \code{applyPredCode} function calls the \code{parsePredCode} function in order to convert the NONMEM statements to executable R statements.
-  The \code{applyPredCode} function then iteratively "tries" to apply these statements to the data ("df"), producing a textual report of the process if "report" is set to TRUE.
+  The \code{applyPredCode} function calls the \code{parsePredCode} function in order to convert
+  the NONMEM statements to executable R statements.
+  The \code{applyPredCode} function then iteratively "tries" to apply these statements to the 
+  data ("df"), producing a textual report of the process if "report" is set to TRUE.
   The "keepCols" columns from the updated dataset are then returned 
 }
 \value{

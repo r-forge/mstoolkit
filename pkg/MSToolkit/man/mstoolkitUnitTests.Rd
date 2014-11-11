@@ -9,16 +9,18 @@
 mstoolkitUnitTests(htmlreport = FALSE, showdetails = TRUE)
 }
 \arguments{
-  \item{htmlreport}{ (Optional) A logical value.  Print an html report for unit and system tests?  FALSE by default }
-  \item{showdetails}{ (Optional) A logical value.  Print the details in the text summary of the unit tests?  TRUE by default }
+  \item{htmlreport}{ (Optional) A logical value.  Print an html report for unit and system 
+  tests?  FALSE by default }
+  \item{showdetails}{ (Optional) A logical value.  Print the details in the text summary of the
+  unit tests?  TRUE by default }
   
 }
 \details{
   The unit tests are based on the RUnit framework.
 }
 \value{
-  The function does not return anything. It writes two files: \code{reportUT.html} for the unit tests
- and \code{reportST.html} for the system tests.
+  The function does not return anything. It writes two files: \code{reportUT.html} for the unit
+  tests and \code{reportST.html} for the system tests.
 }
 \references{ 
   Matthias Burger, Klaus Juenemann and Thomas Koenig (2007). 

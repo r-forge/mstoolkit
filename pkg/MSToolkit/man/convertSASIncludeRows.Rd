@@ -5,7 +5,9 @@
 	Create a SAS 'IF' statement, used to describe rows to include in a SAS analysis
 }
 \usage{
-convertSASIncludeRows(includeRows, doseCol = getEctdColName("Dose"), interimCol = getEctdColName("Interim"))
+convertSASIncludeRows(includeRows, 
+  doseCol = getEctdColName("Dose"), 
+  interimCol = getEctdColName("Interim"))
 }
 
 \arguments{

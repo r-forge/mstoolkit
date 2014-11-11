@@ -16,7 +16,8 @@ setEctdExternalPath(pathName, Value)
 
 \details{
 
-getEctdExternalPath gets the execution path for a specific application on a particular environment
+getEctdExternalPath gets the execution path for a specific application on a particular 
+environment
 setEctdExternalPath sets an execution path for an application
 
 More permanent changes can be made by modifying the "ECTD.ini" file in the library root

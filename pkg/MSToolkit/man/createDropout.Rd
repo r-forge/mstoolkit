@@ -3,28 +3,40 @@
 
 \title{ Adds dropout to a simulated dataset } 
 \description{
-  Applies a given dropout function to a simulated trial dataset, in order to create a "missing" variable representing subject dropout
+  Applies a given dropout function to a simulated trial dataset, in order to create a "missing"
+  variable representing subject dropout
 }
 \usage{
-createDropout(data, dropFunc, 
-  seed = .deriveFromMasterSeed(), idCol = getEctdColName("Subject"),
-  timeCol = getEctdColName("Time"), flagName = getEctdColName("Missing"), ...)
+createDropout(data, 
+  dropFunc, 
+  seed = .deriveFromMasterSeed(), 
+  idCol = getEctdColName("Subject"),
+  timeCol = getEctdColName("Time"), 
+  flagName = getEctdColName("Missing"), ...)
 }
 
 \arguments{
   \item{data}{ (Required) Data frame to which to add a "missingness" flag }
-  \item{dropFunc}{ (Required) Drop out function to apply to the data.  The function must return a vector of booleans }
-  \item{seed}{ (Optional) Random generation seed.  By default, the current random seed is used }
+  \item{dropFunc}{ (Required) Drop out function to apply to the data.  The function must return
+  a vector of booleans }
+  \item{seed}{ (Optional) Random generation seed.  By default, the current random seed is used}
   \item{idCol}{ (Optional) The name of the subject varuable in the data.  "SUBJ" by default }
   \item{timeCol}{ (Optional) The name of the time column in the data.  "TIME" by default }
-  \item{flagName}{ (Optional) The name of the missing variable to create in the data.  "MISSING" by default }
-  \item{\dots}{ (Optional) Extra arguments to be passed directly to the dropout function.  No arguments are passed by default }
+  \item{flagName}{ (Optional) The name of the missing variable to create in the data.  
+  "MISSING" by default }
+  \item{\dots}{ (Optional) Extra arguments to be passed directly to the dropout function.  
+  No arguments are passed by default }
 }
 \details{
-  This function will accept (and check) a "dropout" function, which is to applied to the data.  This function must return a boolean vector.
-  The dropout function supplied will be applied to the data provided (possibly with extra arguments supplied with the ellipses).
-  Once a boolean vector is returned, the function will ensure dropout is "retained" over time within subject (so if a subject drops out at visit 1, he/she is also missing at visits 2, 3 etc.).
-  This "retained" boolean vector is added to the dataset (or used to enhance an existing "missing" flag) and the updated data is returned.
+  This function will accept (and check) a "dropout" function, which is to applied to the data. 
+  This function must return a boolean vector.
+  The dropout function supplied will be applied to the data provided (possibly with extra 
+  arguments supplied with the ellipses).
+  Once a boolean vector is returned, the function will ensure dropout is "retained" over time 
+  within subject (so if a subject drops out at visit 1, he/she is also missing at visits 2, 
+  3 etc.).
+  This "retained" boolean vector is added to the dataset (or used to enhance an existing 
+  "missing" flag) and the updated data is returned.
 }
 \value{
   An updated data frame with added/updated "missing" column

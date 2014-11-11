@@ -18,9 +18,12 @@ resetEctdColNames(whichNames = names(getNames))
 matchEctdColNames(colName, dataNames)
 }
 \arguments{
-\item{colName}{ (Required) The "column type" of the variable name of interest (one of 'Subject', 'Time', 'Dose', 'Interim', 'ParOmit', 'RespOmit', 'Response', 'Trt', 'Missing', 'Replicate', 'DrugName' and 'Drug') }
+\item{colName}{ (Required) The "column type" of the variable name of interest (one of 
+'Subject', 'Time', 'Dose', 'Interim', 'ParOmit', 'RespOmit', 'Response', 'Trt', 'Missing', 
+'Replicate', 'DrugName' and 'Drug') }
 \item{Value}{ (Required) Value to which to set the default column name }
-\item{dataNames}{ (Required) Column names against which to match the possible set of column names }
+\item{dataNames}{ (Required) Column names against which to match the possible set of column 
+names }
 \item{whichNames}{ Column types for which to reset the default name (default all) }
 }
 \details{
@@ -31,7 +34,8 @@ matchEctdColNames(colName, dataNames)
 	* resetEctdColNames - Resets the current default column names to their initial state
 	* getEctdPossibleColNames - Gets the set of possible column names given a column type
 	* setEctdPossibleColNames - Sets the set of possible column names given a column type
-	* matchEctdColNames - Selects a column name from a set of names that best matches the possible column type names
+	* matchEctdColNames - Selects a column name from a set of names that best matches the 
+  possible column type names
 
 	The set of possible "column types" are:
 	* Subject - Subject column
@@ -52,22 +56,22 @@ matchEctdColNames(colName, dataNames)
 
 The "getEctdColName" function returns a single character, giving the current column name
 
-The "getEctdPossibleColNames" function returns a character vector, giving a set of possible columns
+The "getEctdPossibleColNames" function returns a character vector, giving a set of possible 
+columns
 
-The "matchEctdColNames" function returns a single character identifying the variable in "dataNames" that should be used as the "colName" column
+The "matchEctdColNames" function returns a single character identifying the variable in 
+"dataNames" that should be used as the "colName" column
 
 The other functions to not explicitly return anything
 
 }
 \author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \examples{\dontrun{
-
-	getEctdColName("Subject")								# Get the current Subject variable
-	setEctdColName("Subject", "ID")							# Set the current Subject variable
-	getEctdColName("Subject")								# Get the "new" current Subject variable
-	resetEctdColNames()										# Reset all current column name defaults
-	getEctdPossibleColNames("Subject")						# Get set of possible "Subject" variable names
-	matchEctdColNames ("Subject", c("A", "SUBJ", "B"))		# Finds the "Subject" column in a set of possible names
-
+	getEctdColName("Subject")
+	setEctdColName("Subject", "ID")
+	getEctdColName("Subject")	
+	resetEctdColNames()		
+	getEctdPossibleColNames("Subject")
+	matchEctdColNames ("Subject", c("A", "SUBJ", "B"))
 }}
 \keyword{ IO }

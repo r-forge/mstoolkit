@@ -6,7 +6,8 @@
 Generates and analyzes simulated trial data
 }
 \description{
-Originally designed and built for Pfizer by Mango Solutions, the MSToolkit library generates and analyzes simulated trial data.
+Originally designed and built for Pfizer by Mango Solutions, the MSToolkit library generates 
+and analyzes simulated trial data.
 }
 \details{
 \tabular{ll}{

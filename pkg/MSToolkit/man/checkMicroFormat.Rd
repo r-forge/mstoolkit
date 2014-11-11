@@ -2,19 +2,24 @@
 \alias{checkMicroFormat}
 
 \title{Check that an input data structure is a valid "Micro Evaluation" structure} 
-\description{\code{checkMicroFormat} checks that a given data frame meets certain criteria and returns either a modified version
-of that data frame or an "empty" micro evaluation frame with given dose data and column names.  See the details section below
-for more information. 
+\description{\code{checkMicroFormat} checks that a given data frame meets certain criteria and 
+returns either a modified version of that data frame or an "empty" micro evaluation frame with 
+given dose data and column names.
+See the details section below for more information. 
 }
 
 \usage{
-checkMicroFormat(data, doseCol = getEctdColName("Dose"), mustHaveDose = FALSE)
+checkMicroFormat(data, 
+  doseCol = getEctdColName("Dose"), 
+  mustHaveDose = FALSE)
 }
 
 \arguments{
   \item{data}{ (Required) A data frame to check for validity }
-  \item{doseCol}{ (Optional) The "Dose" variable name within the supplied data.  "DOSE" by default }
-  \item{mustHaveDose}{ (Optional) Should the "doseCol" variable necessarily be present?  Default FALSE }
+  \item{doseCol}{ (Optional) The "Dose" variable name within the supplied data.  "DOSE" by 
+  default }
+  \item{mustHaveDose}{ (Optional) Should the "doseCol" variable necessarily be present?  
+  Default FALSE }
 }
 \details{
 

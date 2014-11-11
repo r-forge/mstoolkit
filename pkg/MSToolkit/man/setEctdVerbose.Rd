@@ -23,13 +23,19 @@
 }
 
 \arguments{
-  \item{verbose}{ (Required) A logical value.  If set to TRUE, messages are sent to the logfile during the process of generating the data and analyzing it. Set to \code{TRUE} when attaching the package.}
-  \item{file}{ (Required) Log File to write messages in.  It is eventually use by \code{\link{cat}}, so \code{file=""} will send the output messages back to the standard output. Set to \code{"ectd.log"} when attaching the package. }
-  \item{format}{ (Required) Format for the date. See \code{\link{strptime}}. Set to a default value when the package is attached.}
+  \item{verbose}{ (Required) A logical value.  If set to TRUE, messages are sent to the logfile
+  during the process of generating the data and analyzing it. Set to \code{TRUE} when attaching
+  the package.}
+  \item{file}{ (Required) Log File to write messages in.  It is eventually use by 
+  \code{\link{cat}}, so \code{file=""} will send the output messages back to the standard 
+  output. Set to \code{"ectd.log"} when attaching the package. }
+  \item{format}{ (Required) Format for the date. See \code{\link{strptime}}. Set to a default 
+  value when the package is attached.}
 }
 
 \details{
-  The three function write and read information from the (not exported) environment \code{.ectdEnv}.
+  The three function write and read information from the (not exported) environment 
+  \code{.ectdEnv}.
   These settings are mainly used by the (not exported) \code{.log} function.
 }
 \value{

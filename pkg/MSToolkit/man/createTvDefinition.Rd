@@ -6,8 +6,13 @@
 	Create "Typical Value" Definition for use with "SIMON" typical value simulation
 }
 \usage{
-createTvDefinition(drugName, drugValue, doses, times = NULL, type = c("Parallel", 
-    "Crossover"), sequence, testCall = TRUE)
+createTvDefinition(drugName, 
+  drugValue, 
+  doses, 
+  times = NULL, 
+  type = c("Parallel", "Crossover"), 
+  sequence, 
+  testCall = TRUE)
 }
 
 \arguments{

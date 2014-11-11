@@ -5,14 +5,20 @@
   Adds residual error to a generated response, based on a supplied variance-covariance matrix
 }
 \usage{
-addResidualError(response, covariance, errStruc = c("Additive", "Proportional", "Log-Normal"), seed = .deriveFromMasterSeed())
+addResidualError(response, 
+covariance, 
+errStruc = c("Additive", "Proportional", "Log-Normal"), 
+seed = .deriveFromMasterSeed())
 }
 
 \arguments{
   \item{response}{ (Required) Numeric vector of response data }
-  \item{covariance}{ (Required) Residual error (co)variance.  This would be the lower-triangle of the matrix, or the matrix itself. The function \code{\link{parseCovMatrix}} is used to ensure that the matrix is in the right format. }
-  \item{errStruc}{ (Optional) Function describing how to apply residual error: "Additive", "Log-Normal" or "Proportional".   "Additive" is the default}
-  \item{seed}{ (Optional) Random seed to use.  Derived from the current random seed by default }
+  \item{covariance}{ (Required) Residual error (co)variance.  This would be the lower-triangle
+  of the matrix, or the matrix itself. The function \code{\link{parseCovMatrix}} is used to 
+  ensure that the matrix is in the right format. }
+  \item{errStruc}{ (Optional) Function describing how to apply residual error: "Additive", 
+  "Log-Normal" or "Proportional".   "Additive" is the default}
+  \item{seed}{ (Optional) Random seed to use.  Derived from the current random seed by default}
 }
 \details{
   The first step in the algorithm will be to set the random number seed to 
@@ -31,7 +37,8 @@ addResidualError(response, covariance, errStruc = c("Additive", "Proportional", 
   A numeric vector
 }
 \note{
-In earlier versions of MSToolkit, the "Proportional" Error Structure behaved differently (it assumed parameters passed were on the log scale)
+In earlier versions of MSToolkit, the "Proportional" Error Structure behaved differently (it 
+assumed parameters passed were on the log scale)
 }
 \author{ Mike K Smith \email{mstoolkit@googlemail.com} }
 \seealso{ 

@@ -15,11 +15,15 @@ convertToSASCode(code)
 \details{
   The function will accept either a character vector or a character matrix with 3 columns.
   
-  If the input is a vector, the function assumes these are logical statements to be converted to SAS code.  
-  The converted statements are prefixed with an "IF" statement and collapsed based on semi-colons.
+  If the input is a vector, the function assumes these are logical statements to be converted 
+  to SAS code.  
+  The converted statements are prefixed with an "IF" statement and collapsed based on semi-
+  colons.
 
-  If the input is a 3 column vector, the function will convert the first column of (logical) statments to SAS code, and prefix them with an "IF" statement.
-  The 2nd column is pasted together with the first column, seperated by a "THEN" statement.  The 3rd column is pasted together with the third column seperated by an "=" sign. 
+  If the input is a 3 column vector, the function will convert the first column of (logical) 
+  statments to SAS code, and prefix them with an "IF" statement.
+  The 2nd column is pasted together with the first column, seperated by a "THEN" statement.  
+  The 3rd column is pasted together with the third column seperated by an "=" sign. 
   The whole string is collapsed based on ";" symbols and returned.
 }
 

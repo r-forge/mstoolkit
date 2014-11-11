@@ -13,9 +13,12 @@ checkDropOutFun(fun, data, sizeSubset = 5, useSubset= TRUE, ...)
 \arguments{
   \item{fun}{ (Required) Function to check for validity }
   \item{data}{ (Required) Dataset to use for performing the valildity check }
-  \item{sizeSubset}{ (Optional) Number of "initial" rows from the provided data to use in the test for the validity of the function.  The default is "5" }
-  \item{useSubset}{ (Optional) Should the check operate on a subset of the data, as opposed to the entire dataset?  TRUE by default }
-  \item{\dots}{ (Optional) Extra arguments to be passed directly to the function being tested.  No extra arguments are passed by default }
+  \item{sizeSubset}{ (Optional) Number of "initial" rows from the provided data to use in the 
+  test for the validity of the function.  The default is "5" }
+  \item{useSubset}{ (Optional) Should the check operate on a subset of the data, as opposed to 
+  the entire dataset?  TRUE by default }
+  \item{\dots}{ (Optional) Extra arguments to be passed directly to the function being tested. 
+  No extra arguments are passed by default }
 }
 \details{
   A correct dropout function must have at least a \code{data} argument, and

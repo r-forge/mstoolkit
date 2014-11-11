@@ -14,7 +14,8 @@
   \item{\dots}{ (Required) A collection of character vectors to be checked }
 }
 \details{
-  A valid R name starts with a letter or a dot followed by a non-numerical character and contains only letters, numbers and dots.
+  A valid R name starts with a letter or a dot followed by a non-numerical character and 
+  contains only letters, numbers and dots.
 }
 
 \value{

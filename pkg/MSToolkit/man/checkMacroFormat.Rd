@@ -9,10 +9,12 @@
 checkMacroFormat(data)
 }
 \arguments{
-  \item{data}{ (Required) Dataset to be checked to ensure it is a valid "Macro Evaluation" sructure}
+  \item{data}{ (Required) Dataset to be checked to ensure it is a valid "Macro Evaluation" 
+  structure}
 }
 \details{
-  The \code{\link{checkMacroFormat}} function checks that the data passed to it is a valid "Macro Evaluation" structure.
+  The \code{\link{checkMacroFormat}} function checks that the data passed to it is a valid 
+  "Macro Evaluation" structure.
   A valid "Macro Evaluation" structure is an R data frame containing only 1 row of data.
 }
 \value{

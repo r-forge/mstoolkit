@@ -9,8 +9,11 @@ createResponseVariable(data, equation, preTest = TRUE, subsetSize = 5)
 }
 \arguments{
   \item{data}{ (Required) The dataset to use, must be a \code{\link{data.frame}} }
-  \item{equation}{ (Required) R function that must have a \code{data} argument or character string describing the equation that uses names of the variables in the data.}
-  \item{preTest}{ (Optional) Logical Flag. TRUE to try and build the response first with a subset of the data. The subset size is given by the minimum between the number of rows in the data and the \code{subsetSize} argument.}
+  \item{equation}{ (Required) R function that must have a \code{data} argument or character 
+  string describing the equation that uses names of the variables in the data.}
+  \item{preTest}{ (Optional) Logical Flag. TRUE to try and build the response first with a 
+  subset of the data. The subset size is given by the minimum between the number of rows in the
+  data and the \code{subsetSize} argument.}
   \item{subsetSize}{ (Optional) Size of the subset if the \code{preTest} has been requested. }
 }
 \details{
